@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title> - Login - </title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
               <div class="col-md-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Swift Studio</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Log in</h1>
                   </div>
                   <form class="user" action="Login/log" method="POST">
                     <div class="form-group">
