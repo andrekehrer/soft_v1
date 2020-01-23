@@ -5,7 +5,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{	
-		$data['title'] = "Dashboard - Swift Studio";
+		$data['title'] = "Dashboard - Meu Dinheiro";
 		$this->load->view('pages/dashboard', $data);
 	}
 }
