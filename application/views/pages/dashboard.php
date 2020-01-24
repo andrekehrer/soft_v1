@@ -122,7 +122,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/Logout">
+                <a class="dropdown-item" href="<?php echo base_url(); ?>/Logout">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -227,55 +227,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
-  <script>
-tion myFunction(id, name, date, desc){
-
-        $.redirect('/imprimir', {'id': id, 'name': name, 'date': date, 'desc': desc});
-      }
-
-    $(document).ready(function(){
-      //ajax_call();
-
-      $('#ajax_btn').click(function() {
-        ajax_call();
-      });
-
-
-      function ajax_call(){
-         $('#table_data').empty();
-
-          $.ajax({
-          type: "GET",
-          url: "/ajax-refresh",
-          dataType : "JSON",
-          beforeSend: function(){
-            // Show image container
-            $("#loader").show();
-           },
-          success: function(result){
-            console.log(result.data);
-            $.each(result.data, function(i){
-              //console.log(result.Sales[i].Id);
-            var html = '<tr>';
-             html += '<td>'+result.data[i].id+'</td>';
-             html += '<td>'+result.data[i].client_name+'</td>';
-             html += '<td>'+result.data[i].order_time+'</td>';
-             html += '<td>'+result.data[i].order_desc+'</td>';
-             html += '<td><img src="<?php echo base_url();?>/assets/img/printer.ico" id="printer_img" alt="" onclick="myFunction(\''+result.data[i].id+'\', \''+result.data[i].client_name+'\', \''+result.data[i].order_time+'\', \''+result.data[i].order_desc+'\')" width="35"></td></tr>';
-
-             $('#table_data').prepend(html);
-
-            })
-
-          },
-         complete:function(data){
-          // Hide image container
-          $("#loader").hide();
-         }
-        });
-      }
-  });
-  </script>
 
 </body>
 

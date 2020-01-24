@@ -14,20 +14,29 @@ class Login extends CI_Controller {
 		$data['title'] = "Login page - Swift Studio";
 		$this->load->view('pages/login', $data);
 	}
-	public function log(){
-		$checkLogin = $this->login_model->loginAuthentication($this->input->post('email'), $this->input->post('pass'));
 
-		if ($checkLogin){
+	public function log(){
+
+        $checkLogin = $this->login_model->loginAuthentication($_POST['email'], $_POST['pass']);
+        if ($checkLogin){
             $this->session->set_userdata('backend', $checkLogin);
             $ip = $_SERVER['REMOTE_ADDR'];
             $sess_id = $this->session->userdata('backend');
 
-            redirect('Dashboard');
+            $array[] = [
+                    'session' => $sess_id,
+                    'logado' =>  'sim',
+                 ];
+            $json['data'] = $array;
+            echo json_encode($json, true);
         }else{
-        	redirect('Login');
+            $array[] = ['logado' =>  'nao',];
+            $json['data'] = $array;
+            echo json_encode($json, true);
         }
 	}
-	function logout(){
+
+	public function logout(){
         unset($_SESSION['backend']);
         redirect('Login');
     }

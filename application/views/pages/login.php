@@ -38,7 +38,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Log in</h1>
                   </div>
-                  <form class="user" action="Login/log" method="POST">
+                  <form class="user">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
                     </div>
@@ -51,7 +51,10 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                    <button class="btn btn-primary btn-user btn-block" id="submit">Login</button>
+                    <div style="display: none;margin-top: 20px;" class="alert alert-danger" id="msg_alert" role="alert">
+                      E-mail or password wrong!
+                    </div>
                   </form>
                 </div>
               </div>
@@ -74,7 +77,48 @@
 
   <!-- Custom scripts for all pages-->
   <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
+  <script>
 
+    $(document).ready(function(){
+
+      $('#submit').click(function() {
+        event.preventDefault();
+        ajax_call();
+      });
+
+      function ajax_call(){
+        var email = $('#email').val();
+        var pass = $('#pass').val();
+    
+          $.ajax({
+          type: "POST",
+          data: {email:email, pass:pass},
+          url: "<?php echo base_url(); ?>Login/log",
+          dataType : "JSON",
+          beforeSend: function(){
+            // Show image container
+            $("#loader").show();
+           },
+          success: function(result){
+            //console.log(result.data);
+            $.each(result.data, function(i){
+              //console.log(result.Sales[i].Id);
+              console.log(result.data[i].logado);
+              if (result.data[i].logado === 'sim') {
+                window.location.href = "<?php echo base_url() ?>";
+              }else{
+                $('#msg_alert').css('display', 'block');
+              }
+            })
+          },
+         complete:function(data){
+          // Hide image container
+          $("#loader").hide();
+         }
+        });
+      }
+  });
+  </script>
 </body>
 
 </html>
