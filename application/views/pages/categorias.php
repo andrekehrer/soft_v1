@@ -319,6 +319,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="modal-header">
                           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
                           <h4 class="modal-title">Editar categoria</h4>
+                          <div id='loader' style='display: none;'>
+                            <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
+                          </div>
                         </div>
                         <div class="modal-body">
 
@@ -461,14 +464,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#myModalEdit').modal('show');
      }
 
-
      $(document).ready(function(){
-
 
       $('#close_modal_edit').on('click', function () {
         location.reload();
       });
-
 
       $('#msg_success').css('display','none');
       $('#myform_edit').on('submit', function (e) {
@@ -491,7 +491,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 success: function(result){
                   console.log(result);
                   $('#msg_success').css('display','block');
-
 
                 },
                 complete:function(data){
