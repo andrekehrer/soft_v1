@@ -23,7 +23,7 @@ class Login extends CI_Controller {
             $ip = $_SERVER['REMOTE_ADDR'];
             $sess_id = $this->session->userdata('backend');
 
-            $array = [
+            $array[] = [
                     'session' => $sess_id,
                     'logado' =>  'sim',
                  ];
