@@ -53,5 +53,7 @@ $route['default_controller'] = 'Dashboard';
 $route['login'] = 'Login';
 $route['Login/log'] = 'Login/log';
 $route['Logout'] = 'Login/logout';
+$route['categorias'] = 'Categorias';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

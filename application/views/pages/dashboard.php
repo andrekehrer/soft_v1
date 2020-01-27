@@ -35,16 +35,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Meu Dinheiro</div>
       </a>
 
+
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="/categorias">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Categorias</span></a>
+        </li>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -61,13 +70,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Perfil</span></a>
-          </li>
+        </li>
 
           <li class="nav-item">
             <a class="nav-link" href="charts.html">
               <i class="fas fa-fw fa-chart-area"></i>
               <span>Change password</span></a>
-            </li>
+          </li>
 
 
             <!-- Divider -->
