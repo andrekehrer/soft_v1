@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        <li class="nav-item active">
         <a class="nav-link" href="/entradas">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Entradas</span></a>
+          <span>Entradas Fixas</span></a>
         </li>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
@@ -157,8 +157,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Entradas</h1>
-                    <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a>
+                    <h1 class="h3 mb-0 text-gray-800">Entradas Fixas</h1>
+                    <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar entrada</a>
 
                   </div>
 
@@ -170,19 +170,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="modal-content">
                         <div class="modal-header">
                           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                          <h4 class="modal-title">Nova categoria</h4>
+                          <h4 class="modal-title">Nova entrada</h4>
                           <div id='loader' style='display: none;'>
                             <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                           </div>
                         </div>
                         <div class="modal-body">
                           <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
-                            Categoria alterada com sucesso!
+                            Entrada adicionada com sucesso!
                           </div>
                           <form id="myform_new" name="myform_new">
                             <div class="form-group">
                               <label for="email">Nome da categoria</label>
-                              <input type="text" class="form-control" name="categoria_nome_nova" id="categoria_nome_nova">
+                              <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_nova">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Valor</label>
+                              <input type="text" class="form-control" name="entrada_valor_edit" id="entrada_valor_nova">
                             </div>
                             <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
                           </form>
@@ -203,7 +207,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="modal-content">
                         <div class="modal-header">
                           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                          <h4 class="modal-title">Editar categoria</h4>
+                          <h4 class="modal-title">Editar entrada</h4>
                           <div id='loader' style='display: none;'>
                             <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                           </div>
@@ -211,13 +215,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="modal-body">
 
                           <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
-                            Categoria alterada com sucesso!
+                            Entrada alterada com sucesso!
                           </div>
                           <form id="myform_edit" name="myform_edit">
                             <div class="form-group">
                               <label for="email">Nome da categoria</label>
-                              <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
-                              <input type="text" class="form-control" name="categoria_nome_edit" id="categoria_nome_edit">
+                              <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_edit">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Valor</label>
+                              <input type="text" class="form-control" name="entrada_valor_edit" id="entrada_valor_edit">
                             </div>
                             <button type="submit" class="btn btn-default btn-primary">Salvar</button>
                           </form>
@@ -254,17 +261,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo $value['nome'];
                             echo "</td>";
                              echo "<td>";
-                            echo number_format($value['valor'], 2, ',', '.');
+                            echo '£'.number_format($value['valor'], 2, ',', '.');
                             echo "</td>";
                             echo "<td>";
-                            echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                            echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                            echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                            echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                             echo "</td>";
                             echo "</tr>";
                           }
                           ?>
 
                         <?php endif ?>
+                        <tr>
+                          <td>TOTAL</td>
+                          <td>
+                            
+                            <?php 
+                            $total = 0;
+                            foreach ($data as $key => $value) {
+                              $total = $total + $value['valor'];
+                            }
+                            echo '£'.number_format($total, 2, ',', '.');
+                             ?>
+                          </td>
+                          <td></td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -343,8 +364,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#msg_success').css('display','none');
             var id = d.getAttribute("data-sample-id");
             var name = d.getAttribute("data-sample-name");
-            $('#categoria_id_edit').val(id);
-            $('#categoria_nome_edit').val(name);
+            var valor = d.getAttribute("data-sample-valor");
+            $('#entrada_id_edit').val(id);
+            $('#entrada_nome_edit').val(name);
+            $('#entrada_valor_edit').val(valor);
             $('#myModalEdit').modal('show');
           }
 
@@ -360,14 +383,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#myform_edit').on('submit', function (e) {
               e.preventDefault();
               var parms = {
-                id_edit : $("#categoria_id_edit").val(),
-                nome_edit : $("#categoria_nome_edit").val()
+                id_edit : $("#entrada_id_edit").val(),
+                nome_edit : $("#entrada_nome_edit").val(),
+                valor_edit : $("#entrada_valor_edit").val()
               };
           //console.log(parms);
 
               $.ajax({
                 type: "GET",
-                url: "/update_categoria",
+                url: "/update_entrada",
                 data: parms,
                 dataType : "JSON",
                   beforeSend: function(){
@@ -388,13 +412,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#myform_new').on('submit', function (e) {
               e.preventDefault();
               var parms = {
-                nome_nova : $("#categoria_nome_nova").val()
+                nome_nova : $("#entrada_nome_nova").val(),
+                valor_nova : $("#entrada_valor_nova").val()
               };
           //console.log(parms);
 
               $.ajax({
                 type: "GET",
-                url: "/nova_categoria",
+                url: "/nova_entrada",
                 data: parms,
                 dataType : "JSON",
                   beforeSend: function(){

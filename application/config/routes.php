@@ -60,6 +60,8 @@ $route['carregar_tabela'] = 'Categorias/carregar_tabela';
 $route['nova_categoria'] = 'Categorias/nova_categoria';
 
 $route['entradas'] = 'Entradas';
+$route['update_entrada'] = 'Entradas/update_entrada';
+$route['nova_entrada'] = 'Entradas/nova_entrada';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
