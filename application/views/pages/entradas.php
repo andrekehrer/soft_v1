@@ -254,7 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo $value['nome'];
                             echo "</td>";
                              echo "<td>";
-                            echo $value['valor'];
+                            echo number_format($value['valor'], 2, ',', '.');
                             echo "</td>";
                             echo "<td>";
                             echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
