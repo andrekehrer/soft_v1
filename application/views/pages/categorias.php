@@ -52,300 +52,313 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </a>
 
 
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
+      
       <li class="nav-item active">
-        <a class="nav-link" href="/categorias">
+        <a class="nav-link" href="/entradas">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Categorias</span></a>
+          <span>Entradas</span></a>
         </li>
-        <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="/">
+          <a class="nav-link" href="/categorias">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Categorias</span></a>
           </li>
-
           <!-- Divider -->
-          <hr class="sidebar-divider">
-          <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-              <i class="fas fa-fw fa-chart-area"></i>
-              <span>Perfil</span></a>
+          <hr class="sidebar-divider my-0">
+
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Dashboard</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
             <li class="nav-item">
               <a class="nav-link" href="charts.html">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Change password</span></a>
+                <span>Perfil</span></a>
               </li>
 
+              <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                  <i class="fas fa-fw fa-chart-area"></i>
+                  <span>Change password</span></a>
+                </li>
 
-              <!-- Divider -->
-              <hr class="sidebar-divider d-none d-md-block">
 
-              <!-- Sidebar Toggler (Sidebar) -->
-              <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-              </div>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
 
-            </ul>
-            <!-- End of Sidebar -->
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+              </ul>
+              <!-- End of Sidebar -->
 
-              <!-- Main Content -->
-              <div id="content">
+              <!-- Content Wrapper -->
+              <div id="content-wrapper" class="d-flex flex-column">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Main Content -->
+                <div id="content">
 
-                  <!-- Sidebar Toggle (Topbar) -->
-                  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                  </button>
+                  <!-- Topbar -->
+                  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                  <!-- Topbar Navbar -->
-                  <ul class="navbar-nav ml-auto">
-                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                      <i class="fa fa-bars"></i>
+                    </button>
 
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['backend']['username']; ?></span>
-                        <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/128/149/149071.png" height="60" width="60">
-                      </a>
-                      <!-- Dropdown - User Information -->
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Profile
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                      <div class="topbar-divider d-none d-sm-block"></div>
+
+                      <!-- Nav Item - User Information -->
+                      <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['backend']['username']; ?></span>
+                          <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/128/149/149071.png" height="60" width="60">
                         </a>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Settings
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Activity Log
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo base_url(); ?>/Logout" data-toggle="modal" data-target="#logoutModal">
-                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Logout
-                        </a>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                  <!-- Page Heading -->
-                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Categorias</h1>
-                    <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a>
-
-                  </div>
-
-                  <!-- NEW Modal -->
-                  <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                          <h4 class="modal-title">Nova categoria</h4>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                          <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                          </a>
+                          <a class="dropdown-item" href="#">
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Settings
+                          </a>
+                          <a class="dropdown-item" href="#">
+                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Activity Log
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="<?php echo base_url(); ?>/Logout" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                          </a>
                         </div>
-                        <div class="modal-body">
-                          <form action="#">
-                            <div class="form-group">
-                              <label for="email">Nome da categoria</label>
-                              <input type="text" class="form-control" name="categoria_nome" id="categoria_nome">
-                            </div>
-                            <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
-                          </form>
-                        </div>
+                      </li>
 
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
+                    </ul>
+
+                  </nav>
+                  <!-- End of Topbar -->
+
+                  <!-- Begin Page Content -->
+                  <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                      <h1 class="h3 mb-0 text-gray-800">Categorias</h1>
+                      <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a>
 
                     </div>
-                  </div>
-                  <!-- EDIT Modal -->
-                  <div id="myModalEdit" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
 
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                          <h4 class="modal-title">Editar categoria</h4>
-                          <div id='loader' style='display: none;'>
-                            <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
-                          </div>
-                        </div>
-                        <div class="modal-body">
+                    <!-- NEW Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
 
-                          <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
-                            Categoria alterada com sucesso!
-                          </div>
-                          <form id="myform_edit" name="myform_edit">
-                            <div class="form-group">
-                              <label for="email">Nome da categoria</label>
-                              <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
-                              <input type="text" class="form-control" name="categoria_nome_edit" id="categoria_nome_edit">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                            <h4 class="modal-title">Nova categoria</h4>
+                            <div id='loader' style='display: none;'>
+                              <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                             </div>
-                            <button type="submit" class="btn btn-default btn-primary">Salvar</button>
-                          </form>
+                          </div>
+                          <div class="modal-body">
+                            <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
+                              Categoria alterada com sucesso!
+                            </div>
+                            <form id="myform_new" name="myform_new">
+                              <div class="form-group">
+                                <label for="email">Nome da categoria</label>
+                                <input type="text" class="form-control" name="categoria_nome_nova" id="categoria_nome_nova">
+                              </div>
+                              <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                          </div>
                         </div>
 
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
-                        </div>
                       </div>
-
                     </div>
+                    <!-- EDIT Modal -->
+                    <div id="myModalEdit" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                            <h4 class="modal-title">Editar categoria</h4>
+                            <div id='loader' style='display: none;'>
+                              <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
+                            </div>
+                          </div>
+                          <div class="modal-body">
+
+                            <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
+                              Categoria alterada com sucesso!
+                            </div>
+                            <form id="myform_edit" name="myform_edit">
+                              <div class="form-group">
+                                <label for="email">Nome da categoria</label>
+                                <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
+                                <input type="text" class="form-control" name="categoria_nome_edit" id="categoria_nome_edit">
+                              </div>
+                              <button type="submit" class="btn btn-default btn-primary">Salvar</button>
+                            </form>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                             <!--  <th>Id</th> -->
+                             <th>Categoria</th>
+                             <th>Acoes</th>
+                           </tr>
+                         </thead>
+
+                         <tbody id="table_data">
+                          <?php if ($data): ?>
+
+                            <?php
+                            foreach ($data as $key => $value) {
+                              echo "<tr>";
+                              echo "<td>";
+                              echo $value['nome'];
+                              echo "</td>";
+                              echo "<td>";
+                              echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              echo "</td>";
+                              echo "</tr>";
+                            }
+                            ?>
+
+                          <?php endif ?>
+                        </tbody>
+                      </table>
+                    </div>
+
                   </div>
 
                   <!-- Content Row -->
-                  <div class="row">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                           <!--  <th>Id</th> -->
-                           <th>Categoria</th>
-                           <th>Acoes</th>
-                         </tr>
-                       </thead>
 
-                       <tbody id="table_data">
-                        <?php if ($data): ?>
+                </div>
+                <!-- /.container-fluid -->
 
-                          <?php
-                          foreach ($data as $key => $value) {
-                            echo "<tr>";
-                            echo "<td>";
-                            echo $value['nome'];
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                            echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                            echo "</td>";
-                            echo "</tr>";
-                          }
-                          ?>
+              </div>
+              <!-- End of Main Content -->
 
-                        <?php endif ?>
-                      </tbody>
-                    </table>
+              <!-- Footer -->
+              <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Meu Dinheiro 2019</span>
                   </div>
-
                 </div>
-
-                <!-- Content Row -->
-
-              </div>
-              <!-- /.container-fluid -->
+              </footer>
+              <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-              <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                  <span>Copyright &copy; Meu Dinheiro 2019</span>
-                </div>
-              </div>
-            </footer>
-            <!-- End of Footer -->
+            <!-- End of Content Wrapper -->
 
           </div>
-          <!-- End of Content Wrapper -->
+          <!-- End of Page Wrapper -->
 
-        </div>
-        <!-- End of Page Wrapper -->
+          <!-- Scroll to Top Button-->
+          <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-              <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+          <!-- Logout Modal-->
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+          <!-- Bootstrap core JavaScript-->
+          <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+          <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+          <!-- Core plugin JavaScript-->
+          <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
+          <!-- Custom scripts for all pages-->
+          <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+          <!-- Page level plugins -->
+          <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+          <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
+          <!-- Page level custom scripts -->
+          <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
+          <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
-        <script>
-          function myClick(d){
-            $('#msg_success').css('display','none');
-            var id = d.getAttribute("data-sample-id");
-            var name = d.getAttribute("data-sample-name");
-            $('#categoria_id_edit').val(id);
-            $('#categoria_nome_edit').val(name);
-            $('#myModalEdit').modal('show');
-          }
+          <script>
+            function myClick(d){
+              $('#msg_success').css('display','none');
+              var id = d.getAttribute("data-sample-id");
+              var name = d.getAttribute("data-sample-name");
+              $('#categoria_id_edit').val(id);
+              $('#categoria_nome_edit').val(name);
+              $('#myModalEdit').modal('show');
+            }
 
-          $(document).ready(function(){
+            $(document).ready(function(){
 
-            $('#close_modal_edit').on('click', function () {
-              location.reload();
-            });
+              $('#close_modal_edit').on('click', function () {
+                location.reload();
+              });
 
-            $('#msg_success').css('display','none');
-            $('#myform_edit').on('submit', function (e) {
-              e.preventDefault();
-              var parms = {
-                id_edit : $("#categoria_id_edit").val(),
-                nome_edit : $("#categoria_nome_edit").val()
-              };
+
+              $('#msg_success').css('display','none');
+
+              $('#myform_edit').on('submit', function (e) {
+                e.preventDefault();
+                var parms = {
+                  id_edit : $("#categoria_id_edit").val(),
+                  nome_edit : $("#categoria_nome_edit").val()
+                };
           //console.log(parms);
 
           $.ajax({
@@ -353,26 +366,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             url: "/update_categoria",
             data: parms,
             dataType : "JSON",
-              beforeSend: function(){
-                    // Show image container
-                    $("#loader").show();
-                  },
-                  success: function(result){
-                    console.log(result);
-                    $('#msg_success').css('display','block');
+            beforeSend: function(){
+                        // Show image container
+                        $("#loader").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        $('#msg_success').css('display','block');
 
-                  },
-                  complete:function(data){
-                  // Hide image container
-                  $("#loader").hide();
-                }
-              });
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      $("#loader").hide();
+                    }
+                  });
+        });
+              $('#myform_new').on('submit', function (e) {
+                e.preventDefault();
+                var parms = {
+                  nome_nova : $("#categoria_nome_nova").val()
+                };
+          //console.log(parms);
+
+          $.ajax({
+            type: "GET",
+            url: "/nova_categoria",
+            data: parms,
+            dataType : "JSON",
+            beforeSend: function(){
+                        // Show image container
+                        $("#loader2").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        $('#msg_success2').css('display','block');
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      $("#loader2").hide();
+                    }
+                  });
+        });
+
             });
-          });
 
-        </script>
+          </script>
 
-      </body>
+        </body>
 
-      </html>
+        </html>
 

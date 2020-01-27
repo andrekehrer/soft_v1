@@ -42,6 +42,25 @@ class Categorias extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
+	public function nova_categoria(){
+		$nome = $_GET['nome_nova'];
+		//print_r($nome);exit(0);
+		$data = array( 
+			'nome'   =>  $nome,
+			'status' =>  1
+		);
+		$this->db->insert('categorias', $data);
+
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 'Categoria editada com sucesso!';
+		}else{
+			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
+		}
+
+		echo json_encode($data, true);
+		//print_r($this->db->affected_rows());exit(0);
+	}
+
 	public function carregar_tabela(){
 		$data = $this->db->get("categorias")->result();	
 		echo json_encode($data, true);
