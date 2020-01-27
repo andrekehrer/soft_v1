@@ -308,10 +308,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <!-- Content Row -->
                   <div class="row">
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Id</th>
+                           <!--  <th>Id</th> -->
                             <th>Categoria</th>
                             <th>Acoes</th>
                           </tr>
@@ -324,14 +324,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                       foreach ($data as $key => $value) {
                         echo "<tr>";
-                        echo "<td>";
-                        echo $value['id'];
-                        echo "</td>";
+                        // echo "<td>";
+                        // echo $value['id'];
+                        // echo "</td>";
                         echo "<td>";
                         echo $value['nome'];
                         echo "</td>";
                         echo "<td>";
-                        // echo "<img src='".base_url()."/assets/img/printer.ico' id='printer_img' data-sample-id='".$value['id']."' data-sample-name='".$value['client_name']."' data-sample-time='".$value['order_time']."' data-sample-desc='".$value['order_desc']."' alt='' onclick='myClick(this)' width='35'>";
+                        echo "<img src='".base_url()."/assets/img/edit-icon.png' id='printer_img'alt='' onclick='' width='20'>";
+                        echo "<img src='".base_url()."/assets/img/delete-icon.png' id='printer_img'alt='' onclick='' width='20'>";
                         echo "</td>";
                         echo "</tr>";
                       }
