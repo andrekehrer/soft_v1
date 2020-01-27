@@ -7,7 +7,8 @@ class Login extends CI_Controller {
     {
         parent::__construct();
         // $this->load->model('login_model');
-        
+        $this->load->model('login_model');
+
     }
 
 	public function index()
@@ -17,7 +18,7 @@ class Login extends CI_Controller {
 	}
 
 	public function log(){
-        $this->load->model(site_url('login_model'));
+
         $checkLogin = $this->login_model->loginAuthentication($_POST['email'], $_POST['pass']);
         if ($checkLogin){
             $this->session->set_userdata('backend', $checkLogin);
