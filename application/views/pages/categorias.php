@@ -25,6 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <!-- Custom styles for this page -->
   <link href="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <style>
+    #printer_img{
+      cursor: pointer;
+      width: 35px;
+    }
+  </style>
 
 </head>
 
@@ -277,7 +283,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   </div>
 
-                  <!-- Modal -->
+                  <!-- NEW Modal -->
                   <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
 
@@ -304,6 +310,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     </div>
                   </div>
+                  <!-- EDIT Modal -->
+                  <div id="myModalEdit" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                          <h4 class="modal-title">Editar categoria</h4>
+                        </div>
+                        <div class="modal-body">
+
+                          <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
+                            Categoria alterada com sucesso!
+                          </div>
+                          <form id="myform_edit" name="myform_edit">
+                            <div class="form-group">
+                              <label for="email">Nome da categoria</label>
+                              <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
+                              <input type="text" class="form-control" name="categoria_nome_edit" id="categoria_nome_edit">
+                            </div>
+                            <button type="submit" class="btn btn-default btn-primary">Salvar</button>
+                          </form>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
 
                   <!-- Content Row -->
                   <div class="row">
@@ -312,13 +350,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <thead>
                           <tr>
                            <!--  <th>Id</th> -->
-                            <th>Categoria</th>
-                            <th>Acoes</th>
-                          </tr>
-                        </thead>
+                           <th>Categoria</th>
+                           <th>Acoes</th>
+                         </tr>
+                       </thead>
 
-                        <tbody id="table_data">
-                          <?php if ($data): ?>
+                       <tbody id="table_data">
+                        <?php if ($data): ?>
 
                       <?php //echo "<pre>";print_r($data);exit(0);
 
@@ -331,8 +369,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo $value['nome'];
                         echo "</td>";
                         echo "<td>";
-                        echo "<img src='".base_url()."/assets/img/edit-icon.png' id='printer_img'alt='' onclick='' width='20'>";
-                        echo "<img src='".base_url()."/assets/img/delete-icon.png' id='printer_img'alt='' onclick='' width='20'>";
+                        echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                        echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                         echo "</td>";
                         echo "</tr>";
                       }
@@ -413,8 +451,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
+    <script>
+      function myClick(d){
+       $('#msg_success').css('display','none');
+       var id = d.getAttribute("data-sample-id");
+       var name = d.getAttribute("data-sample-name");
+       $('#categoria_id_edit').val(id);
+       $('#categoria_nome_edit').val(name);
+       $('#myModalEdit').modal('show');
+     }
 
-  </body>
 
-  </html>
+     $(document).ready(function(){
+
+
+      $('#close_modal_edit').on('click', function () {
+        location.reload();
+      });
+
+
+      $('#msg_success').css('display','none');
+      $('#myform_edit').on('submit', function (e) {
+        e.preventDefault();
+        var parms = {
+          id_edit : $("#categoria_id_edit").val(),
+          nome_edit : $("#categoria_nome_edit").val()
+        };
+          //console.log(parms);
+
+          $.ajax({
+            type: "GET",
+            url: "/update_categoria",
+            data: parms,
+            dataType : "JSON",
+            beforeSend: function(){
+                  // Show image container
+                  $("#loader").show();
+                },
+                success: function(result){
+                  console.log(result);
+                  $('#msg_success').css('display','block');
+
+
+                },
+                complete:function(data){
+                // Hide image container
+                $("#loader").hide();
+              }
+            });
+        });
+    });
+
+
+
+  </script>
+
+
+</body>
+
+</html>
 

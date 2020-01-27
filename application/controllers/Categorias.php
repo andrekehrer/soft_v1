@@ -22,4 +22,28 @@ class Categorias extends CI_Controller {
 		$data['title'] = "Categorias - Meu Dinheiro";
 		$this->load->view('pages/categorias', $data);
 	}
+
+	public function update_categoria(){
+		$id = $_GET['id_edit'];
+		$nome = $_GET['nome_edit'];
+		//print_r($nome);exit(0);
+		$data = array( 
+			'nome'  =>  $nome
+		);
+		$this->db->where('cat_id', $id);
+		$this->db->update('categorias', $data);
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 'Categoria editada com sucesso!';
+		}else{
+			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
+		}
+
+		echo json_encode($data, true);
+		//print_r($this->db->affected_rows());exit(0);
+	}
+
+	public function carregar_tabela(){
+		$data = $this->db->get("categorias")->result();	
+		echo json_encode($data, true);
+	}
 }
