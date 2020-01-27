@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
           </li>
@@ -112,132 +112,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   <!-- Topbar Navbar -->
                   <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
-                      </a>
-                      <!-- Dropdown - Messages -->
-                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                          <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                              <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </li>
-
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-bell fa-fw"></i>
-                        <!-- Counter - Alerts -->
-                        <!-- <span class="badge badge-danger badge-counter">3+</span> -->
-                      </a>
-                      <!-- Dropdown - Alerts -->
-                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">
-                          Alerts Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                            <div class="icon-circle bg-primary">
-                              <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="small text-gray-500">December 12, 2019</div>
-                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                          </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                            <div class="icon-circle bg-success">
-                              <i class="fas fa-donate text-white"></i>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="small text-gray-500">December 7, 2019</div>
-                            $290.29 has been deposited into your account!
-                          </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                            <div class="icon-circle bg-warning">
-                              <i class="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="small text-gray-500">December 2, 2019</div>
-                            Spending Alert: We've noticed unusually high spending for your account.
-                          </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                      </div>
-                    </li>
-
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-envelope fa-fw"></i>
-                        <!-- Counter - Messages -->
-                        <!-- <span class="badge badge-danger badge-counter">7</span> -->
-                      </a>
-                      <!-- Dropdown - Messages -->
-                      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                        <h6 class="dropdown-header">
-                          Message Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                            <div class="status-indicator bg-success"></div>
-                          </div>
-                          <div class="font-weight-bold">
-                            <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                            <div class="small text-gray-500">Emily Fowler · 58m</div>
-                          </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                            <div class="status-indicator"></div>
-                          </div>
-                          <div>
-                            <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                            <div class="small text-gray-500">Jae Chun · 1d</div>
-                          </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                            <div class="status-indicator bg-warning"></div>
-                          </div>
-                          <div>
-                            <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                          </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                            <div class="status-indicator bg-success"></div>
-                          </div>
-                          <div>
-                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                          </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                      </div>
-                    </li>
-
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
@@ -361,122 +235,117 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                        <tbody id="table_data">
                         <?php if ($data): ?>
 
-                      <?php //echo "<pre>";print_r($data);exit(0);
+                          <?php
+                          foreach ($data as $key => $value) {
+                            echo "<tr>";
+                            echo "<td>";
+                            echo $value['nome'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                            echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                            echo "</td>";
+                            echo "</tr>";
+                          }
+                          ?>
 
-                      foreach ($data as $key => $value) {
-                        echo "<tr>";
-                        // echo "<td>";
-                        // echo $value['id'];
-                        // echo "</td>";
-                        echo "<td>";
-                        echo $value['nome'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                        echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                        echo "</td>";
-                        echo "</tr>";
-                      }
+                        <?php endif ?>
+                      </tbody>
+                    </table>
+                  </div>
 
-                      ?>
+                </div>
 
-                    <?php endif ?>
-                  </tbody>
-                </table>
+                <!-- Content Row -->
+
               </div>
+              <!-- /.container-fluid -->
 
             </div>
+            <!-- End of Main Content -->
 
-            <!-- Content Row -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Meu Dinheiro 2019</span>
+                </div>
+              </div>
+            </footer>
+            <!-- End of Footer -->
 
           </div>
-          <!-- /.container-fluid -->
+          <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Main Content -->
+        <!-- End of Page Wrapper -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Meu Dinheiro 2019</span>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+              </div>
             </div>
           </div>
-        </footer>
-        <!-- End of Footer -->
-
-      </div>
-      <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
         </div>
-      </div>
-    </div>
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
-    <script>
-      function myClick(d){
-       $('#msg_success').css('display','none');
-       var id = d.getAttribute("data-sample-id");
-       var name = d.getAttribute("data-sample-name");
-       $('#categoria_id_edit').val(id);
-       $('#categoria_nome_edit').val(name);
-       $('#myModalEdit').modal('show');
-     }
+        <script>
+          function myClick(d){
+            $('#msg_success').css('display','none');
+            var id = d.getAttribute("data-sample-id");
+            var name = d.getAttribute("data-sample-name");
+            $('#categoria_id_edit').val(id);
+            $('#categoria_nome_edit').val(name);
+            $('#myModalEdit').modal('show');
+          }
 
-     $(document).ready(function(){
+          $(document).ready(function(){
 
-      $('#close_modal_edit').on('click', function () {
-        location.reload();
-      });
+            $('#close_modal_edit').on('click', function () {
+              location.reload();
+            });
 
-      $('#msg_success').css('display','none');
-      $('#myform_edit').on('submit', function (e) {
-        e.preventDefault();
-        var parms = {
-          id_edit : $("#categoria_id_edit").val(),
-          nome_edit : $("#categoria_nome_edit").val()
-        };
+            $('#msg_success').css('display','none');
+            $('#myform_edit').on('submit', function (e) {
+              e.preventDefault();
+              var parms = {
+                id_edit : $("#categoria_id_edit").val(),
+                nome_edit : $("#categoria_nome_edit").val()
+              };
           //console.log(parms);
 
           $.ajax({
@@ -484,29 +353,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             url: "/update_categoria",
             data: parms,
             dataType : "JSON",
-            beforeSend: function(){
-                  // Show image container
-                  $("#loader").show();
-                },
-                success: function(result){
-                  console.log(result);
-                  $('#msg_success').css('display','block');
+              beforeSend: function(){
+                    // Show image container
+                    $("#loader").show();
+                  },
+                  success: function(result){
+                    console.log(result);
+                    $('#msg_success').css('display','block');
 
-                },
-                complete:function(data){
-                // Hide image container
-                $("#loader").hide();
-              }
+                  },
+                  complete:function(data){
+                  // Hide image container
+                  $("#loader").hide();
+                }
+              });
             });
-        });
-    });
+          });
 
+        </script>
 
+      </body>
 
-  </script>
-
-
-</body>
-
-</html>
+      </html>
 
