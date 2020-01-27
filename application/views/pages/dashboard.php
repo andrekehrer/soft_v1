@@ -291,7 +291,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">£3.200,00</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                  <?php 
+                                    $total = 0;
+                                    foreach ($total_mes as $key => $value) {
+                                      $total = $total + $value->valor;
+                                    }
+                                    echo '£'.number_format($total, 2, ',', '.');
+                                  ?>
+
+                                </div>
                               </div>
                               <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -308,7 +318,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">£38.000,00</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?php 
+                                    $total = 0;
+                                    foreach ($total_mes as $key => $value) {
+                                      $total = $total + $value->valor;
+                                    }
+                                    $total = $total * 12;
+                                    echo '£'.number_format($total, 2, ',', '.');
+                                  ?>
+                                </div>
                               </div>
                               <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
