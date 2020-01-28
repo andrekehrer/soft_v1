@@ -12,14 +12,14 @@
       <hr class="sidebar-divider my-0">
       
       <li class="nav-item active">
-        <a class="nav-link" href="/entradas">
+        <a class="nav-link" href="<?php echo base_url(); ?>/entradas">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Entradas</span></a>
         </li>
         <hr class="sidebar-divider my-0">
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="/categorias">
+          <a class="nav-link" href="<?php echo base_url(); ?>/categorias">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Categorias</span></a>
           </li>
@@ -28,7 +28,7 @@
 
           <!-- Nav Item - Dashboard -->
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?php echo base_url(); ?>">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span></a>
             </li>
@@ -36,13 +36,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <li class="nav-item">
-              <a class="nav-link" href="charts.html">
+              <a class="nav-link" href="<?php echo base_url(); ?>">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Perfil</span></a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?php echo base_url(); ?>">
                   <i class="fas fa-fw fa-chart-area"></i>
                   <span>Change password</span></a>
                 </li>
