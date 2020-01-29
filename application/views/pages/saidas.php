@@ -346,7 +346,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo '£'.number_format($total, 2, ',', '.');
                              ?>
                           </td>
-                          <td></td>
+                          
                         </tr>
                       </tbody>
                     </table>
