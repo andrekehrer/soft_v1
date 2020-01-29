@@ -125,11 +125,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <form id="myform_new" name="myform_new">
                             <div class="form-group">
                               <label for="email">Nome da despesa</label>
-                              <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_nova">
+                              <input type="text" class="form-control" name="saida_nome_edit" id="saida_nome_nova">
                             </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+                              </div>
+                              <select class="custom-select" name="saida_categoria_nova" id="saida_categoria_nova">
+                                <option selected>Selecione...</option>
+                                <?php foreach ($categorias as $key => $value) {?>
+
+                                    <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                                  
+                               <?php   } ?>
+                              </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="data_do_mes_novo">Dia do mes</label>
+                              </div>
+                              <select class="custom-select" name="data_do_mes_novo" id="data_do_mes_novo">
+                                <option selected>Selecione...</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="21">22</option>
+                                <option value="22">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                              </select>
+                            </div>
+
+
                             <div class="form-group">
                               <label for="email">Valor</label>
-                              <input type="text" class="form-control" name="entrada_valor_edit" id="entrada_valor_nova">
+                              <input type="text" class="form-control" name="saida_valor_nova" id="saida_valor_nova">
                             </div>
                             <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
                           </form>
@@ -200,16 +256,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php
                           foreach ($data as $key => $value) {
                             echo "<tr>";
-                            echo "<td>";
-                            echo $value['nome'];
-                            echo "</td>";
-                             echo "<td>";
-                            echo '£'.number_format($value['valor'], 2, ',', '.');
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                            echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                            echo "</td>";
+                              echo "<td>";
+                                echo $value['nome'];
+                              echo "</td>";
+                              echo "<td>";
+                                echo '£'.number_format($value['valor'], 2, ',', '.');
+                              echo "</td>"; 
+                              echo "<td>";
+                                echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                                echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              echo "</td>";
                             echo "</tr>";
                           }
                           ?>
@@ -355,14 +411,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#myform_new').on('submit', function (e) {
               e.preventDefault();
               var parms = {
-                nome_nova : $("#entrada_nome_nova").val(),
-                valor_nova : $("#entrada_valor_nova").val()
+                nome_nova : $("#saida_nome_nova").val(),
+                categoria : $("#saida_categoria_nova").val(),
+                data_mes  : $('#data_do_mes_novo').val(),
+                valor_nova : $("#saida_valor_nova").val()
               };
-          //console.log(parms);
+          console.log(parms);
 
               $.ajax({
                 type: "GET",
-                url: "/nova_entrada",
+                url: "<?php echo base_url() ?>/nova_saida",
                 data: parms,
                 dataType : "JSON",
                   beforeSend: function(){

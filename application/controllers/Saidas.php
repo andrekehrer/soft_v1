@@ -18,6 +18,9 @@ class Saidas extends CI_Controller {
 				'data' => $cat->data,
 			];
 		}
+
+
+		$data['categorias'] = $this->categorias_model->get_all_cats();
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);	
@@ -34,7 +37,7 @@ class Saidas extends CI_Controller {
 			'desc'  =>  $nome,
 			'valor' =>  $valor
 		);
-		$this->db->where('cat_id', $id);
+		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';
@@ -48,11 +51,17 @@ class Saidas extends CI_Controller {
 
 	public function nova_saida(){
 		$nome = $_GET['nome_nova'];
+		$categoria = $_GET['categoria'];
+		$data_ = $_GET['data_mes'];
 		$valor = $_GET['valor_nova'];
+
+
 		//print_r($nome);exit(0);
 		$data = array( 
 			'desc'   =>  $nome,
-			'valor' =>  $valor
+			'valor' =>  $valor,
+			'data' =>  $data_,
+			'categoria_id' =>  $categoria
 		);
 		$this->db->insert('saidas', $data);
 

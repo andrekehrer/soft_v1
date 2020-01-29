@@ -64,6 +64,8 @@ $route['update_entrada'] = 'Entradas/update_entrada';
 $route['nova_entrada'] = 'Entradas/nova_entrada';
 
 $route['saidas'] = 'Saidas';
+$route['update_saida'] = 'Saidas/update_saida';
+$route['nova_saida'] = 'Saidas/nova_saida';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
