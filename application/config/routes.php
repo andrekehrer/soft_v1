@@ -58,6 +58,8 @@ $route['categorias'] = 'Categorias';
 $route['update_categoria'] = 'Categorias/update_categoria';
 $route['carregar_tabela'] = 'Categorias/carregar_tabela';
 $route['nova_categoria'] = 'Categorias/nova_categoria';
+$route['delete_categoria'] = 'Categorias/delete_categoria';
+
 
 $route['entradas'] = 'Entradas';
 $route['update_entrada'] = 'Entradas/update_entrada';

@@ -65,4 +65,16 @@ class Categorias extends CI_Controller {
 		$data = $this->db->get("categorias")->result();	
 		echo json_encode($data, true);
 	}
+
+	public function delete_categoria(){
+		$id = $_GET['id'];
+
+		$this->db->where('cat_id', $id);
+		$this->db->delete('categorias');
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 1;
+		}else{
+			$data['msg'] = 0;
+		}
+	}
 }

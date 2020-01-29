@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               echo "</td>";
                               echo "<td>";
                               echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                              echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
                               echo "</td>";
                               echo "</tr>";
                             }
@@ -278,6 +278,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
           <script>
+
+          function myDelete(d){
+            var id = d.getAttribute("data-sample-id");
+            var parms = {
+                id : id
+              };
+
+              var r = confirm("Deseja deletar?");
+              if (r == true) {
+                $.ajax({
+                type: "GET",
+                url: "<?php echo base_url() ?>/delete_categoria",
+                data: parms,
+                dataType : "JSON",
+                  beforeSend: function(){
+                        // Show image container
+                        $("#loader").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        location.reload();
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      location.reload();
+                      $("#loader").hide();
+                    }
+                  });
+              } else {
+                
+              }
+            
+          }
             function myClick(d){
               $('#msg_success').css('display','none');
               var id = d.getAttribute("data-sample-id");
