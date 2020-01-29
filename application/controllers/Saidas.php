@@ -32,10 +32,14 @@ class Saidas extends CI_Controller {
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
-		//print_r($nome);exit(0);
+		$data_mes = $_GET['data_mes'];
+		$cat_id = $_GET['categoria'];
+
 		$data = array( 
 			'desc'  =>  $nome,
-			'valor' =>  $valor
+			'valor' =>  $valor,
+			'data' =>  $data_mes,
+			'categoria_id' =>  $cat_id
 		);
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
@@ -74,4 +78,20 @@ class Saidas extends CI_Controller {
 		echo json_encode($data, true);
 		//print_r($this->db->affected_rows());exit(0);
 	}
+
+	public function delete_saida(){
+		$id = $_GET['id'];
+
+		$this->db->where('id', $id);
+		$this->db->delete('saidas');
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 1;
+		}else{
+			$data['msg'] = 0;
+		}
+	}
+
+
+
+
 }

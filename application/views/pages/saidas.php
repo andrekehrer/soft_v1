@@ -192,7 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
 
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
                         </div>
                       </div>
 
@@ -217,13 +217,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             Despesa alterada com sucesso!
                           </div>
                           <form id="myform_edit" name="myform_edit">
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+                              </div>
+                              <select class="custom-select" name="saida_categoria_edit" id="saida_categoria_edit">
+                                <option selected>Selecione...</option>
+                                <?php foreach ($categorias as $key => $value) {?>
+
+                                    <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                                  
+                               <?php   } ?>
+                              </select>
+                            </div>
+
                             <div class="form-group">
                               <label for="email">Nome da despesa</label>
-                              <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_edit">
+                              <input type="hidden" class="form-control" name="saida_id_edit" id="saida_id_edit">
+                              <input type="text" class="form-control" name="saida_nome_edit" id="saida_nome_edit">
                             </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="data_do_mes_novo">Dia do mes</label>
+                              </div>
+                              <select class="custom-select" name="data_do_mes_edit" id="data_do_mes_edit">
+                                <option selected>Selecione...</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="21">22</option>
+                                <option value="22">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                              </select>
+                            </div>
+
                             <div class="form-group">
                               <label for="email">Valor</label>
-                              <input type="text" class="form-control" name="entrada_valor_edit" id="entrada_valor_edit">
+                              <input type="text" class="form-control" name="saida_valor_edit" id="saida_valor_edit">
                             </div>
                             <button type="submit" class="btn btn-default btn-primary">Salvar</button>
                           </form>
@@ -254,7 +311,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ($data): ?>
 
                           <?php
+                        
                           foreach ($data as $key => $value) {
+                            // echo "<pre>";print_r($value['categoria'][0]->cat_id);echo "</pre>";
                             echo "<tr>";
                               echo "<td>";
                                 echo $value['nome'];
@@ -263,8 +322,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 echo '£'.number_format($value['valor'], 2, ',', '.');
                               echo "</td>"; 
                               echo "<td>";
-                                echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                                echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                                echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' data-sample-data='".$value['data']."' data-sample-catid='".$value['categoria'][0]->cat_id."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                                echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
                               echo "</td>";
                             echo "</tr>";
                           }
@@ -359,20 +418,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
         <script>
+
+
+          function myDelete(d){
+            var id = d.getAttribute("data-sample-id");
+            var parms = {
+                id : id
+              };
+
+              var r = confirm("Deseja deletar?");
+              if (r == true) {
+                $.ajax({
+                type: "GET",
+                url: "<?php echo base_url() ?>/delete_saida",
+                data: parms,
+                dataType : "JSON",
+                  beforeSend: function(){
+                        // Show image container
+                        $("#loader").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        location.reload();
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      location.reload();
+                      $("#loader").hide();
+                    }
+                  });
+              } else {
+                
+              }
+            
+          }
+
           function myClick(d){
             $('#msg_success').css('display','none');
             var id = d.getAttribute("data-sample-id");
             var name = d.getAttribute("data-sample-name");
             var valor = d.getAttribute("data-sample-valor");
-            $('#entrada_id_edit').val(id);
-            $('#entrada_nome_edit').val(name);
-            $('#entrada_valor_edit').val(valor);
+            var cat_id = d.getAttribute("data-sample-catid");
+            var data = d.getAttribute("data-sample-data");
+            $('#saida_id_edit').val(id);
+            $('#saida_nome_edit').val(name);
+            $('#saida_valor_edit').val(valor);
+            //$("#saida_categoria_edit select").val(cat_id);
+            $('#saida_categoria_edit option[value='+cat_id+']').attr('selected','selected');
+            $('#data_do_mes_edit option[value='+data+']').attr('selected','selected');
+
             $('#myModalEdit').modal('show');
           }
 
           $(document).ready(function(){
 
             $('#close_modal_edit').on('click', function () {
+              location.reload();
+            });
+            $('#close_modal_novo').on('click', function () {
               location.reload();
             });
 
@@ -382,15 +486,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#myform_edit').on('submit', function (e) {
               e.preventDefault();
               var parms = {
-                id_edit : $("#entrada_id_edit").val(),
-                nome_edit : $("#entrada_nome_edit").val(),
-                valor_edit : $("#entrada_valor_edit").val()
+                id_edit : $("#saida_id_edit").val(),
+                nome_edit : $("#saida_nome_edit").val(),
+                categoria : $("#saida_categoria_edit").val(),
+                data_mes  : $('#data_do_mes_edit').val(),
+                valor_edit : $("#saida_valor_edit").val()
               };
           //console.log(parms);
 
               $.ajax({
                 type: "GET",
-                url: "/update_entrada",
+                url: "<?php echo base_url() ?>/update_saida",
                 data: parms,
                 dataType : "JSON",
                   beforeSend: function(){
