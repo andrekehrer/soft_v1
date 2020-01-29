@@ -123,6 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               Categoria alterada com sucesso!
                             </div>
                             <form id="myform_new" name="myform_new">
+                              <input type="color" id="cor_nova" name="cor_nova">
                               <div class="form-group">
                                 <label for="email">Nome da categoria</label>
                                 <input type="text" class="form-control" name="categoria_nome_nova" id="categoria_nome_nova">
@@ -157,6 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               Categoria alterada com sucesso!
                             </div>
                             <form id="myform_edit" name="myform_edit">
+                              <input type="color" id="cor_edit" name="cor_edit">
                               <div class="form-group">
                                 <label for="email">Nome da categoria</label>
                                 <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
@@ -167,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </div>
 
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
                           </div>
                         </div>
 
@@ -192,11 +194,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php
                             foreach ($data as $key => $value) {
                               echo "<tr>";
-                              echo "<td>";
+                              echo "<td style='color:".$value['cor']."'>";
                               echo $value['nome'];
                               echo "</td>";
                               echo "<td>";
-                              echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-cor='".$value['cor']."'id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                               echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
                               echo "</td>";
                               echo "</tr>";
@@ -316,6 +318,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $('#msg_success').css('display','none');
               var id = d.getAttribute("data-sample-id");
               var name = d.getAttribute("data-sample-name");
+              var cor = d.getAttribute("data-sample-cor");
+              $('#cor_edit').val(cor);
               $('#categoria_id_edit').val(id);
               $('#categoria_nome_edit').val(name);
               $('#myModalEdit').modal('show');
@@ -326,6 +330,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $('#close_modal_edit').on('click', function () {
                 location.reload();
               });
+              $('#close_modal_novo').on('click', function () {
+                location.reload();
+              });
 
 
               $('#msg_success').css('display','none');
@@ -334,13 +341,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 e.preventDefault();
                 var parms = {
                   id_edit : $("#categoria_id_edit").val(),
-                  nome_edit : $("#categoria_nome_edit").val()
+                  nome_edit : $("#categoria_nome_edit").val(),
+                  cor : $("#cor_edit").val()
                 };
           //console.log(parms);
 
           $.ajax({
             type: "GET",
-            url: "/update_categoria",
+            url: "<?php echo base_url() ?>/update_categoria",
             data: parms,
             dataType : "JSON",
             beforeSend: function(){
@@ -361,13 +369,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $('#myform_new').on('submit', function (e) {
                 e.preventDefault();
                 var parms = {
-                  nome_nova : $("#categoria_nome_nova").val()
+                  nome_nova : $("#categoria_nome_nova").val(),
+                  cor_nova : $("#cor_nova").val(),
                 };
           //console.log(parms);
 
           $.ajax({
             type: "GET",
-            url: "/nova_categoria",
+            url: "<?php echo base_url() ?>/nova_categoria",
             data: parms,
             dataType : "JSON",
             beforeSend: function(){

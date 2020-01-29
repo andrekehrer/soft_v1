@@ -299,8 +299,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="table-responsive">
                       <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
-                          <tr>
+                          <tr style="background: #636363;color: white;">
                            <!--  <th>Id</th> -->
+                           <th>Categoria</th>
                            <th>Descricao</th>
                            <th>Valor</th>
                            <th>Acoes</th>
@@ -313,12 +314,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php
                         
                           foreach ($data as $key => $value) {
-                            // echo "<pre>";print_r($value['categoria'][0]->cat_id);echo "</pre>";
-                            echo "<tr>";
-                              echo "<td>";
+                            // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
+                            echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
+                              echo "<td style='color:black'>";
+                                echo $value['categoria'][0]->nome;
+                              echo "</td>";
+                              echo "<td style='color:black'>";
                                 echo $value['nome'];
                               echo "</td>";
-                              echo "<td>";
+                              echo "<td style='color:black'>";
                                 echo '£'.number_format($value['valor'], 2, ',', '.');
                               echo "</td>"; 
                               echo "<td>";
@@ -331,8 +335,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <?php endif ?>
                         <tr>
-                          <td>TOTAL</td>
-                          <td>
+                          <td style="background: #636363;color: white;">TOTAL</td>
+                          <td style="background: #636363;color: white;">
                             
                             <?php 
                             $total = 0;

@@ -12,6 +12,7 @@ class Categorias extends CI_Controller {
 			$array[] = [
 				'id' => $cat->cat_id,
 				'nome' =>  $cat->nome,
+				'cor' =>  $cat->cor,
 				'status' => $cat->status,
 			];
 		}
@@ -26,9 +27,11 @@ class Categorias extends CI_Controller {
 	public function update_categoria(){
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
+		$cor = $_GET['cor'];
 		//print_r($nome);exit(0);
 		$data = array( 
-			'nome'  =>  $nome
+			'nome'  =>  $nome,
+			'cor'   =>  $cor
 		);
 		$this->db->where('cat_id', $id);
 		$this->db->update('categorias', $data);
@@ -44,9 +47,11 @@ class Categorias extends CI_Controller {
 
 	public function nova_categoria(){
 		$nome = $_GET['nome_nova'];
+		$cor = $_GET['cor_nova'];
 		//print_r($nome);exit(0);
 		$data = array( 
 			'nome'   =>  $nome,
+			'cor'    =>  $cor,
 			'status' =>  1
 		);
 		$this->db->insert('categorias', $data);
