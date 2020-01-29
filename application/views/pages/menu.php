@@ -21,7 +21,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="<?php echo base_url(); ?>/saidas">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Saidas Fixas</span></a>
+          <span>Despesas Fixas</span></a>
       </li>
 
       <hr class="sidebar-divider my-0">
