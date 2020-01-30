@@ -70,5 +70,10 @@ $route['update_saida'] = 'Saidas/update_saida';
 $route['nova_saida'] = 'Saidas/nova_saida';
 $route['delete_saida'] = 'Saidas/delete_saida';
 
+$route['saidas_v'] = 'Saidas_v';
+$route['update_saida_v'] = 'Saidas_v/update_saida';
+$route['nova_saida_v'] = 'Saidas_v/nova_saida';
+$route['delete_saida_v'] = 'Saidas_v/delete_saida';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
