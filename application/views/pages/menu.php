@@ -9,6 +9,16 @@
       </a>
 
       <hr class="sidebar-divider my-0">
+
+              <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="<?php echo base_url(); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
     
       <li class="nav-item active">
         <a class="nav-link" href="<?php echo base_url(); ?>/entradas">
@@ -42,16 +52,6 @@
       </li>
 
         <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url(); ?>">
