@@ -28,7 +28,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url(); ?>/saidas_V" style="background: #28d8c2;color: black;text-align: center;">
+        <a class="nav-link" href="<?php echo base_url(); ?>/saidas_v" style="background: #28d8c2;color: black;text-align: center;">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>+ DESPESA</span></a>
       </li>      
