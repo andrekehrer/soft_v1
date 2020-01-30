@@ -240,7 +240,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     $total_saida = 0;
                                     $total_diarias = 0;
                                     foreach ($saidas_diarias as $key => $value) {
-                                      $total = $total + $value->valor;
+                                      $total_diarias = $total_diarias + $value->valor;
                                     }
                                     foreach ($total_mes as $key => $value) {
                                       $total_entrada = $total_entrada + $value->valor;
