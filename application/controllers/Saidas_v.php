@@ -28,17 +28,15 @@ class Saidas_v extends CI_Controller {
 		$this->load->view('pages/saidas_v', $data);
 	}
 
-	public function update_saida(){
+	public function update_saida_v(){
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
-		$data_mes = $_GET['data_mes'];
 		$cat_id = $_GET['categoria'];
 
 		$data = array( 
 			'desc'  =>  $nome,
 			'valor' =>  $valor,
-			'data' =>  $data_mes,
 			'categoria_id' =>  $cat_id
 		);
 		$this->db->where('id', $id);
@@ -53,10 +51,10 @@ class Saidas_v extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function nova_saida(){
+	public function nova_saida_v(){
 		$nome = $_GET['nome_nova'];
 		$categoria = $_GET['categoria'];
-		$data_ = $_GET['data_mes'];
+		$data_ = date("Y-m-d");
 		$valor = $_GET['valor_nova'];
 
 
@@ -79,7 +77,7 @@ class Saidas_v extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function delete_saida(){
+	public function delete_saida_v(){
 		$id = $_GET['id'];
 
 		$this->db->where('id', $id);

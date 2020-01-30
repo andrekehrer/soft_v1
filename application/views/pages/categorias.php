@@ -199,7 +199,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               echo "</td>";
                               echo "<td>";
                               echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-cor='".$value['cor']."'id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                              echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
+                              //echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
                               echo "</td>";
                               echo "</tr>";
                             }
