@@ -238,13 +238,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <?php 
                                     $total_entrada = 0;
                                     $total_saida = 0;
+                                    $total_diarias = 0;
+                                    foreach ($saidas_diarias as $key => $value) {
+                                      $total = $total + $value->valor;
+                                    }
                                     foreach ($total_mes as $key => $value) {
                                       $total_entrada = $total_entrada + $value->valor;
                                     }
                                     foreach ($total_des_fixa as $key => $value) {
                                       $total_saida = $total_saida + $value->valor;
                                     }
-                                    $saldo = ($total_entrada - $total_saida);
+                                    $saidas_total = $total_saida + $total_diarias;
+                                    $saldo = ($total_entrada - $saidas_total);
                                     echo '£'.number_format($saldo, 2, ',', '.');
                                   ?>
 
