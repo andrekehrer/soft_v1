@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Despesas Fixas</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Despesas variaveis</h1>
                     <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar despesa</a>
 
                   </div>
@@ -301,7 +301,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <thead>
                           <tr style="background: #636363;color: white;">
                            <!--  <th>Id</th> -->
-                           <th>Categoria</th>
+                           <th>Venc</th>
                            <th>Descricao</th>
                            <th>Valor</th>
                            <th>Acoes</th>
@@ -316,9 +316,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
                             echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
+                            if ($value['pagou'] == 1 ) {    
                               echo "<td style='color:black'>";
-                                echo $value['categoria'][0]->nome;
+                                echo "<span style='color: #ffffff;border: 1px #027f00 solid;background: green;padding: 4px 6px;border-radius: 25px;'>".$value['data']."</span>";
                               echo "</td>";
+                            }else{
+                              echo "<td style='color:black'>";
+                                echo $value['data'];
+                              echo "</td>";
+                            }
                               echo "<td style='color:black'>";
                                 echo $value['nome'];
                               echo "</td>";
@@ -326,8 +332,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 echo '£'.number_format($value['valor'], 2, ',', '.');
                               echo "</td>"; 
                               echo "<td>";
+                              if ($value['pagou'] == 1 ) {
+                                echo "<img src='".base_url()."/assets/img/verde.png' alt='' width='20'>";
+                              }else{
+                                echo "<input type='checkbox' name='' value=''>";
+                              }
                                 echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' data-sample-data='".$value['data']."' data-sample-catid='".$value['categoria'][0]->cat_id."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                                 echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
+                                echo "<span style='color:black;border: 1px black solid;padding: 2px;border-radius: 5px'>".$value['categoria'][0]->nome."</span>";
                               echo "</td>";
                             echo "</tr>";
                           }

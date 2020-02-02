@@ -54,8 +54,9 @@ class Saidas_v extends CI_Controller {
 	public function nova_saida_v(){
 		$nome = $_GET['nome_nova'];
 		$categoria = $_GET['categoria'];
-		$data_ = date("Y-m-d");
+		$data_ = $_GET['data_mes'];
 		$valor = $_GET['valor_nova'];
+
 
 
 		//print_r($nome);exit(0);

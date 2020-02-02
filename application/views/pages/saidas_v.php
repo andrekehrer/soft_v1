@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Despesas Fixas</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Despesas variaveis</h1>
                     <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar despesa</a>
 
                   </div>
@@ -123,6 +123,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             Despesa adicionada com sucesso!
                           </div>
                           <form id="myform_new" name="myform_new">
+                            
+                            <div class="form-group">
+                              <label for="email">Data</label>
+                              <input type="date" name="data_despesa_nova" id="data_despesa_nova">
+                            </div>
                             <div class="form-group">
                               <label for="email">Nome da despesa</label>
                               <input type="text" class="form-control" name="saida_nome_edit" id="saida_nome_nova">
@@ -443,7 +448,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               var parms = {
                 nome_nova : $("#saida_nome_nova").val(),
                 categoria : $("#saida_categoria_nova").val(),
-                //data_mes  : $('#data_do_mes_novo').val(),
+                data_mes  : $('#data_despesa_nova').val(),
                 valor_nova : $("#saida_valor_nova").val()
               };
           console.log(parms);

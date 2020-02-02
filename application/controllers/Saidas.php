@@ -16,6 +16,7 @@ class Saidas extends CI_Controller {
 				'valor' => $cat->valor,
 				'categoria' => $this->saidas_model->get_cat_by_id($cat->categoria_id),
 				'data' => $cat->data,
+				'pagou' => $cat->pagou,
 			];
 		}
 
