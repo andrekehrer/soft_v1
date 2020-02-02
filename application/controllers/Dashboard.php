@@ -8,9 +8,10 @@ class Dashboard extends CI_Controller {
 		$this->load->model('entradas_model');
 		$this->load->model('saidas_model');
 		$this->load->model('categorias_model');
-
 		$this->load->model('saidas_model_v');
 
+		
+		$data['total_bill'] = $this->saidas_model->get_all_saidas_apagar();
 		$data['saidas_diarias'] = $this->saidas_model_v->get_all_saidas();
 		$data['categorias'] = $this->categorias_model->get_all_cats();
 		$data['total_des_fixa'] = $this->saidas_model->get_all_saidas_pagas();

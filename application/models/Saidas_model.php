@@ -29,6 +29,12 @@ class Saidas_model extends CI_Model
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
+
+	public function get_all_saidas_apagar(){
+		$query = $this->db->query('SELECT * FROM saidas WHERE pagou = 0');
+		$data = $query->num_rows();
+		return $data;
+	}
 }
 
 
