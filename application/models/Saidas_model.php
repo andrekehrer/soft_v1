@@ -19,6 +19,11 @@ class Saidas_model extends CI_Model
 		return $this->db->get("saidas")->result();
 	}
 
+	public function get_all_saidas_pagas(){
+		$this->db->where('pagou', 1);
+		return $this->db->get("saidas")->result();
+	}
+
 	public function get_cat_by_id($id){
 		$data = $this->db->get_where('categorias', array('cat_id' => $id))->result();
 		// print_r($data[0]->nome); exit(0);

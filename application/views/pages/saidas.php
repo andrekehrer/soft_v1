@@ -333,9 +333,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               echo "</td>"; 
                               echo "<td>";
                               if ($value['pagou'] == 1 ) {
-                                echo "<img src='".base_url()."/assets/img/verde.png' alt='' width='20'>";
+                                echo "<img style='cursor: pointer' src='".base_url()."/assets/img/verde.png' alt='' width='20' data-sample-id='".$value['id']."' onclick='despagar(this)'>";
                               }else{
-                                echo "<input type='checkbox' name='' value=''>";
+                                echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
                               }
                                 echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' data-sample-data='".$value['data']."' data-sample-catid='".$value['categoria'][0]->cat_id."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                                 echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
@@ -434,7 +434,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
         <script>
+          function pagar(d){
+            var id = d.getAttribute("data-sample-id");
+            var parms = {
+                id : id
+              };
 
+              $.ajax({
+                type: "GET",
+                url: "<?php echo base_url() ?>/pagar",
+                data: parms,
+                dataType : "JSON",
+                  beforeSend: function(){
+                        // Show image container
+                        $("#loader").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        $('#msg_success').css('display','block');
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      $("#loader").hide();
+                      location.reload();
+                    }
+                  });      
+            }
+
+            function despagar(d){
+            var id = d.getAttribute("data-sample-id");
+            var parms = {
+                id : id
+              };
+
+              $.ajax({
+                type: "GET",
+                url: "<?php echo base_url() ?>/despagar",
+                data: parms,
+                dataType : "JSON",
+                  beforeSend: function(){
+                        // Show image container
+                        $("#loader").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        $('#msg_success').css('display','block');
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                      $("#loader").hide();
+                      location.reload();
+                    }
+                  });      
+            }
 
           function myDelete(d){
             var id = d.getAttribute("data-sample-id");

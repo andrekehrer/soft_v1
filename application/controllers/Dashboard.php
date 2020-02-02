@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
 
 		$data['saidas_diarias'] = $this->saidas_model_v->get_all_saidas();
 		$data['categorias'] = $this->categorias_model->get_all_cats();
-		$data['total_des_fixa'] = $this->saidas_model->get_all_saidas();
+		$data['total_des_fixa'] = $this->saidas_model->get_all_saidas_pagas();
 		$data['total_mes'] = $this->entradas_model->get_all_entradas();
 		$data['title'] = "Dashboard - Meu Dinheiro";
 		$this->load->view('pages/dashboard', $data);

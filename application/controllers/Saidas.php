@@ -92,6 +92,34 @@ class Saidas extends CI_Controller {
 		}
 	}
 
+	public function pagar(){
+		$id = $_GET['id'];
+		$data = array( 
+			'pagou'   =>  1
+		);
+
+		$this->db->where('id', $id);
+		$this->db->update('saidas', $data);
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 1;
+		}else{
+			$data['msg'] = 0;
+		}
+	}
+		public function despagar(){
+		$id = $_GET['id'];
+		$data = array( 
+			'pagou'   =>  0
+		);
+
+		$this->db->where('id', $id);
+		$this->db->update('saidas', $data);
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 1;
+		}else{
+			$data['msg'] = 0;
+		}
+	}
 
 
 

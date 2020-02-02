@@ -69,6 +69,8 @@ $route['saidas'] = 'Saidas';
 $route['update_saida'] = 'Saidas/update_saida';
 $route['nova_saida'] = 'Saidas/nova_saida';
 $route['delete_saida'] = 'Saidas/delete_saida';
+$route['pagar'] = 'Saidas/pagar';
+$route['despagar'] = 'Saidas/despagar';
 
 $route['saidas_v'] = 'Saidas_v';
 $route['update_saida_v'] = 'Saidas_v/update_saida_v';
