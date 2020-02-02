@@ -14,7 +14,7 @@ class Saidas_model extends CI_Model
 
 
 	public function get_all_saidas(){
-		$this->db->order_by('categoria_id', 'ASC');
+		//$this->db->order_by('categoria_id', 'ASC');
 		$this->db->order_by('data', 'ASC');
 		return $this->db->get("saidas")->result();
 	}
