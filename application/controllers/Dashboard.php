@@ -50,8 +50,8 @@ class Dashboard extends CI_Controller {
 
         ////////// ////////  SALDO MENSAL ////// //////////////
 
-        $saidas_total = $total_des_fixa + $saidas_diarias;
-        $saldo = ($total_mes - $saidas_total);
+        $saidas_total = $total_des_mes_total + $total_saidas_diarias_total;
+        $saldo = ($total_mes_total - $saidas_total);
         $saldo_mensal = '£'.number_format($saldo, 2, ',', '.');
         ////////////////////////////////////////////////////////
 
