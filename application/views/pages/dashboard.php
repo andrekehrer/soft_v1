@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" >
                       
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#demo">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#hoje">
                       <div style="color: red">
                         <?php 
                         if($total_pagar_hoje == 1){
@@ -246,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           echo $total_pagar_hoje." contas vence hoje (".$tota_pagar_hoje_valor.")";
                         }?>
                       </div>
-                      <div id="demo" class="collapse">
+                      <div id="hoje" class="collapse">
                         <table style="width: 100%">
                         <?php 
                         foreach ($pagar_hoje as $key => $value) {
@@ -284,7 +284,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" >
                       
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#demo">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#amanha">
                       <div style="color: orange">
                         <?php 
                         if($total_pagar_amanha == 1){
@@ -293,7 +293,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           echo $total_pagar_amanha." contas vence amanha (".$tota_pagar_amanha_valor.")";
                         }?>
                       </div>
-                      <div id="demo" class="collapse">
+                      <div id="amanha" class="collapse">
                         <table style="width: 100%">
                         <?php 
                         foreach ($pagar_amanha as $key => $value) {
