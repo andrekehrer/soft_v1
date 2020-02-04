@@ -344,7 +344,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div>
-                    <div id="piechart"></div>
+                    <div id="piechart" style="margin-left: -70px;"></div>
                 </div>
 
 
