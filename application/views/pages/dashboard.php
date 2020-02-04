@@ -234,25 +234,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #07e0e0 !important;">SALDO MENSAL</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800" style="color: white !important;">
-
-                                  <?php 
-                                    $total_entrada = 0;
-                                    $total_saida = 0;
-                                    $total_diarias = 0;
-                                    foreach ($saidas_diarias as $key => $value) {
-                                      $total_diarias = $total_diarias + $value->valor;
-                                    }
-                                    foreach ($total_mes as $key => $value) {
-                                      $total_entrada = $total_entrada + $value->valor;
-                                    }
-                                    foreach ($total_des_fixa as $key => $value) {
-                                      $total_saida = $total_saida + $value->valor;
-                                    }
-                                    $saidas_total = $total_saida + $total_diarias;
-                                    $saldo = ($total_entrada - $saidas_total);
-                                    echo '£'.number_format($saldo, 2, ',', '.');
-                                  ?>
-
+                                  <?php $saldo_mensal ?>
                                 </div>
                               </div>
                               <div class="col-auto">
@@ -272,15 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Entradas fixas</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-
-                                  <?php 
-                                    $total = 0;
-                                    foreach ($total_mes as $key => $value) {
-                                      $total = $total + $value->valor;
-                                    }
-                                    echo '£'.number_format($total, 2, ',', '.');
-                                  ?>
-
+                                  <?php echo $total_mes ?>
                                 </div>
                               </div>
                               <div class="col-auto">
@@ -299,15 +273,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:#fb7777!important;">Saidas diarias</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-
-                                  <?php 
-                                    $total = 0;
-                                    foreach ($saidas_diarias as $key => $value) {
-                                      $total = $total + $value->valor;
-                                    }
-                                    echo '£'.number_format($total, 2, ',', '.');
-                                  ?>
-
+                                  <?php echo $saidas_diarias ?>
                                 </div>
                               </div>
                               <div class="col-auto">
@@ -325,14 +291,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #a72845!important;">Despesas fixas</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-
-                                  <?php 
-                                    $total = 0;
-                                    foreach ($total_des_fixa as $key => $value) {
-                                      $total = $total + $value->valor;
-                                    }
-                                    echo '£'.number_format($total, 2, ',', '.');
-                                  ?>
+                                  <?php $total_des_fixa ?>
 
                                 </div>
                               </div>
@@ -352,14 +311,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Entradas anuais</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php 
-                                    $total = 0;
-                                    foreach ($total_mes as $key => $value) {
-                                      $total = $total + $value->valor;
-                                    }
-                                    $total = $total * 12;
-                                    echo '£'.number_format($total, 2, ',', '.');
-                                  ?>
+                                <?php echo ($total_mes * 12);?>
                                 </div>
                               </div>
                               <div class="col-auto">
