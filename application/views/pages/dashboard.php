@@ -247,7 +247,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }?>
                       </div>
                       <div id="hoje" class="collapse">
-                        <table style="width: 100%">
+                        <table style="width: 100%; margin-top: 15px">
                         <?php 
                         foreach ($pagar_hoje as $key => $value) {
                           echo "<tr>";
@@ -294,7 +294,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }?>
                       </div>
                       <div id="amanha" class="collapse">
-                        <table style="width: 100%">
+                        <table style="width: 100%; margin-top: 15px">
                         <?php 
                         foreach ($pagar_amanha as $key => $value) {
                           echo "<tr>";
