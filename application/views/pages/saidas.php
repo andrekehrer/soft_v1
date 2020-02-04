@@ -323,7 +323,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             if($today_date == $value['data']){
                               echo "<tr style='border: 2px red solid'>";
                             }elseif($tomorrow == $value['data']){
-                              echo "<tr style='border: 2px red solid'>";
+                              echo "<tr style='border: 2px orange solid'>";
                             }else{
                               echo "<tr>";
                             }
