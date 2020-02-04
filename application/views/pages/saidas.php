@@ -312,11 +312,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ($data): ?>
 
                           <?php
-                        
+                          echo $today_date = date("d");
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
                             // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
-                            echo "<tr>";
+                            if($today_date == $value['data']){
+                              echo "<tr style='border: 2px red solid'>";
+                            }else{
+                              echo "<tr>";
+                            }
+                            
                             if ($value['pagou'] == 1 ) {    
                               echo "<td style='color:black;background-color:green'>";
                                 echo "<span style='color: #ffffff;'>".$value['data']."</span>";
