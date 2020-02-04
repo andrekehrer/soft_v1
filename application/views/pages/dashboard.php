@@ -247,10 +247,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                       <!-- Earnings (Monthly) Card Example -->
-                      <a href="<?php echo base_url()?>/entradas">
                         <div class="col-xl-3 col-md-6 mb-4">
                           <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
+                              <a href="<?php echo base_url()?>/entradas">
                               <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Entradas fixas</div>
@@ -262,10 +262,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                 </div>
                               </div>
+                              </a>
                             </div>
                           </div>
                         </div>
-                      </a>
+                      
 
                       <!-- Earnings (Monthly) Card Example -->
                       <a href="<?php echo base_url()?>/saidas_v">
@@ -353,7 +354,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div> -->
                   
-                  
+
                   <!-- Pending Requests Card Example -->
                   <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
