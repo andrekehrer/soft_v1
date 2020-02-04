@@ -60,22 +60,37 @@ class Dashboard extends CI_Controller {
 
 
         $today_date = date("d");
-        $tomorrow = date("d", time() + 86400);
         $pagar_hoje = $this->saidas_model->get_all_saidas_apagar($today_date);
-        if (count($pagar_hoje) >= 1){
-            $data['pagar_hoje'] = $pagar_hoje;
 
+        if (count($pagar_hoje) >= 1){
+
+            $data['pagar_hoje'] = $pagar_hoje;
             $tota_pagar_hoje_valor = 0;
+
             foreach ($pagar_hoje as $key => $value) {
                 $tota_pagar_hoje_valor = $tota_pagar_hoje_valor + $value->valor;
             }
             $data['tota_pagar_hoje_valor'] = '£'.number_format($tota_pagar_hoje_valor, 2, ',', '.');
-            // echo "PAGAR HOJE:  <pre>";print_r($data['tota_pagar_hoje_valor']);echo "</pre>";exit(0);
+            
         }
 
+        $tomorrow = date("d", time() + 86400);
+        $pagar_amanha = $this->saidas_model->get_all_saidas_apagar($tomorrow);
+
+        if (count($pagar_amanha) >= 1){
+            
+            $data['pagar_amanha'] = $pagar_amanha;
+            $tota_pagar_amanha_valor = 0;
+
+            foreach ($pagar_amanha as $key => $value) {
+                $tota_pagar_amanha_valor = $tota_pagar_amanha_valor + $value->valor;
+            }
+            $data['tota_pagar_amanha_valor'] = '£'.number_format($tota_pagar_amanha_valor, 2, ',', '.');
+            
+        }
 
         // echo "<pre>";print_r($total_mes);exit(0);
-        
+        $data['total_pagar_amanha'] = count($pagar_amanha);
         $data['total_pagar_hoje'] = count($pagar_hoje);
         $data['total_anual'] = $total_anual;
         $data['total_des_fixa'] = $total_des_fixa;

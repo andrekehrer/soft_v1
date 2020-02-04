@@ -227,6 +227,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <!-- Content Row -->
           <div class="row">
 
+           <?php if(isset($pagar_hoje)){ ?>
            <!-- Pending Requests Card Example -->
            <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2" style=";border-left: .25rem solid red!important;">
@@ -271,6 +272,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
+        <?php } ?>
+
+        <?php if(isset($pagar_amanha)){ ?>
+           <!-- Pending Requests Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2" style=";border-left: .25rem solid orange!important;">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" >
+                      
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#demo">
+                      <div style="color: orange">
+                        <?php 
+                        if($total_pagar_amanha == 1){
+                          echo $total_pagar_amanha." conta vence amanha (".$tota_pagar_amanha_valor.")";
+                        }else{
+                          echo $total_pagar_amanha." contas vence amanha (".$tota_pagar_amanha_valor.")";
+                        }?>
+                      </div>
+                      <div id="demo" class="collapse">
+                        <table style="width: 100%">
+                        <?php 
+                        foreach ($pagar_amanha as $key => $value) {
+                          echo "<tr>";
+                            echo "<td style='font-size: 11px;'>";
+                              echo $value->desc; 
+                            echo "</td>";
+                            echo "<td style='font-size: 11px;text-align: right;'>";
+                              echo '£'.number_format($value->valor, 2, ',', '.');
+                            echo "</td>";
+                          echo "</tr>";
+                        }
+                        ?>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
 
           <!-- Earnings (Monthly) Card Example -->
           <div class="col-xl-3 col-md-6 mb-4">

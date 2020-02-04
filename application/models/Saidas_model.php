@@ -32,8 +32,8 @@ class Saidas_model extends CI_Model
 
 	public function get_all_saidas_apagar($data_query = null){
 		if($data_query){
-			$query = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and data = $data_query");
-			$data = $query->result();
+			$query_ = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and data = $data_query");
+			$data = $query_->result();
 
 		}else{	
 			$query = $this->db->query('SELECT * FROM saidas WHERE pagou = 0');
