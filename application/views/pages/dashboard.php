@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" >
                       
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#hoje">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#hoje" style="cursor:pointer">
                       <div style="color: red">
                         <?php 
                         if($total_pagar_hoje == 1){
@@ -284,7 +284,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" >
                       
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#amanha">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" data-toggle="collapse" data-target="#amanha" style="cursor:pointer">
                       <div style="color: orange">
                         <?php 
                         if($total_pagar_amanha == 1){
