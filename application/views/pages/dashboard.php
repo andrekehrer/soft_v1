@@ -246,14 +246,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }?>
                       </div>
                       <div id="demo" class="collapse">
-                        <table>
+                        <table style="width: 100%">
                         <?php 
                         foreach ($pagar_hoje as $key => $value) {
                           echo "<tr>";
-                            echo "<td style='font-size: 13px;'>";
+                            echo "<td style='font-size: 11px;'>";
                               echo $value->desc; 
                             echo "</td>";
-                            echo "<td style='font-size: 13px;'>";
+                            echo "<td style='font-size: 11px;text-align: right;'>";
                               echo '£'.number_format($value->valor, 2, ',', '.');
                             echo "</td>";
                           echo "</tr>";
