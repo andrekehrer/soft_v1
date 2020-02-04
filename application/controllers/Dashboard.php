@@ -10,8 +10,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('categorias_model');
 		$this->load->model('saidas_model_v');
 
-		// $data['categorias'] = $this->categorias_model->get_all_cats();
-
+		$total_des_fixa; = $this->saidas_model->get_all_saidas_pagas();
 
 		////////// TOTAL DESPESAS FIXAS MENSAIS //////////////
 
@@ -59,9 +58,8 @@ class Dashboard extends CI_Controller {
         ////////////////////////////////////////////////////////
 
         // echo "<pre>";print_r($total_mes);exit(0);
-
+        $data['total_des_fixa'] = $total_des_fixa;
         $data['saldo_mensal'] = $saldo_mensal;
-        $data['total_des_fixa'] = $this->saidas_model->get_all_saidas_pagas();
         $data['total_mes'] = $total_mes;   
         $data['total_bill'] = $this->saidas_model->get_all_saidas_apagar();                       
 		$data['saidas_diarias'] = $saidas_diarias;
