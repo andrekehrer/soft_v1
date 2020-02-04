@@ -314,8 +314,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php
                           $today_date = date("d");
                           $tomorrow = date("d", time() + 86400);
-                          echo "tomorrow: ".$tomorrow;
-                          echo "Today: ".$today_date;
+                          // echo "tomorrow: ".$tomorrow;
+                          // echo "Today: ".$today_date;
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
                             // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
