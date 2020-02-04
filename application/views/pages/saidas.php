@@ -315,10 +315,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
-                            echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
+                            // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
+                            echo "<tr>";
                             if ($value['pagou'] == 1 ) {    
-                              echo "<td style='color:black'>";
-                                echo "<span style='color: #ffffff;border: 1px #027f00 solid;background: green;padding: 4px 6px;border-radius: 25px;'>".$value['data']."</span>";
+                              echo "<td style='color:black;background-color:green'>";
+                                echo "<span style='color: #ffffff;'>".$value['data']."</span>";
                               echo "</td>";
                             }else{
                               echo "<td style='color:black'>";
@@ -339,7 +340,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               }
                                 echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' data-sample-data='".$value['data']."' data-sample-catid='".$value['categoria'][0]->cat_id."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                                 echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
-                                echo "<span style='color:black;border: 1px black solid;padding: 2px;border-radius: 5px'>".$value['categoria'][0]->nome."</span>";
+                                echo "<span style='color:black;border: 1px black solid;padding: 2px;border-radius: 5px;background-color:".$value['categoria'][0]->cor."'>".$value['categoria'][0]->nome."</span>";
                               echo "</td>";
                             echo "</tr>";
                           }
