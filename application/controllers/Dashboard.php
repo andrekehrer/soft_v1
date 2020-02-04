@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller {
         $total_mes = '£'.number_format($total_mes_total, 2, ',', '.');
 
 
-
+        echo "<pre>";print_r($total_mes);exit(0);
 
 
 
