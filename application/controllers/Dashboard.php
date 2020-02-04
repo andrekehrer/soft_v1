@@ -55,7 +55,11 @@ class Dashboard extends CI_Controller {
         $saldo_mensal = '£'.number_format($saldo, 2, ',', '.');
         ////////////////////////////////////////////////////////
 
+        $total_anual = $total_mes_total * 12;
+        $total_anual = '£'.number_format($total_anual, 2, ',', '.');
+
         // echo "<pre>";print_r($total_mes);exit(0);
+        $data['total_anual'] = $total_anual;
         $data['total_des_fixa'] = $total_des_fixa;
         $data['saldo_mensal'] = $saldo_mensal;
         $data['total_mes'] = $total_mes;   

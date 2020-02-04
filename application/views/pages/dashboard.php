@@ -311,7 +311,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Entradas anuais</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo ($total_mes * 12);?>
+                                <?php echo $total_anual;?>
                                 </div>
                               </div>
                               <div class="col-auto">
