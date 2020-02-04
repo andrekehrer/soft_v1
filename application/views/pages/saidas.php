@@ -321,7 +321,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
 
                             if($today_date == $value['data']){
-                              
+                              echo "<tr style='border: 2px red solid'>";
+                            }elseif($tomorrow == $value['data']){
                               echo "<tr style='border: 2px red solid'>";
                             }else{
                               echo "<tr>";
