@@ -247,43 +247,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                       <!-- Earnings (Monthly) Card Example -->
-                      <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                          <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                              <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Entradas fixas</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                  <?php echo $total_mes ?>
+                      <a href="<?php echo base_url()?>/entradas">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Entradas fixas</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $total_mes ?>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <div class="col-auto">
+                                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </a>
 
                       <!-- Earnings (Monthly) Card Example -->
-                      <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #fb7777!important;">
-                          <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                              <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:#fb7777!important;">Saidas diarias</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                  <?php echo $saidas_diarias ?>
+                      <a href="<?php echo base_url()?>/saidas_v">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #fb7777!important;">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:#fb7777!important;">Saidas diarias</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $saidas_diarias ?>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <div class="col-auto">
+                                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
+                     </a>
+                      
+                    <a href="<?php echo base_url()?>/saidas">
                       <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #a72845!important;">
                           <div class="card-body">
@@ -302,7 +307,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </div>
                         </div>
                       </div>
-
+                    </a> 
                       <!-- Earnings (Monthly) Card Example -->
                       <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
@@ -347,7 +352,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div> -->
-
+                  
+                  
                   <!-- Pending Requests Card Example -->
                   <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
