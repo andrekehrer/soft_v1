@@ -90,6 +90,7 @@ class Dashboard extends CI_Controller {
         }
 
         // echo "<pre>";print_r($total_mes);exit(0);
+        $data['menu'] = 'dashboard';
         $data['total_pagar_amanha'] = count($pagar_amanha);
         $data['total_pagar_hoje'] = count($pagar_hoje);
         $data['total_anual'] = $total_anual;

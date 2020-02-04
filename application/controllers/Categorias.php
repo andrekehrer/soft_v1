@@ -19,7 +19,7 @@ class Categorias extends CI_Controller {
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);
-
+		$data['menu'] = 'categorias';
 		$data['title'] = "Categorias - Meu Dinheiro";
 		$this->load->view('pages/categorias', $data);
 	}

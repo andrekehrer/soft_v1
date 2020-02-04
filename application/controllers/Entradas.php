@@ -18,6 +18,7 @@ class Entradas extends CI_Controller {
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);	
+		$data['menu'] = 'entradas';
 		$data['title'] = "Entradas - Meu Dinheiro";
 		$this->load->view('pages/entradas', $data);
 	}

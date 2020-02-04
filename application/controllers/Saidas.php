@@ -26,6 +26,7 @@ class Saidas extends CI_Controller {
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);	
 		$data['title'] = "Saidas - Meu Dinheiro";
+		$data['menu'] = 'saidas';
 		$this->load->view('pages/saidas', $data);
 	}
 

@@ -24,6 +24,7 @@ class Saidas_v extends CI_Controller {
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);	
+		$data['menu'] = 'saidas';
 		$data['title'] = "Saidas Variaveis - Meu Dinheiro";
 		$this->load->view('pages/saidas_v', $data);
 	}

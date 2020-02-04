@@ -194,7 +194,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php
                             foreach ($data as $key => $value) {
                               echo "<tr>";
-                              echo "<td style='color:".$value['cor']."'>";
+                              echo "<td style='border-left: 20px ".$value['cor']." solid'>";
                               echo $value['nome'];
                               echo "</td>";
                               echo "<td>";
