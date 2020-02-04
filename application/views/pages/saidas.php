@@ -336,7 +336,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               if ($value['pagou'] == 1 ) {
                                 echo "<img style='cursor: pointer' src='".base_url()."/assets/img/verde.png' alt='' width='20' data-sample-id='".$value['id']."' onclick='despagar(this)'>";
                               }else{
-                                echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
+                                // echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
+                                // echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
+                                echo "<img src='".base_url()."/assets/img/cash.png' data-sample-id='".$value['id']."' onclick='pagar(this)' width='20'>";
                               }
                                 echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."' data-sample-valor='".$value['valor']."' data-sample-data='".$value['data']."' data-sample-catid='".$value['categoria'][0]->cat_id."' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                                 echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
