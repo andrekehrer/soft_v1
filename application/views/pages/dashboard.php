@@ -234,7 +234,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #07e0e0 !important;">SALDO MENSAL</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800" style="color: white !important;">
-                                  <?php $saldo_mensal ?>
+                                  <?php echo $saldo_mensal; ?>
                                 </div>
                               </div>
                               <div class="col-auto">
@@ -291,7 +291,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #a72845!important;">Despesas fixas</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                  <?php $total_des_fixa ?>
+                                  <?php echo $total_des_fixa; ?>
 
                                 </div>
                               </div>
