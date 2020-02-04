@@ -317,6 +317,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
                             // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
                             if($today_date == $value['data']){
+                              echo "TODAY D: ".$today_date;
+                              echo "BANCO D: ".$value['data'];
                               echo "<tr style='border: 2px red solid'>";
                             }else{
                               echo "<tr>";
