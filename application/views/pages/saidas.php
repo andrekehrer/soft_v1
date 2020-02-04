@@ -312,13 +312,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ($data): ?>
 
                           <?php
-                          echo $today_date = date("d");
+                          $today_date = date("d");
+                          $tomorrow = date("d", time() + 86400);
+                          echo "tomorrow: ".$tomorrow;
+                          echo "Today: ".$today_date;
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
                             // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
+
                             if($today_date == $value['data']){
-                              echo "TODAY D: ".$today_date + 1;
-                              echo "BANCO D: ".$value['data'];
+                              
                               echo "<tr style='border: 2px red solid'>";
                             }else{
                               echo "<tr>";
