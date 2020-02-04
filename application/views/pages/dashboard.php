@@ -344,7 +344,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div>
+                    <div id="piechart"></div>
                 </div>
+
 
                 <!-- Content Row -->
 
@@ -412,7 +414,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Page level custom scripts -->
         <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
+        <div id="piechart"></div>
 
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Draw the chart and set the chart values
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Categorias', 'Saidas'],
+          ['Carro', 3],
+          ['Casa', 2],
+          ['Beauty', 4],
+          ['Investimentos', 2],
+          ['Pessoal', 8]
+        ]);
+
+          // Optional; add a title and set the width and height of the chart
+          var options = {'title':'Media mensal', 'width':450, 'height':300};
+
+          // Display the chart inside the <div> element with id="piechart"
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+        </script>
 
       </body>
 
