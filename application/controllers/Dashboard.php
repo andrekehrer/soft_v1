@@ -10,8 +10,6 @@ class Dashboard extends CI_Controller {
 		$this->load->model('categorias_model');
 		$this->load->model('saidas_model_v');
 
-		$total_des_fixa = $this->saidas_model->get_all_saidas_pagas();
-
 		////////// TOTAL DESPESAS FIXAS MENSAIS //////////////
 
 		$total_des_fixa = $this->saidas_model->get_all_saidas_pagas();
