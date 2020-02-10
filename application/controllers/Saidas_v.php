@@ -4,6 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Saidas_v extends CI_Controller {
 
 	public function index(){	
+		$this->load->model('contas_model');
+		$contas = $this->contas_model->get_all_contas();
+		foreach ($contas as $cat) {
+			$array_conta[] = [
+				'id' => $cat->id,
+				'nome' =>  $cat->nome,
+				'saldo' =>  $cat->saldo,
+				'cartao' => $cat->cartao,
+			];
+		}
+		$data['data_contas'] = (isset($array_conta) ? $array_conta : 'No Register');
+		$data['contas'] = count($contas);
+		
 		$this->load->model('saidas_model_v');
 		$this->load->model('categorias_model');
 		$categorias = $this->saidas_model_v->get_all_saidas();

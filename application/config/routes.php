@@ -64,6 +64,7 @@ $route['delete_categoria'] = 'Categorias/delete_categoria';
 $route['entradas'] = 'Entradas';
 $route['update_entrada'] = 'Entradas/update_entrada';
 $route['nova_entrada'] = 'Entradas/nova_entrada';
+$route['delete_entradas'] = 'Entradas/delete_entradas';
 
 $route['saidas'] = 'Saidas';
 $route['update_saida'] = 'Saidas/update_saida';
@@ -76,6 +77,11 @@ $route['saidas_v'] = 'Saidas_v';
 $route['update_saida_v'] = 'Saidas_v/update_saida_v';
 $route['nova_saida_v'] = 'Saidas_v/nova_saida_v';
 $route['delete_saida_v'] = 'Saidas_v/delete_saida_v';
+
+$route['dividas'] = 'Dividas';
+
+$route['contas'] = 'Contas';
+$route['contas/(:num)'] = 'Contas/Contas_id/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

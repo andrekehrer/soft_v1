@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Entradas extends CI_Controller {
+class Dividas extends CI_Controller {
 
-	public function index(){
+	public function index(){	
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
@@ -16,24 +16,24 @@ class Entradas extends CI_Controller {
 		}
 		$data['data_contas'] = (isset($array_conta) ? $array_conta : 'No Register');
 		$data['contas'] = count($contas);
-
-		$this->load->model('entradas_model');
-		$categorias = $this->entradas_model->get_all_entradas();
+		
+		$this->load->model('dividas_model');
+		$categorias = $this->dividas_model->get_all_dividas();
 
 		foreach ($categorias as $cat) {
 
 			$array[] = [
 				'id' => $cat->id,
-				'nome' =>  $cat->desc,
+				'nome' =>  $cat->nome,
 				'valor' => $cat->valor,
 			];
 		}
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
 		//echo json_encode($json, true);	
-		$data['menu'] = 'entradas';
-		$data['title'] = "Entradas - Meu Dinheiro";
-		$this->load->view('pages/entradas', $data);
+		$data['menu'] = 'dividas';
+		$data['title'] = "Dividas - Meu Dinheiro";
+		$this->load->view('pages/dividas', $data);
 	}
 
 	public function update_entrada(){
@@ -46,7 +46,7 @@ class Entradas extends CI_Controller {
 			'valor' =>  $valor
 		);
 		$this->db->where('cat_id', $id);
-		$this->db->update('entradas', $data);
+		$this->db->update('dividas', $data);
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';
 		}else{
@@ -65,7 +65,7 @@ class Entradas extends CI_Controller {
 			'desc'   =>  $nome,
 			'valor' =>  $valor
 		);
-		$this->db->insert('entradas', $data);
+		$this->db->insert('dividas', $data);
 
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';
@@ -76,11 +76,11 @@ class Entradas extends CI_Controller {
 		echo json_encode($data, true);
 		//print_r($this->db->affected_rows());exit(0);
 	}
-		public function delete_entradas(){
+		public function delete_dividas(){
 		$id = $_GET['id'];
 
 		$this->db->where('id', $id);
-		$this->db->delete('entradas');
+		$this->db->delete('dividas');
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 1;
 		}else{
