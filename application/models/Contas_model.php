@@ -13,14 +13,17 @@ class Contas_model extends CI_Model
 
 
 
-	public function get_all_contas(){
+	public function get_all_contas($id=null){
 		//$this->db->order_by('categoria_id', 'ASC');
+		if($id){
+		$this->db->where('cartao', 1);
+		}
 		$this->db->order_by('id', 'ASC');
 		return $this->db->get("contas")->result();
 	}
 
 	public function get_conta_by_id($id = null){
-		$data = $this->db->get_where('saidas_v', array('conta' => $id))->result();
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('conta' => $id))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}

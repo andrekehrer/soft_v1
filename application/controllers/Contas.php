@@ -40,7 +40,6 @@ class Contas extends CI_Controller {
 		}
 		//echo "<pre>";print_r(count($categorias));exit(0);
 		$data['data_contas'] = (isset($array_contas) ? $array_contas : 'No Register');
-		//echo json_encode($json, true);
 		$data['contas'] = count($contas);
 		
 		$this->load->model('contas_model');
@@ -51,11 +50,11 @@ class Contas extends CI_Controller {
 			$array_[] = [
 				'id' => $cat->id,
 				'nome' =>  $cat->desc,
+				'data' => $cat->data,
 				'saldo' =>  $cat->valor
 			];
 		}
 
-		
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
 		$data['data_'] = (isset($array_) ? $array_ : 'No Register');

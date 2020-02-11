@@ -236,6 +236,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
 
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid red!important;background: #da4646;">
+              <div class="card-body">
+                <a href="<?php echo base_url()?>/saidas_v">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Cartões</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
+                        <?php echo $cartoes ?>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
 
           <!-- Earnings (Monthly) Card Example -->
           <div class="col-xl-3 col-md-6 mb-4">
@@ -344,6 +364,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div>
+                 <!-- Pending Requests Card Example -->
+                  <div class="col-xl-3 col-md-6 mb-4">
+                    <?php if($situcao < 0){?>
+                    <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid red!important;background: #da4646;">
+                    <?php }else{ ?>
+                      <div class="card border-left-warning shadow h-100 py-2">
+                      <?php } ?>
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                            <?php if($situcao < 0){?>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Financeiro</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
+                            <?php }else{ ?>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >Financeiro</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php } ?>
+                              <?php 
+                              echo "£".$situcao;
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
 

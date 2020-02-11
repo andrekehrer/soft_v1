@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('saidas_model');
 		$this->load->model('categorias_model');
 		$this->load->model('saidas_model_v');
+        $this->load->model('contas_model');
 
 		////////// TOTAL DESPESAS FIXAS MENSAIS //////////////
 
@@ -62,6 +63,7 @@ class Dashboard extends CI_Controller {
 
         $saidas_total = $total_des_mes_total + $total_saidas_diarias_total;
         $saldo = ($total_mes_total - $saidas_total);
+        $saldo_mensal_w = $saldo;
         $saldo_mensal = '£'.number_format($saldo, 2, ',', '.');
         ////////////////////////////////////////////////////////
 
@@ -101,7 +103,21 @@ class Dashboard extends CI_Controller {
             
         }
 
-        // echo "<pre>";print_r($total_mes);exit(0);
+        $all_contas_cartoes = $this->contas_model->get_all_contas(1);
+
+        $total_cartoes = 0;
+        foreach ($all_contas_cartoes as $key => $value) {
+          $total_cartoes = $total_cartoes + $value->saldo;
+        }
+        $all_contas_cartoes_w = $total_cartoes;
+        $all_contas_cartoes = '£'.number_format($total_cartoes, 2, ',', '.');      
+
+
+        $situcao = $saldo_mensal_w - $all_contas_cartoes_w;
+       // echo "<pre>";print_r($situcao);exit(0);
+
+        $data['situcao'] = $situcao;
+        $data['cartoes'] = $all_contas_cartoes;
         $data['menu'] = 'dashboard';
         $data['total_pagar_amanha'] = count($pagar_amanha);
         $data['total_pagar_hoje'] = count($pagar_hoje);
