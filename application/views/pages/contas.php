@@ -100,8 +100,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800">Categorias</h1>
-                      <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a>
+                      <h1 class="h3 mb-0 text-gray-800">Contas</h1>
+                      <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar conta/cartao</a>
 
                     </div>
 
@@ -113,20 +113,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="modal-content">
                           <div class="modal-header">
                             <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                            <h4 class="modal-title">Nova categoria</h4>
+                            <h4 class="modal-title">Nova conta/cartao</h4>
                             <div id='loader' style='display: none;'>
                               <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                             </div>
                           </div>
                           <div class="modal-body">
                             <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
-                              Categoria alterada com sucesso!
+                              Conta inserida com sucesso!
                             </div>
                             <form id="myform_new" name="myform_new">
-                              <input type="color" id="cor_nova" name="cor_nova">
                               <div class="form-group">
-                                <label for="email">Nome da categoria</label>
+                                <label for="email">Nome</label>
                                 <input type="text" class="form-control" name="categoria_nome_nova" id="categoria_nome_nova">
+                              </div>
+                              <div class="form-group">
+                                <label for="saldo">Saldo inicial</label>
+                                <input type="text" class="form-control" name="saldo_inicial" id="saldo_inicial">
+                              </div>
+                              <div class="form-group">
+                                <label for="saldo">Cartao de credito?</label>
+                                <input type="checkbox" class="form-control" name="cartao" id="cartao">
                               </div>
                               <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
                             </form>
@@ -155,7 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="modal-body">
 
                             <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
-                              Categoria alterada com sucesso!
+                              Conta alterada com sucesso!
                             </div>
                             <form id="myform_edit" name="myform_edit">
                               <input type="color" id="cor_edit" name="cor_edit">
@@ -285,49 +292,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   
           <script>
 
-          function myDelete(d){
-            var id = d.getAttribute("data-sample-id");
-            var parms = {
-                id : id
-              };
+          // function myDelete(d){
+          //   var id = d.getAttribute("data-sample-id");
+          //   var parms = {
+          //       id : id
+          //     };
 
-              var r = confirm("Deseja deletar?");
-              if (r == true) {
-                $.ajax({
-                type: "GET",
-                url: "<?php echo base_url() ?>/delete_categoria",
-                data: parms,
-                dataType : "JSON",
-                  beforeSend: function(){
-                        // Show image container
-                        $("#loader").show();
-                      },
-                      success: function(result){
-                        console.log(result);
-                        location.reload();
+          //     var r = confirm("Deseja deletar?");
+          //     if (r == true) {
+          //       $.ajax({
+          //       type: "GET",
+          //       url: "<?php echo base_url() ?>/delete_categoria",
+          //       data: parms,
+          //       dataType : "JSON",
+          //         beforeSend: function(){
+          //               // Show image container
+          //               $("#loader").show();
+          //             },
+          //             success: function(result){
+          //               console.log(result);
+          //               location.reload();
 
-                      },
-                      complete:function(data){
-                      // Hide image container
-                      location.reload();
-                      $("#loader").hide();
-                    }
-                  });
-              } else {
+          //             },
+          //             complete:function(data){
+          //             // Hide image container
+          //             location.reload();
+          //             $("#loader").hide();
+          //           }
+          //         });
+          //     } else {
                 
-              }
+          //     }
             
-          }
-            function myClick(d){
-              $('#msg_success').css('display','none');
-              var id = d.getAttribute("data-sample-id");
-              var name = d.getAttribute("data-sample-name");
-              var cor = d.getAttribute("data-sample-cor");
-              $('#cor_edit').val(cor);
-              $('#categoria_id_edit').val(id);
-              $('#categoria_nome_edit').val(name);
-              $('#myModalEdit').modal('show');
-            }
+          // }
+            // function myClick(d){
+            //   $('#msg_success').css('display','none');
+            //   var id = d.getAttribute("data-sample-id");
+            //   var name = d.getAttribute("data-sample-name");
+            //   var cor = d.getAttribute("data-sample-cor");
+            //   $('#cor_edit').val(cor);
+            //   $('#categoria_id_edit').val(id);
+            //   $('#categoria_nome_edit').val(name);
+            //   $('#myModalEdit').modal('show');
+            // }
 
             $(document).ready(function(){
 
@@ -370,17 +377,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                   });
         });
-              $('#myform_new').on('submit', function (e) {
-                e.preventDefault();
-                var parms = {
-                  nome_nova : $("#categoria_nome_nova").val(),
-                  cor_nova : $("#cor_nova").val(),
-                };
+
+        $('#myform_new').on('submit', function (e) {
+            e.preventDefault();
+            var parms = {
+              nome_nova : $("#categoria_nome_nova").val(),
+              saldo     : $("#saldo_inicial").val(),
+              cartao    : $("#cartao").val(),
+            };
           //console.log(parms);
 
           $.ajax({
             type: "GET",
-            url: "<?php echo base_url() ?>/nova_categoria",
+            url: "<?php echo base_url() ?>contas//novo_cartao",
             data: parms,
             dataType : "JSON",
             beforeSend: function(){

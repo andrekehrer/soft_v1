@@ -8,8 +8,8 @@ class Saidas_v extends CI_Controller {
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
 			$array_conta[] = [
-				'id' => $cat->id,
-				'nome' =>  $cat->nome,
+				'id' => 	$cat->id,
+				'nome' =>   $cat->nome,
 				'saldo' =>  $cat->saldo,
 				'cartao' => $cat->cartao,
 			];
@@ -31,7 +31,6 @@ class Saidas_v extends CI_Controller {
 				'data' => $cat->data,
 			];
 		}
-
 
 		$data['categorias'] = $this->categorias_model->get_all_cats();
 		//echo "<pre>";print_r($array);exit(0);
@@ -70,7 +69,7 @@ class Saidas_v extends CI_Controller {
 		$categoria = $_GET['categoria'];
 		$data_ = $_GET['data_mes'];
 		$valor = $_GET['valor_nova'];
-
+		$conta_saida = $_GET['conta_saida'];
 
 
 		//print_r($nome);exit(0);
@@ -78,12 +77,28 @@ class Saidas_v extends CI_Controller {
 			'desc'   =>  $nome,
 			'valor' =>  $valor,
 			'data' =>  $data_,
-			'categoria_id' =>  $categoria
+			'categoria_id' =>  $categoria,
+			'conta' => $conta_saida
 		);
+
+
 		$this->db->insert('saidas_v', $data);
 
 		if($this->db->affected_rows() == 1){
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta_saida);
+			$type_conta = $this->contas_model->get_type_conta_by_id($conta_saida);
+			if($type_conta == 1){
+				$new_saldo = $saldo + $valor;
+			}else{
+				$new_saldo = $saldo - $valor;
+			}
+
+			$new_saldo_save = $this->contas_model->atualizar_saldo($conta_saida, $new_saldo);
+
 			$data['msg'] = 'Categoria editada com sucesso!';
+
 		}else{
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}

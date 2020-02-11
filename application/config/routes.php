@@ -82,6 +82,7 @@ $route['dividas'] = 'Dividas';
 
 $route['contas'] = 'Contas';
 $route['contas/(:num)'] = 'Contas/Contas_id/$1';
+$route['contas/novo_cartao'] = 'Contas/novo_cartao';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

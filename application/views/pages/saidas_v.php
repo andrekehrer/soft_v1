@@ -147,6 +147,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               </select>
                             </div>
 
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Conta</label>
+                              </div>
+                              <select class="custom-select" name="conta_saida" id="conta_saida">
+                                <option selected>Selecione...</option>
+                                <?php foreach ($data_contas as $key => $value) {?>
+
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+                                  
+                               <?php   } ?>
+                              </select>
+                            </div>
+
                             <div class="form-group">
                               <label for="email">Valor</label>
                               <input type="text" class="form-control" name="saida_valor_nova" id="saida_valor_nova">
@@ -449,7 +463,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 nome_nova : $("#saida_nome_nova").val(),
                 categoria : $("#saida_categoria_nova").val(),
                 data_mes  : $('#data_despesa_nova').val(),
-                valor_nova : $("#saida_valor_nova").val()
+                valor_nova : $("#saida_valor_nova").val(),
+                conta_saida : $("#conta_saida").val()
               };
           console.log(parms);
 

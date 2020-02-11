@@ -63,40 +63,19 @@ class Contas extends CI_Controller {
 		$data['menu'] = 'contas';
 		$data['title'] = "Categorias - Meu Dinheiro";
 		$this->load->view('pages/contas_individual', $data);
-
 	}
 
-	public function update_categoria(){
-		$id = $_GET['id_edit'];
-		$nome = $_GET['nome_edit'];
-		$cor = $_GET['cor'];
-		//print_r($nome);exit(0);
-		$data = array( 
-			'nome'  =>  $nome,
-			'cor'   =>  $cor
-		);
-		$this->db->where('cat_id', $id);
-		$this->db->update('categorias', $data);
-		if($this->db->affected_rows() == 1){
-			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
-			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
-		}
-
-		echo json_encode($data, true);
-		//print_r($this->db->affected_rows());exit(0);
-	}
-
-	public function nova_categoria(){
+	public function novo_cartao(){
 		$nome = $_GET['nome_nova'];
-		$cor = $_GET['cor_nova'];
+		$saldo = $_GET['saldo'];
+		$cartao = $_GET['cartao'];
 		//print_r($nome);exit(0);
 		$data = array( 
 			'nome'   =>  $nome,
-			'cor'    =>  $cor,
-			'status' =>  1
+			'saldo'  =>  $saldo,
+			'cartao' =>  1
 		);
-		$this->db->insert('categorias', $data);
+		$this->db->insert('contas', $data);
 
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';
@@ -108,20 +87,4 @@ class Contas extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function carregar_tabela(){
-		$data = $this->db->get("categorias")->result();	
-		echo json_encode($data, true);
-	}
-
-	public function delete_categoria(){
-		$id = $_GET['id'];
-
-		$this->db->where('cat_id', $id);
-		$this->db->delete('categorias');
-		if($this->db->affected_rows() == 1){
-			$data['msg'] = 1;
-		}else{
-			$data['msg'] = 0;
-		}
-	}
 }
