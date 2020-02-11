@@ -202,6 +202,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <!-- Content Row -->
                   <div class="row">
                     <div class="table-responsive">
+                        <?php if ($data != 'No Register'): ?>
                       <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                           <tr style="background: #636363;color: white;">
@@ -214,7 +215,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                        </thead>
 
                        <tbody id="table_data">
-                        <?php if ($data): ?>
 
                           <?php
                         
@@ -235,7 +235,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           }
                           ?>
 
-                        <?php endif ?>
                         <tr>
                           <td style="background: #636363;color: white;">TOTAL</td>
                           <td style="background: #636363;color: white;">
@@ -248,6 +247,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo '£'.number_format($total, 2, ',', '.');
                              ?>
                           </td>
+                        <?php endif ?>
                           
                         </tr>
                       </tbody>

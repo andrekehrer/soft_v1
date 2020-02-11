@@ -191,13 +191,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <tr>
                              <!--  <th>Id</th> -->
                              <th>Nome</th>
-                             <th>Saldo</th>
-                             <th>Acoes</th>
+                             <th>Saldo</th><!-- 
+                             <th>Acoes</th> -->
                            </tr>
                          </thead>
 
                          <tbody id="table_data">
-                          <?php if ($data_contas): ?>
+                          <?php if (isset($data_contas) && $data_contas != 'No Register'){ ?>
 
                             <?php
                             foreach ($data_contas as $key => $value) {
@@ -208,15 +208,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               echo "<td>";
                               echo '£'.number_format($value['saldo'], 2, ',', '.');
                               echo "</td>";
-                              echo "<td>";
-                              echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."'  id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                              //echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
-                              echo "</td>";
+                              // echo "<td>";
+                              // echo "<img src='".base_url()."/assets/img/edit-icon.png'   data-sample-id='".$value['id']."' data-sample-name='".$value['nome']."'  id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                              // //echo "<img src='".base_url()."/assets/img/delete-icon.png' data-sample-id='".$value['id']."' alt='' onclick='myDelete(this)' width='20'>";
+                              // echo "</td>";
                               echo "</tr>";
                             }
                             ?>
 
-                          <?php endif ?>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>

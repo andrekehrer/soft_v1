@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid red!important;background: #da4646;">
                 <div class="card-body">
-                  <a href="<?php echo base_url()?>/saidas_v">
+                  <a href="<?php echo base_url()?>contas">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Cartões</div>
