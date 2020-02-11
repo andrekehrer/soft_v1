@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Saidas_v extends CI_Controller {
 
 	public function index(){	
+		$this->load->model('dividas_model');
 		$this->load->model('contas_model');
+
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
 			$array_conta[] = [
@@ -31,6 +33,8 @@ class Saidas_v extends CI_Controller {
 				'data' => $cat->data,
 			];
 		}
+
+		$data['dividas'] = $this->dividas_model->get_all_dividas();
 
 		$data['categorias'] = $this->categorias_model->get_all_cats();
 		//echo "<pre>";print_r($array);exit(0);
@@ -108,9 +112,36 @@ class Saidas_v extends CI_Controller {
 	}
 
 	public function delete_saida_v(){
-		$id = $_GET['id'];
+		$this->load->model('dividas_model');
+		$this->load->model('saidas_model_v');
 
-		$this->db->where('id', $id);
+		$id_ = $_GET['id'];
+
+		$saida_v = $this->saidas_model_v->get_saidas_v_by_id($id_);
+		
+		$id = $saida_v[0]->id;
+		$desc = $saida_v[0]->desc;
+		$valor = $saida_v[0]->valor;
+		$categoria_id = $saida_v[0]->categoria_id;
+		$conta = $saida_v[0]->conta;
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta);
+			$type_conta = $this->contas_model->get_type_conta_by_id($conta);
+			if($type_conta == 1){
+				$new_saldo = $saldo - $valor;
+			}else{
+				$new_saldo = $saldo + $valor;
+			}
+
+			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
+		
+		if($categoria_id == 1111){
+			$voltar_divida = $this->dividas_model->voltar_divida($desc, $valor);
+			
+		}
+
+		$this->db->where('id', $id_);
 		$this->db->delete('saidas_v');
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 1;
@@ -118,6 +149,17 @@ class Saidas_v extends CI_Controller {
 			$data['msg'] = 0;
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

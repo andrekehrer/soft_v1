@@ -102,7 +102,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Despesas variaveis</h1>
                     <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar despesa</a>
+                    <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#pagarDivida"><i class="fas fa-download fa-sm text-white-50"></i>Pagar divida</a>
 
+                  </div>
+
+                                    <!-- NEW Modal -->
+                  <div id="pagarDivida" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                          <h4 class="modal-title">Dividas</h4>
+                          <div id='loader' style='display: none;'>
+                            <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
+                          </div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
+                            Despesa adicionada com sucesso!
+                          </div>
+                          <form id="pagarDivida" name="pagarDivida">
+                            
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Divida</label>
+                              </div>
+                              <select class="custom-select" name="divida" id="divida">
+                                <option selected>Selecione...</option>
+                                <?php foreach ($dividas as $key => $value) {?>
+
+                                    <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
+                                  
+                               <?php   } ?>
+                              </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Conta</label>
+                              </div>
+                              <select class="custom-select" name="cartao" id="cartao">
+                                <option selected>Selecione...</option>
+                                <?php foreach ($data_contas as $key => $value) {?>
+
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+                                  
+                               <?php   } ?>
+                              </select>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="email">Valor</label>
+                              <input type="text" class="form-control" name="valor_divida" id="valor_divida">
+                            </div>
+                            <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
+                          </form>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
 
                   <!-- NEW Modal -->
@@ -253,6 +317,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                           foreach ($data as $key => $value) {
                             // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
+
                             echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
                               echo "<td style='color:black'>";
                                 $date=date_create($value['data']);
@@ -382,7 +447,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       },
                       success: function(result){
                         console.log(result);
-                        location.reload();
+                        //location.reload();
 
                       },
                       complete:function(data){
@@ -457,6 +522,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                   });
               });
+
+            $('#pagarDivida').on('submit', function (e) {
+              e.preventDefault();
+              var parms = {
+                divida : $("#divida").val(),
+                cartao : $("#cartao").val(),
+                valor : $("#valor_divida").val(),
+              };
+              console.log(parms);
+
+              $.ajax({
+                type: "GET",
+                url: "<?php echo base_url() ?>/valor_divida_pagar",
+                data: parms,
+                dataType : "JSON",
+                  beforeSend: function(){
+                        // Show image container
+                        $("#loader2").show();
+                      },
+                      success: function(result){
+                        console.log(result);
+                        $('#msg_success2').css('display','block');
+
+                      },
+                      complete:function(data){
+                      // Hide image container
+                       $('#msg_success2').css('display','block');
+                      $("#loader2").hide();
+                    }
+                  });
+              });
+            
             $('#myform_new').on('submit', function (e) {
               e.preventDefault();
               var parms = {
@@ -466,7 +563,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 valor_nova : $("#saida_valor_nova").val(),
                 conta_saida : $("#conta_saida").val()
               };
-          console.log(parms);
+              console.log(parms);
 
               $.ajax({
                 type: "GET",

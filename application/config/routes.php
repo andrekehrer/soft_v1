@@ -79,6 +79,9 @@ $route['nova_saida_v'] = 'Saidas_v/nova_saida_v';
 $route['delete_saida_v'] = 'Saidas_v/delete_saida_v';
 
 $route['dividas'] = 'Dividas';
+$route['nova_divida'] = 'Dividas/nova_divida';
+$route['delete_dividas'] = 'Dividas/delete_dividas';
+$route['valor_divida_pagar'] = 'Dividas/valor_divida_pagar';
 
 $route['contas'] = 'Contas';
 $route['contas/(:num)'] = 'Contas/Contas_id/$1';

@@ -22,6 +22,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('categorias_model');
 		$this->load->model('saidas_model_v');
         $this->load->model('contas_model');
+        $this->load->model('dividas_model');
 
 		////////// TOTAL DESPESAS FIXAS MENSAIS //////////////
 
@@ -113,7 +114,16 @@ class Dashboard extends CI_Controller {
         $all_contas_cartoes = '£'.number_format($total_cartoes, 2, ',', '.');      
 
 
-        $situcao = $saldo_mensal_w - $all_contas_cartoes_w;
+        
+        $total_dividas = $this->dividas_model->get_all_dividas();
+
+        $divida_mes = 0;
+        foreach ($total_dividas as $key => $value) {
+          $divida_mes = $divida_mes + $value->valor;
+        }
+        $total_dividas = $divida_mes;
+
+        $situcao = $saldo_mensal_w - ($all_contas_cartoes_w + $total_dividas);
        // echo "<pre>";print_r($situcao);exit(0);
 
         $data['situcao'] = $situcao;

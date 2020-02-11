@@ -24,9 +24,47 @@ class Dividas_model extends CI_Model
 		return $this->db->get("dividas")->result();
 	}
 
-	public function get_cat_by_id($id){
-		$data = $this->db->get_where('categorias', array('cat_id' => $id))->result();
+	public function divida_name_by_id($id){
+		$data = $this->db->get_where('dividas', array('id' => $id))->result();
+		$data = $data[0]->nome;
 		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
+	public function pagar_divida($id, $valor){
+
+		$valor_atual = $this->db->get_where('dividas', array('id' => $id))->result();
+		// print_r($valor_atual[0]->valor);exit(0);
+		$valor_atual = $valor_atual[0]->valor;
+		$valor_final = $valor_atual - $valor;
+		$data = array( 
+			'valor'  =>  $valor_final
+		);
+		$this->db->where('id', $id);
+		$this->db->update('dividas', $data);
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 'Success';
+		}else{
+			$data['msg'] = 'Error';
+		}
+		return $data;
+	}
+
+	public function voltar_divida($nome, $valor){
+
+		$valor_atual = $this->db->get_where('dividas', array('nome' => $nome))->result();
+		// print_r($valor_atual[0]->valor);exit(0);
+		$valor_atual = $valor_atual[0]->valor;
+		$valor_final = $valor_atual + $valor;
+		$data = array( 
+			'valor'  =>  $valor_final
+		);
+		$this->db->where('nome', $nome);
+		$this->db->update('dividas', $data);
+		if($this->db->affected_rows() == 1){
+			$data['msg'] = 'Success';
+		}else{
+			$data['msg'] = 'Error';
+		}
 		return $data;
 	}
 

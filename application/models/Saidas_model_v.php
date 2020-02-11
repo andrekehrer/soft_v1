@@ -23,6 +23,12 @@ class Saidas_model_v extends CI_Model
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
+
+	public function get_saidas_v_by_id($id){
+		$data = $this->db->get_where('saidas_v', array('id' => $id))->result();
+		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
 }
 
 
