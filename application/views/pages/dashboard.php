@@ -347,8 +347,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Financeiro</div>
                           <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
                           <?php }else{ ?>
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >Financeiro</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Financeiro</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
                             <?php } ?>
                             <?php 
                             echo "£".$situcao;
