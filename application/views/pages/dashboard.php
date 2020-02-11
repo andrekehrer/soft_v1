@@ -369,7 +369,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php if($situcao < 0){?>
                     <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid red!important;background: #da4646;">
                     <?php }else{ ?>
-                      <div class="card border-left-warning shadow h-100 py-2">
+                      <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid #221e3c!important;background: #3474b9;">
                       <?php } ?>
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
