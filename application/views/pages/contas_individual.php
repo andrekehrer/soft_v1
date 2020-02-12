@@ -103,6 +103,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"><?php echo $nome_conta; ?></h1>
+            <h1 class="h3 mb-0 text-gray-800"><?php echo $saldo; ?></h1>
+            <?php
+            if ($type == 1) {
+              echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
+            }
+            ?>
             <!--  <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a> -->
 
           </div>
@@ -115,7 +121,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
               <div class="modal-content">
                 <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title">Nova categoria</h4>
+                  <h4 class="modal-title">Pagar o cartao <?php echo $nome_conta; ?></h4>
                   <div id='loader' style='display: none;'>
                     <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                   </div>
@@ -124,13 +130,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
                     Categoria alterada com sucesso!
                   </div>
-                  <form id="myform_new" name="myform_new">
-                    <input type="color" id="cor_nova" name="cor_nova">
-                    <div class="form-group">
-                      <label for="email">Nome da categoria</label>
-                      <input type="text" class="form-control" name="categoria_nome_nova" id="categoria_nome_nova">
+                  <form id="pagar_cartao" name="pagar_cartao">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Conta</label>
+                      </div>
+                      <select class="custom-select" name="cartao" id="cartao">
+                        <option selected>Selecione...</option>
+                        <?php foreach ($data_contas as $key => $value) { ?>
+
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+
+                        <?php   } ?>
+                      </select>
                     </div>
-                    <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
+                    <div class="form-group">
+                      <label for="email">Valor</label>
+                      <input type="hidden" class="form-control" name="id_conta" id="id_conta" value="<?php echo $id_conta; ?>">
+                      <input type="hidden" class="form-control" name="nome_conta" id="nome_conta" value="<?php echo $nome_conta; ?>">
+                      <input type="text" class="form-control" name="valor" id="valor">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-primary">Pagar</button>
                   </form>
                 </div>
 
@@ -142,42 +163,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
           </div>
           <!-- EDIT Modal -->
-          <div id="myModalEdit" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title">Editar categoria</h4>
-                  <div id='loader' style='display: none;'>
-                    <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
-                  </div>
-                </div>
-                <div class="modal-body">
-
-                  <div class="alert alert-success" id="msg_success" role="alert" style="display:none;margin-top:20px">
-                    Categoria alterada com sucesso!
-                  </div>
-                  <form id="myform_edit" name="myform_edit">
-                    <input type="color" id="cor_edit" name="cor_edit">
-                    <div class="form-group">
-                      <label for="email">Nome da categoria</label>
-                      <input type="hidden" class="form-control" name="categoria_id_edit" id="categoria_id_edit">
-                      <input type="text" class="form-control" name="categoria_nome_edit" id="categoria_nome_edit">
-                    </div>
-                    <button type="submit" class="btn btn-default btn-primary">Salvar</button>
-                  </form>
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
           <!-- Content Row -->
           <div class="row">
             <div class="table-responsive">
@@ -396,17 +381,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     }
 
-    function myClick(d) {
-      $('#msg_success').css('display', 'none');
-      var id = d.getAttribute("data-sample-id");
-      var name = d.getAttribute("data-sample-name");
-      var cor = d.getAttribute("data-sample-cor");
-      $('#cor_edit').val(cor);
-      $('#categoria_id_edit').val(id);
-      $('#categoria_nome_edit').val(name);
-      $('#myModalEdit').modal('show');
-    }
-
     $(document).ready(function() {
 
       $('#close_modal_edit').on('click', function() {
@@ -416,49 +390,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
         location.reload();
       });
 
-
       $('#msg_success').css('display', 'none');
 
-      $('#myform_edit').on('submit', function(e) {
+
+      $('#pagar_cartao').on('submit', function(e) {
+        //alert('test');
         e.preventDefault();
         var parms = {
-          id_edit: $("#categoria_id_edit").val(),
-          nome_edit: $("#categoria_nome_edit").val(),
-          cor: $("#cor_edit").val()
+          id: $("#id_conta").val(),
+          valor: $("#valor").val(),
+          cartao: $("#cartao").val(),
+          nome_conta: $("#nome_conta").val(),
         };
         //console.log(parms);
 
         $.ajax({
           type: "GET",
-          url: "<?php echo base_url() ?>/update_categoria",
-          data: parms,
-          dataType: "JSON",
-          beforeSend: function() {
-            // Show image container
-            $("#loader").show();
-          },
-          success: function(result) {
-            console.log(result);
-            $('#msg_success').css('display', 'block');
-
-          },
-          complete: function(data) {
-            // Hide image container
-            $("#loader").hide();
-          }
-        });
-      });
-      $('#myform_new').on('submit', function(e) {
-        e.preventDefault();
-        var parms = {
-          nome_nova: $("#categoria_nome_nova").val(),
-          cor_nova: $("#cor_nova").val(),
-        };
-        //console.log(parms);
-
-        $.ajax({
-          type: "GET",
-          url: "<?php echo base_url() ?>/nova_categoria",
+          url: "<?php echo base_url() ?>/pagar_cartao",
           data: parms,
           dataType: "JSON",
           beforeSend: function() {

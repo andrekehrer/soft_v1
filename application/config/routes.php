@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -86,6 +86,7 @@ $route['valor_divida_pagar'] = 'Dividas/valor_divida_pagar';
 $route['contas'] = 'Contas';
 $route['contas/(:num)'] = 'Contas/Contas_id/$1';
 $route['contas/novo_cartao'] = 'Contas/novo_cartao';
+$route['pagar_cartao'] = 'Contas/pagar_cartao';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

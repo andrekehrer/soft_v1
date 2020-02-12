@@ -45,7 +45,9 @@ class Contas extends CI_Controller
 
 		$this->load->model('contas_model');
 		$contas_ = $this->contas_model->get_conta_by_id($id);
-
+		// echo "<pre>";
+		// print_r($contas_);
+		// exit(0);
 		foreach ($contas_ as $cat) {
 			$contas_todas[] = [
 				'id' => $cat->id,
@@ -75,9 +77,16 @@ class Contas extends CI_Controller
 				'date' =>  $ent->data_full
 			];
 		}
+		$saldo = $this->contas_model->get_saldo_contas_by_id($id);
+		$saldo = '£' . number_format($saldo, 2, ',', '.');
+		$type = $this->contas_model->get_type_conta_by_id($id);
+		$id_conta = $this->contas_model->get_contaid_by_id($id);
 
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
+		$data['type'] = $type;
+		$data['id_conta'] = $id_conta[0]->id;
+		$data['saldo'] = $saldo;
 		$data['data_'] = (isset($contas_todas) ? $contas_todas : 'No Register');
 		$data['data_entrada'] = (isset($contas_todas_entradas) ? $contas_todas_entradas : 'No Register');
 		$data['data_saidas_fixas'] = (isset($contas_saidas_fi) ? $contas_saidas_fi : 'No Register');
@@ -102,6 +111,55 @@ class Contas extends CI_Controller
 		$this->db->insert('contas', $data);
 
 		if ($this->db->affected_rows() == 1) {
+			$data['msg'] = 'Categoria editada com sucesso!';
+		} else {
+			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
+		}
+
+		echo json_encode($data, true);
+		//print_r($this->db->affected_rows());exit(0);
+	}
+	public function pagar_cartao()
+	{
+		$id_cartao_pagar = $_GET['id'];
+		$valor = $_GET['valor'];
+		$cartao = $_GET['cartao'];
+		$nome = $_GET['nome_conta'];
+
+		$data = array(
+			'desc'  		   =>  'Cartao ' . $nome,
+			'valor'			   =>  $valor,
+			'data' 			 	 =>  date('Y-m-d H:m:s'),
+			'categoria_id' =>  3333,
+			'conta' 			 => $cartao,
+			'pagou_cartao' => $id_cartao_pagar
+		);
+
+		$this->db->insert('saidas_v', $data);
+
+		if ($this->db->affected_rows() == 1) {
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($cartao);
+			$type_conta = $this->contas_model->get_type_conta_by_id($cartao);
+			if ($type_conta == 1) {
+				$new_saldo = $saldo + $valor;
+			} else {
+				$new_saldo = $saldo - $valor;
+			}
+			$this->contas_model->atualizar_saldo($cartao, $new_saldo);
+
+
+			$saldo_ 		= $this->contas_model->get_saldo_contas_by_id($id_cartao_pagar);
+			$type_conta_ = $this->contas_model->get_type_conta_by_id($id_cartao_pagar);
+			if ($type_conta_ == 1) {
+				$new_saldo_ = $saldo_ - $valor;
+			}
+			$this->contas_model->atualizar_saldo($id_cartao_pagar, $new_saldo_);
+
+
+
+
 			$data['msg'] = 'Categoria editada com sucesso!';
 		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';

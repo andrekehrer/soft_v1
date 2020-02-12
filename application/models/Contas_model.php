@@ -16,11 +16,23 @@ class Contas_model extends CI_Model
 		$this->db->order_by('id', 'ASC');
 		return $this->db->get("contas")->result();
 	}
-
+	public function get_contaid_by_id($id = null)
+	{
+		$data = $this->db->order_by('id', 'ASC')->get_where('contas', array('id' => $id))->result();
+		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
 	public function get_conta_by_id($id = null)
 	{
-		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('conta' => $id))->result();
-		// print_r($data[0]->nome); exit(0);
+		$data =	$this->db->select('*')->from('saidas_v')
+			->group_start()
+			->where('conta', $id)
+			->or_group_start()
+			->where('pagou_cartao', $id)
+			->group_end()
+			->group_end()
+			->get()
+			->result();
 		return $data;
 	}
 	public function get_conta_entrada_by_id($id = null)
