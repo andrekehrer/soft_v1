@@ -32,6 +32,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
       cursor: pointer;
       width: 35px;
     }
+
+    .table-bordered td,
+    .table-bordered th {
+      border-top: 1px solid #e3e6f0;
+      border-right: 0px;
+      border-left: 0px;
+    }
   </style>
 
 </head>
@@ -105,6 +112,50 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <h1 class="h3 mb-0 text-gray-800">Despesas fixas</h1>
             <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar despesa</a>
 
+          </div>
+
+          <div id="myModalPagar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title">Pagar despesa</h4>
+                  <div id='loader' style='display: none;'>
+                    <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <div class="alert alert-success" id="msg_success4" role="alert" style="display:none;margin-top:20px">
+                    Obrigado!
+                  </div>
+                  <form id="myModalPagar" name="myModalPagar">
+                    <input type="hidden" class="form-control" name="valor" id="valor">
+                    <input type="hidden" class="form-control" name="saida_id_edit" id="id_pagar">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Conta</label>
+                      </div>
+                      <select class="custom-select" name="conta" id="conta">
+                        <option selected>Selecione...</option>
+                        <?php foreach ($data_contas as $key => $value) { ?>
+
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+
+                        <?php   } ?>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-primary">Pagar</button>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
+                </div>
+              </div>
+
+            </div>
           </div>
 
           <!-- NEW Modal -->
@@ -323,7 +374,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       // echo "<tr style='background-color:".$value['categoria'][0]->cor."'>";
 
                       if ($today_date == $value['data']) {
-                        echo "<tr style='border: 2px red solid; background:#d0a7a7'>";
+                        echo "<tr style='border: 2px #ff000061 solid;background: #fbf6f6;'>";
                       } elseif ($tomorrow == $value['data']) {
                         echo "<tr style='border: 2px orange solid; background:#fdf0e0'>";
                       } else {
@@ -331,8 +382,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       }
 
                       if ($value['pagou'] == 1) {
-                        echo "<td style='color:black;background-color:green'>";
-                        echo "<span style='color: #ffffff;'>" . $value['data'] . "</span>";
+                        echo "<td>";
+                        echo "<span style='color: #fff;background: green;padding: 10px;border-radius: 12px;'>" . $value['data'] . "</span>";
                         echo "</td>";
                       } else {
                         echo "<td style='color:black'>";
@@ -347,11 +398,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       echo "</td>";
                       echo "<td>";
                       if ($value['pagou'] == 1) {
-                        echo "<img style='cursor: pointer' src='" . base_url() . "/assets/img/verde.png' alt='' width='20' data-sample-id='" . $value['id'] . "' onclick='despagar(this)'>";
+                        echo "<img style='cursor: pointer' src='" . base_url() . "/assets/img/verde.png' alt='' width='20' data-sample-valor='" . $value['valor'] . "' data-sample-id='" . $value['id'] . "' data-sample-conta='" . $value['conta'] . "' onclick='despagar(this)'>";
                       } else {
                         // echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
                         // echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
-                        echo "<img src='" . base_url() . "/assets/img/cash.png' data-sample-id='" . $value['id'] . "' onclick='pagar(this)' width='20'>";
+                        echo "<img src='" . base_url() . "/assets/img/cash.png' data-sample-id='" . $value['id'] . "' data-sample-valor='" . $value['valor'] . "'data-toggle='modal' data-target='#myModalPagar' onclick='myPagar(this)' width='20'>";
                       }
                       echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->cat_id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                       echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
@@ -450,38 +501,46 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/js/jquery.redirect.js"></script>
 
   <script>
-    function pagar(d) {
-      var id = d.getAttribute("data-sample-id");
-      var parms = {
-        id: id
-      };
+    // function pagar(d) {
+    //   var id = d.getAttribute("data-sample-id");
+    //   var parms = {
+    //     id: id
+    //   };
 
-      $.ajax({
-        type: "GET",
-        url: "<?php echo base_url() ?>/pagar",
-        data: parms,
-        dataType: "JSON",
-        beforeSend: function() {
-          // Show image container
-          $("#loader").show();
-        },
-        success: function(result) {
-          console.log(result);
-          $('#msg_success').css('display', 'block');
+    //   $.ajax({
+    //     type: "GET",
+    //     url: "<?php echo base_url() ?>/pagar",
+    //     data: parms,
+    //     dataType: "JSON",
+    //     beforeSend: function() {
+    //       // Show image container
+    //       $("#loader").show();
+    //     },
+    //     success: function(result) {
+    //       console.log(result);
+    //       $('#msg_success').css('display', 'block');
 
-        },
-        complete: function(data) {
-          // Hide image container
-          $("#loader").hide();
-          location.reload();
-        }
-      });
-    }
+    //     },
+    //     complete: function(data) {
+    //       // Hide image container
+    //       $("#loader").hide();
+    //       location.reload();
+    //     }
+    //   });
+    // }
+
+
+
 
     function despagar(d) {
       var id = d.getAttribute("data-sample-id");
+      var valor = d.getAttribute("data-sample-valor");
+      var conta = d.getAttribute("data-sample-conta");
+
       var parms = {
-        id: id
+        id: id,
+        conta: conta,
+        valor: valor
       };
 
       $.ajax({
@@ -557,6 +616,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
       $('#myModalEdit').modal('show');
     }
 
+    function myPagar(d) {
+      $('#msg_success').css('display', 'none');
+      var id = d.getAttribute("data-sample-id");
+      var valor = d.getAttribute("data-sample-valor");
+      $('#id_pagar').val(id);
+      $('#valor').val(valor);
+      $('#myModalPagar').modal('show');
+    }
     $(document).ready(function() {
 
       $('#close_modal_edit').on('click', function() {
@@ -600,6 +667,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
           }
         });
       });
+
       $('#myform_new').on('submit', function(e) {
         e.preventDefault();
         var parms = {
@@ -627,6 +695,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
           complete: function(data) {
             // Hide image container
             $("#loader2").hide();
+          }
+        });
+      });
+
+      $('#myModalPagar').on('submit', function(e) {
+        e.preventDefault();
+        var parms = {
+          conta: $("#conta").val(),
+          id: $("#id_pagar").val(),
+          valor: $("#valor").val()
+        };
+        console.log(parms);
+
+        $.ajax({
+          type: "GET",
+          url: "<?php echo base_url() ?>/pagar",
+          data: parms,
+          dataType: "JSON",
+          beforeSend: function() {
+            // Show image container
+            $("#loader").show();
+          },
+          success: function(result) {
+            console.log(result);
+            $('#msg_success4').css('display', 'block');
+
+          },
+          complete: function(data) {
+            // Hide image container
+            $('#msg_success4').css('display', 'block');
+            $("#loader").hide();
+            //location.reload();
           }
         });
       });

@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Entradas extends CI_Controller {
+class Entradas extends CI_Controller
+{
 
-	public function index(){
+	public function index()
+	{
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
@@ -18,14 +20,14 @@ class Entradas extends CI_Controller {
 		$data['contas'] = count($contas);
 
 		$this->load->model('entradas_model');
-		$categorias = $this->entradas_model->get_all_entradas();
+		$entradas = $this->entradas_model->get_all_entradas();
 
-		foreach ($categorias as $cat) {
+		foreach ($entradas as $ent) {
 
 			$array[] = [
-				'id' => $cat->id,
-				'nome' =>  $cat->desc,
-				'valor' => $cat->valor,
+				'id' => $ent->id,
+				'nome' =>  $ent->desc,
+				'valor' => $ent->valor,
 			];
 		}
 		//echo "<pre>";print_r($array);exit(0);
@@ -36,20 +38,21 @@ class Entradas extends CI_Controller {
 		$this->load->view('pages/entradas', $data);
 	}
 
-	public function update_entrada(){
+	public function update_entrada()
+	{
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
 		//print_r($nome);exit(0);
-		$data = array( 
+		$data = array(
 			'desc'  =>  $nome,
 			'valor' =>  $valor
 		);
 		$this->db->where('cat_id', $id);
 		$this->db->update('entradas', $data);
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
@@ -57,33 +60,49 @@ class Entradas extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function nova_entrada(){
+	public function nova_entrada()
+	{
 		$nome = $_GET['nome_nova'];
 		$valor = $_GET['valor_nova'];
+		$conta = $_GET['conta'];
 		//print_r($nome);exit(0);
-		$data = array( 
+		$data = array(
 			'desc'   =>  $nome,
-			'valor' =>  $valor
+			'valor' =>  $valor,
+			'conta' => $conta,
+			'data' =>  date("Y-m-d H:m:s")
 		);
 		$this->db->insert('entradas', $data);
 
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta);
+			$type_conta = $this->contas_model->get_type_conta_by_id($conta);
+			if ($type_conta == 1) {
+				$new_saldo = $saldo + $valor;
+			} else {
+				$new_saldo = $saldo - $valor;
+			}
+
+			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
 			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
 		echo json_encode($data, true);
 		//print_r($this->db->affected_rows());exit(0);
 	}
-		public function delete_entradas(){
+	public function delete_entradas()
+	{
 		$id = $_GET['id'];
 
 		$this->db->where('id', $id);
 		$this->db->delete('entradas');
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 1;
-		}else{
+		} else {
 			$data['msg'] = 0;
 		}
 	}

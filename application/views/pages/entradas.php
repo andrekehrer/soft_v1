@@ -129,6 +129,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <label for="email">Nome da categoria</label>
                       <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_nova">
                     </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Conta</label>
+                      </div>
+                      <select class="custom-select" name="conta" id="conta">
+                        <option selected>Selecione...</option>
+                        <?php foreach ($data_contas as $key => $value) { ?>
+
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+
+                        <?php   } ?>
+                      </select>
+                    </div>
                     <div class="form-group">
                       <label for="email">Valor</label>
                       <input type="text" class="form-control" name="entrada_valor_edit" id="entrada_valor_nova">
@@ -392,7 +405,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         e.preventDefault();
         var parms = {
           nome_nova: $("#entrada_nome_nova").val(),
-          valor_nova: $("#entrada_valor_nova").val()
+          valor_nova: $("#entrada_valor_nova").val(),
+          conta: $("#conta").val()
         };
         //console.log(parms);
 

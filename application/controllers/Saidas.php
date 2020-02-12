@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Saidas extends CI_Controller {
+class Saidas extends CI_Controller
+{
 
-	public function index(){	
+	public function index()
+	{
 
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
@@ -21,17 +23,18 @@ class Saidas extends CI_Controller {
 
 		$this->load->model('saidas_model');
 		$this->load->model('categorias_model');
-		$categorias = $this->saidas_model->get_all_saidas();
+		$saidas = $this->saidas_model->get_all_saidas();
 
-		foreach ($categorias as $cat) {
+		foreach ($saidas as $sai) {
 
 			$array[] = [
-				'id' => $cat->id,
-				'nome' =>  $cat->desc,
-				'valor' => $cat->valor,
-				'categoria' => $this->saidas_model->get_cat_by_id($cat->categoria_id),
-				'data' => $cat->data,
-				'pagou' => $cat->pagou,
+				'id' => $sai->id,
+				'nome' =>  $sai->desc,
+				'valor' => $sai->valor,
+				'categoria' => $this->saidas_model->get_cat_by_id($sai->categoria_id),
+				'data' => $sai->data,
+				'pagou' => $sai->pagou,
+				'conta' => $sai->conta,
 			];
 		}
 
@@ -45,14 +48,15 @@ class Saidas extends CI_Controller {
 		$this->load->view('pages/saidas', $data);
 	}
 
-	public function update_saida(){
+	public function update_saida()
+	{
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
 		$data_mes = $_GET['data_mes'];
 		$cat_id = $_GET['categoria'];
 
-		$data = array( 
+		$data = array(
 			'desc'  =>  $nome,
 			'valor' =>  $valor,
 			'data' =>  $data_mes,
@@ -60,9 +64,9 @@ class Saidas extends CI_Controller {
 		);
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
@@ -70,7 +74,8 @@ class Saidas extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function nova_saida(){
+	public function nova_saida()
+	{
 		$nome = $_GET['nome_nova'];
 		$categoria = $_GET['categoria'];
 		$data_ = $_GET['data_mes'];
@@ -78,7 +83,7 @@ class Saidas extends CI_Controller {
 
 
 		//print_r($nome);exit(0);
-		$data = array( 
+		$data = array(
 			'desc'   =>  $nome,
 			'valor' =>  $valor,
 			'data' =>  $data_,
@@ -86,9 +91,9 @@ class Saidas extends CI_Controller {
 		);
 		$this->db->insert('saidas', $data);
 
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
@@ -96,47 +101,77 @@ class Saidas extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function delete_saida(){
+	public function delete_saida()
+	{
 		$id = $_GET['id'];
 
 		$this->db->where('id', $id);
 		$this->db->delete('saidas');
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 1;
-		}else{
+		} else {
 			$data['msg'] = 0;
 		}
 	}
 
-	public function pagar(){
-		$id = $_GET['id'];
-		$data = array( 
-			'pagou'   =>  1
+	public function pagar()
+	{
+		$id    = $_GET['id'];
+		$conta = $_GET['conta'];
+		$valor = $_GET['valor'];
+		$data  = array(
+			'pagou'     =>  1,
+			'conta'	  	=>  $conta,
+			'data_full' => date('Y-m-d H:m:s')
 		);
 
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta);
+			$type_conta = $this->contas_model->get_type_conta_by_id($conta);
+			if ($type_conta == 1) {
+				$new_saldo = $saldo + $valor;
+			} else {
+				$new_saldo = $saldo - $valor;
+			}
+			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
 			$data['msg'] = 1;
-		}else{
+		} else {
 			$data['msg'] = 0;
 		}
 	}
-		public function despagar(){
+	public function despagar()
+	{
 		$id = $_GET['id'];
-		$data = array( 
-			'pagou'   =>  0
+		$valor = $_GET['valor'];
+		$conta = $_GET['conta'];
+		$data = array(
+			'pagou'     =>  0,
+			'valor'		  => $valor,
+			'conta'		  => null,
+			'data_full' => null
 		);
 
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
+
+			$this->load->model('contas_model');
+			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta);
+			$type_conta = $this->contas_model->get_type_conta_by_id($conta);
+			if ($type_conta == 1) {
+				$new_saldo = $saldo - $valor;
+			} else {
+				$new_saldo = $saldo + $valor;
+			}
+			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
+
 			$data['msg'] = 1;
-		}else{
+		} else {
 			$data['msg'] = 0;
 		}
 	}
-
-
-
 }
