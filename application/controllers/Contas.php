@@ -47,17 +47,39 @@ class Contas extends CI_Controller
 		$contas_ = $this->contas_model->get_conta_by_id($id);
 
 		foreach ($contas_ as $cat) {
-			$array_[] = [
+			$contas_todas[] = [
 				'id' => $cat->id,
-				'nome' =>  $cat->desc,
-				'data' => $cat->data,
-				'saldo' =>  $cat->valor
+				'nome' =>  $cat->nome,
+				'saldo' =>  $cat->saldo
+			];
+		}
+
+		$contas_entradas = $this->contas_model->get_conta_entrada_by_id($id);
+
+		foreach ($contas_entradas as $ent) {
+			$contas_todas_entradas[] = [
+				'id' => $ent->id,
+				'nome' =>  $ent->desc,
+				'saldo' =>  $ent->valor,
+				'date' =>  $ent->data
+			];
+		}
+		$contas_saidas_fixas = $this->contas_model->get_conta_saidas_fixas_by_id($id);
+
+		foreach ($contas_saidas_fixas as $ent) {
+			$contas_saidas_fi[] = [
+				'id' => $ent->id,
+				'nome' =>  $ent->desc,
+				'saldo' =>  $ent->valor,
+				'date' =>  $ent->data_full
 			];
 		}
 
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
-		$data['data_'] = (isset($array_) ? $array_ : 'No Register');
+		$data['data_'] = (isset($contas_todas) ? $contas_todas : 'No Register');
+		$data['data_entrada'] = (isset($contas_todas_entradas) ? $contas_todas_entradas : 'No Register');
+		$data['data_saidas_fixas'] = (isset($contas_saidas_fi) ? $contas_saidas_fi : 'No Register');
 		//echo json_encode($json, true);
 		$data['contas_'] = count($contas_);
 		$data['menu'] = 'contas';

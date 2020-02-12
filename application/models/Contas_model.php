@@ -23,6 +23,19 @@ class Contas_model extends CI_Model
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
+	public function get_conta_entrada_by_id($id = null)
+	{
+		$data = $this->db->order_by('id', 'ASC')->get_where('entradas', array('conta' => $id))->result();
+		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
+
+	public function get_conta_saidas_fixas_by_id($id = null)
+	{
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas', array('conta' => $id))->result();
+		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
 
 	public function get_nome_conta($id = null)
 	{
