@@ -181,42 +181,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <!-- Content Row -->
           <div class="row">
             <div class="table-responsive">
-              <?php if (isset($data_) && $data_ != 'No Register') : ?>
-                Saidas
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <!--  <th>Id</th> -->
-                      <th>Data</th>
-                      <th>Nome</th>
-                      <th>Saldo</th>
-                    </tr>
-                  </thead>
-
-                  <tbody id="table_data">
-
-
-                    <?php
-                    foreach ($data_ as $key => $value) {
-                      echo "<tr>";
-                      echo "<td>";
-                      $date = date_create($value['data']);
-                      echo date_format($date, "d/m/Y");
-                      echo "</td>";
-                      echo "<td>";
-                      echo $value['nome'];
-                      echo "</td>";
-                      echo "<td>";
-                      echo '£' . number_format($value['saldo'], 2, ',', '.');
-                      echo "</td>";
-                      echo "</tr>";
-                    }
-                    ?>
-
-
-                  </tbody>
-                </table>
-              <?php endif ?>
               <?php if (isset($data_entrada) && $data_entrada != 'No Register') : ?>
                 Entradas
                 <table class="table table-bordered" width="100%" cellspacing="0">
@@ -289,6 +253,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   </tbody>
                 </table>
               <?php endif ?>
+
               <?php if (isset($data_saidas_fixas) && $data_saidas_fixas != 'No Register') : ?>
                 Saidas fixas
                 <table class="table table-bordered" width="100%" cellspacing="0">

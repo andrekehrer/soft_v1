@@ -49,8 +49,9 @@ class Contas extends CI_Controller
 		foreach ($contas_ as $cat) {
 			$contas_todas[] = [
 				'id' => $cat->id,
-				'nome' =>  $cat->nome,
-				'saldo' =>  $cat->saldo
+				'nome' =>  $cat->desc,
+				'saldo' =>  $cat->valor,
+				'data' =>  $cat->data
 			];
 		}
 
