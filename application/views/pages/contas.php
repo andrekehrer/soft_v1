@@ -391,7 +391,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         $.ajax({
           type: "GET",
-          url: "<?php echo base_url() ?>contas//novo_cartao",
+          url: "<?php echo base_url() ?>contas/novo_cartao",
           data: parms,
           dataType: "JSON",
           beforeSend: function() {

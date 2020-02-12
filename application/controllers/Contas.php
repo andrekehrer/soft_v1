@@ -74,7 +74,7 @@ class Contas extends CI_Controller
 		$data = array(
 			'nome'   =>  $nome,
 			'saldo'  =>  $saldo,
-			'cartao' =>  1
+			'cartao' =>  $cartao
 		);
 		$this->db->insert('contas', $data);
 
