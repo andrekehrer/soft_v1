@@ -78,46 +78,48 @@
   <!-- Custom scripts for all pages-->
   <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
   <script>
-
-    $(document).ready(function(){
+    $(document).ready(function() {
 
       $('#submit').click(function() {
         event.preventDefault();
         ajax_call();
       });
 
-      function ajax_call(){
+      function ajax_call() {
         var email = $('#email').val();
         var pass = $('#pass').val();
-    
-          $.ajax({
+
+        $.ajax({
           type: "POST",
-          data: {email:email, pass:pass},
+          data: {
+            email: email,
+            pass: pass
+          },
           url: "<?php echo base_url(); ?>Login/log",
-          dataType : "JSON",
-          beforeSend: function(){
+          dataType: "JSON",
+          beforeSend: function() {
             // Show image container
             $("#loader").show();
-           },
-          success: function(result){
+          },
+          success: function(result) {
             //console.log(result.data);
-            $.each(result.data, function(i){
+            $.each(result.data, function(i) {
               //console.log(result.Sales[i].Id);
               console.log(result.data[i].logado);
               if (result.data[i].logado === 'sim') {
                 window.location.href = "<?php echo base_url() ?>";
-              }else{
+              } else {
                 $('#msg_alert').css('display', 'block');
               }
             })
           },
-         complete:function(data){
-          // Hide image container
-          $("#loader").hide();
-         }
+          complete: function(data) {
+            // Hide image container
+            $("#loader").hide();
+          }
         });
       }
-  });
+    });
   </script>
 </body>
 
