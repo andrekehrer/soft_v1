@@ -80,9 +80,9 @@ class Entradas extends CI_Controller
 			$saldo 		= $this->contas_model->get_saldo_contas_by_id($conta);
 			$type_conta = $this->contas_model->get_type_conta_by_id($conta);
 			if ($type_conta == 1) {
-				$new_saldo = $saldo + $valor;
-			} else {
 				$new_saldo = $saldo - $valor;
+			} else {
+				$new_saldo = $saldo + $valor;
 			}
 
 			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
