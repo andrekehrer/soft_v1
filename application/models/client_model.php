@@ -1,20 +1,12 @@
-<?php 
+<?php
 
 /**
  * 
  */
 class Client_model extends Client_model
 {
-	
-	function __construct(argument)
+	public function index()
 	{
-		# code...
-	}
-
-	public function index(){
 		return;
 	}
 }
-
-
-

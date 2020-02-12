@@ -125,7 +125,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <?php if (isset($pagar_hoje)) { ?>
               <!-- Pending Requests Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2" style=";border-left: .25rem solid red!important;">
+                <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid red!important;">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
@@ -172,7 +172,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <?php if (isset($pagar_amanha)) { ?>
               <!-- Pending Requests Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2" style=";border-left: .25rem solid orange!important;">
+                <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid orange!important;">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
