@@ -237,20 +237,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid red!important;background: #da4646;">
                 <div class="card-body">
-                  <a href="<?php echo base_url() ?>contas">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Cartões</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
-                          <?php echo $cartoes ?>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color:white!important;">Cartões</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
+                        <?php echo $cartoes ?>
                       </div>
                     </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
                 </div>
-                </a>
               </div>
             </div>
 
