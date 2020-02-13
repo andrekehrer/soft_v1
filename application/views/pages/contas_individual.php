@@ -54,7 +54,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+          <span style="font-size: 25px;color: black;text-transform: capitalize;"><?php echo $nome_conta; ?></span>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -99,20 +99,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+          <?php
+          if ($type == 1) { ?>
+            <div class="progress" style="margin-bottom: 15px;height: 25px;">
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style=" 
+                      width:<?php echo $porcentagem; ?>%;
+                      <?php if ($porcentagem >= 80) echo "background-color: #df4e4e;" ?>
+                      "><?php echo $porcentagem; ?>%</div>
+            </div>
+          <?php } ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"><?php echo $nome_conta; ?></h1>
-            <h1 class="h3 mb-0 text-gray-800"><?php echo $saldo; ?></h1>
+            <h3 class="h3 mb-0 text-gray-800" style="font-size: 21px;!important"><?php echo $saldo; ?></h3>
             <?php
             if ($type == 1) {
               echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
             }
             ?>
             <!--  <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a> -->
-
           </div>
-
           <!-- NEW Modal -->
           <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -164,7 +169,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
           </div>
           <!-- EDIT Modal -->
           <!-- Content Row -->
-          <div class="row">
+          <div class="row" style="margin-top: 30px;">
             <div class="table-responsive">
               <?php if (isset($data_entrada) && $data_entrada != 'No Register') : ?>
                 Entradas

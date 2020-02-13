@@ -55,6 +55,13 @@ class Contas_model extends CI_Model
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
+	public function get_limite_contas_by_id($id = null)
+	{
+		$data = $this->db->get_where('contas', array('id' => $id, 'cartao' => 1))->result();
+		$data = $data[0]->limite;
+		//print_r($data[0]->saldo); exit(0);
+		return $data;
+	}
 	public function get_saldo_contas_by_id($id = null)
 	{
 		$data = $this->db->get_where('contas', array('id' => $id))->result();

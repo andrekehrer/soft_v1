@@ -77,6 +77,12 @@ class Contas extends CI_Controller
 				'date' =>  $ent->data_full
 			];
 		}
+
+		$sald = $this->contas_model->get_saldo_contas_by_id($id);
+		$limit = $this->contas_model->get_limite_contas_by_id($id);
+		$conta = ($sald * 100) / $limit;
+		$conta = number_format($conta, 0, ',', '.');
+
 		$saldo = $this->contas_model->get_saldo_contas_by_id($id);
 		$saldo = '£' . number_format($saldo, 2, ',', '.');
 		$type = $this->contas_model->get_type_conta_by_id($id);
@@ -84,6 +90,7 @@ class Contas extends CI_Controller
 
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
+		$data['porcentagem'] = $conta;
 		$data['type'] = $type;
 		$data['id_conta'] = $id_conta[0]->id;
 		$data['saldo'] = $saldo;
