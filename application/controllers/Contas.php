@@ -78,19 +78,22 @@ class Contas extends CI_Controller
 			];
 		}
 
-		$sald = $this->contas_model->get_saldo_contas_by_id($id);
-		$limit = $this->contas_model->get_limite_contas_by_id($id);
-		$conta = ($sald * 100) / $limit;
-		$conta = number_format($conta, 0, ',', '.');
+
 
 		$saldo = $this->contas_model->get_saldo_contas_by_id($id);
 		$saldo = '£' . number_format($saldo, 2, ',', '.');
 		$type = $this->contas_model->get_type_conta_by_id($id);
 		$id_conta = $this->contas_model->get_contaid_by_id($id);
-
+		if ($type == 1) {
+			$sald = $this->contas_model->get_saldo_contas_by_id($id);
+			$limit = $this->contas_model->get_limite_contas_by_id($id);
+			$conta = ($sald * 100) / $limit;
+			$conta = number_format($conta, 0, ',', '.');
+			$data['porcentagem'] = $conta;
+		}
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
-		$data['porcentagem'] = $conta;
+
 		$data['type'] = $type;
 		$data['id_conta'] = $id_conta[0]->id;
 		$data['saldo'] = $saldo;
@@ -109,11 +112,16 @@ class Contas extends CI_Controller
 		$nome = $_GET['nome_nova'];
 		$saldo = $_GET['saldo'];
 		$cartao = $_GET['cartao'];
-		//print_r($nome);exit(0);
+		$limite = $_GET['limite'];
+
+		if ($cartao != 1) {
+			$limite = 0;
+		}
 		$data = array(
 			'nome'   =>  $nome,
 			'saldo'  =>  $saldo,
-			'cartao' =>  $cartao
+			'cartao' =>  $cartao,
+			'limite' =>  $limite
 		);
 		$this->db->insert('contas', $data);
 

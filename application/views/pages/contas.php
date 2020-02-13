@@ -137,6 +137,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <label for="saldo">Cartao de credito?</label>
                       <input type="checkbox" class="form-control" name="cartao" id="cartao">
                     </div>
+                    <div class="form-group" id="limite_div" style="display: none">
+                      <label for="saldo">Limite</label>
+                      <input type="text" class="form-control" name="limite" id="limite">
+                    </div>
                     <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
                   </form>
                 </div>
@@ -347,6 +351,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         location.reload();
       });
 
+      $('#cartao').on('click', function() {
+        $('#limite_div').css('display', 'block');
+      });
 
       $('#msg_success').css('display', 'none');
 
@@ -382,12 +389,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
       $('#myform_new').on('submit', function(e) {
         e.preventDefault();
+        if ($("#cartao").is(":checked")) {
+          checado = 1;
+        } else {
+          checado = 0;
+        }
         var parms = {
           nome_nova: $("#categoria_nome_nova").val(),
           saldo: $("#saldo_inicial").val(),
-          cartao: $("#cartao").val(),
+          cartao: checado,
+          limite: $("#limite").val(),
         };
-        //console.log(parms);
+        console.log(parms);
 
         $.ajax({
           type: "GET",
