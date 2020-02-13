@@ -24,15 +24,17 @@ class Contas_model extends CI_Model
 	}
 	public function get_conta_by_id($id = null)
 	{
-		$data =	$this->db->select('*')->from('saidas_v')
-			->group_start()
-			->where('conta', $id)
-			->or_group_start()
-			->where('pagou_cartao', $id)
-			->group_end()
-			->group_end()
-			->get()
-			->result();
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('conta' => $id))->result();
+		// $data =	$this->db->select('*')->from('saidas_v')
+		// 	->group_start()
+		// 	->where('conta', $id)
+		// 	->or_group_start()
+		// 	->where('pagou_cartao', $id)
+		// 	->group_end()
+		// 	->group_end()
+		// 	->get()
+		// 	->result();
+		// print_r($this->db->last_query());
 		return $data;
 	}
 	public function get_conta_entrada_by_id($id = null)
@@ -41,7 +43,12 @@ class Contas_model extends CI_Model
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
-
+	public function get_entrada_cc_by_id($id = null)
+	{
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('pagou_cartao' => $id))->result();
+		// print_r($data[0]->nome); exit(0);
+		return $data;
+	}
 	public function get_conta_saidas_fixas_by_id($id = null)
 	{
 		$data = $this->db->order_by('id', 'ASC')->get_where('saidas', array('conta' => $id))->result();

@@ -67,6 +67,8 @@ class Contas extends CI_Controller
 				'date' =>  $ent->data
 			];
 		}
+
+
 		$contas_saidas_fixas = $this->contas_model->get_conta_saidas_fixas_by_id($id);
 
 		foreach ($contas_saidas_fixas as $ent) {
@@ -84,13 +86,24 @@ class Contas extends CI_Controller
 		$saldo = '£' . number_format($saldo, 2, ',', '.');
 		$type = $this->contas_model->get_type_conta_by_id($id);
 		$id_conta = $this->contas_model->get_contaid_by_id($id);
+
 		if ($type == 1) {
 			$sald = $this->contas_model->get_saldo_contas_by_id($id);
 			$limit = $this->contas_model->get_limite_contas_by_id($id);
 			$conta = ($sald * 100) / $limit;
 			$conta = number_format($conta, 0, ',', '.');
 
+			$contas_entradas_cc = $this->contas_model->get_entrada_cc_by_id($id);
 
+			foreach ($contas_entradas_cc as $ent) {
+				$contas_todas_entradas_cc[] = [
+					'id' => $ent->id,
+					'nome' =>  $ent->desc,
+					'saldo' =>  $ent->valor,
+					'date' =>  $ent->data
+				];
+			}
+			$data['contas_entradas_cc'] = (isset($contas_todas_entradas_cc) ? $contas_todas_entradas_cc : 'No Register');
 			$data['credito_avaliable'] = $limit - $sald;
 			$data['porcentagem'] = $conta;
 		}

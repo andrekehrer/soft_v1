@@ -177,6 +177,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <!-- Content Row -->
           <div class="row" style="margin-top: 30px;">
             <div class="table-responsive">
+              <?php if ($type == 1 && isset($contas_entradas_cc) && $contas_entradas_cc != 'No Register') : ?>
+                <span style="color: #243d6d;font-weight: 900;">Entradas</span>
+                <table class="table table-bordered" width="100%" cellspacing="0" style="border: 2px #243d6d solid;">
+                  <thead>
+                    <tr>
+                      <!--  <th>Id</th> -->
+                      <th>Data</th>
+                      <th>Nome</th>
+                      <th>Saldo</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table_data">
+                    <?php
+                    foreach ($contas_entradas_cc as $key => $value) {
+                      echo "<tr style='border:0px solid'>";
+                      echo "<td>";
+                      $date = date_create($value['date']);
+                      echo date_format($date, "d/m/Y");
+                      echo "</td>";
+                      echo "<td>";
+                      echo $value['nome'];
+                      echo "</td>";
+                      echo "<td>";
+                      echo '£' . number_format($value['saldo'], 2, ',', '.');
+                      echo "</td>";
+                      echo "</tr>";
+                    }
+                    ?>
+
+
+                  </tbody>
+                </table>
+              <?php endif ?>
               <?php if (isset($data_entrada) && $data_entrada != 'No Register') : ?>
                 <span style="color: #243d6d;font-weight: 900;">Entradas</span>
                 <table class="table table-bordered" width="100%" cellspacing="0" style="border: 2px #243d6d solid;">
@@ -188,10 +221,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <th>Saldo</th>
                     </tr>
                   </thead>
-
                   <tbody id="table_data">
-
-
                     <?php
                     foreach ($data_entrada as $key => $value) {
                       echo "<tr style='border:0px solid'>";
