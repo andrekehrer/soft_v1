@@ -39,11 +39,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
       -ms-transform: rotate(-90deg);
       -o-transform: rotate(-90deg);
       transform: rotate(-90deg);
-      font-size: 8px;
+      font-size: 10px;
     }
 
     .th_ak {
       padding: 4px 12px;
+    }
+
+    .table-bordered td,
+    .table-bordered th {
+      border: 0px solid #e3e6f0;
     }
   </style>
 
