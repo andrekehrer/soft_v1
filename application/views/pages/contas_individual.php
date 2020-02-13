@@ -54,45 +54,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          <span style="font-size: 25px;color: black;text-transform: capitalize;"><?php echo $nome_conta; ?></span>
+          <span style="font-size: 18px;color: black;text-transform: capitalize;"><?php echo $nome_conta . "  <span style='border: 1px #cacaca solid;padding: 4px 12px;border-radius: 8px;'>" . $saldo; ?></span></span>
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" style="border: 2px #65eeef solid;margin-left: 15px;text-align: center;padding: 0px;color: #65eeef;background: #1e3a4c;">
+            <span class="fa fa-bars">
+              <<</span> </button> <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                  <div class="topbar-divider d-none d-sm-block"></div>
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <div class="topbar-divider d-none d-sm-block"></div>
+                  <!-- Nav Item - User Information -->
+                  <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['backend']['username']; ?></span>
+                      <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/128/149/149071.png" height="60" width="60">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                      </a>
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Settings
+                      </a>
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Activity Log
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>/Logout" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                      </a>
+                    </div>
+                  </li>
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['backend']['username']; ?></span>
-                <img class="img-profile rounded-circle" src="https://image.flaticon.com/icons/png/128/149/149071.png" height="60" width="60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?php echo base_url(); ?>/Logout" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
+                </ul>
 
         </nav>
         <!-- End of Topbar -->
@@ -110,7 +108,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <?php } ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="h3 mb-0 text-gray-800" style="font-size: 21px;!important"><?php echo $saldo; ?></h3>
+            <h3 class="h3 mb-0 text-gray-800" style="font-size: 21px !important"><?php if ($type == 1) {
+                                                                                    echo "£" . number_format($credito_avaliable, 2, ',', '.');
+                                                                                  } ?></h3>
             <?php
             if ($type == 1) {
               echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";

@@ -89,6 +89,9 @@ class Contas extends CI_Controller
 			$limit = $this->contas_model->get_limite_contas_by_id($id);
 			$conta = ($sald * 100) / $limit;
 			$conta = number_format($conta, 0, ',', '.');
+
+
+			$data['credito_avaliable'] = $limit - $sald;
 			$data['porcentagem'] = $conta;
 		}
 		$nome_conta = $this->contas_model->get_nome_conta($id);
