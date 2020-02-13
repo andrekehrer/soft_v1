@@ -32,6 +32,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
       cursor: pointer;
       width: 35px;
     }
+
+    @media only screen and (max-width: 550px) {
+      #ak_pagar {
+        margin-top: 10px;
+      }
+    }
   </style>
 
 </head>
@@ -113,7 +119,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                                                   } ?> - Avaliable</h3>
             <?php
             if ($type == 1) {
-              echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
+              echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' id='ak_pagar' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
             }
             ?>
             <!--  <a href="#" class="d-sm-inline-block btn btn-sm btn-primary " data-toggle="modal" data-target="#myModal"><i class="fas fa-download fa-sm text-white-50"></i>Adicionar categoria</a> -->
