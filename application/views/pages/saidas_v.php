@@ -116,14 +116,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
               <div class="modal-content">
                 <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title">Dividas</h4>
+                  <h4 class="modal-title">Pagar divida</h4>
                   <div id='loader' style='display: none;'>
                     <img src='<?php echo base_url(); ?>/assets/img/load.gif' width='30px' height='30px'>
                   </div>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
-                    Despesa adicionada com sucesso!
+                    Obrigado pelo pagamento!
                   </div>
                   <form id="pagarDivida" name="pagarDivida">
 
@@ -164,7 +164,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </div>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_novo">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_divida">Close</button>
                 </div>
               </div>
 
@@ -185,7 +185,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   </div>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-success" id="msg_success2" role="alert" style="display:none;margin-top:20px">
+                  <div class="alert alert-success" id="msg_success6" role="alert" style="display:none;margin-top:20px">
                     Despesa adicionada com sucesso!
                   </div>
                   <form id="myform_new" name="myform_new">
@@ -487,6 +487,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
       $('#close_modal_novo').on('click', function() {
         location.reload();
       });
+      $('#close_modal_divida').on('click', function() {
+        location.reload();
+      });
 
 
       $('#msg_success').css('display', 'none');
@@ -576,11 +579,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
           },
           success: function(result) {
             console.log(result);
-            $('#msg_success2').css('display', 'block');
+            $('#msg_success6').css('display', 'block');
 
           },
           complete: function(data) {
             // Hide image container
+            $('#msg_success6').css('display', 'block');
             $("#loader2").hide();
           }
         });
