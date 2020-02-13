@@ -33,7 +33,6 @@ class Saidas_v extends CI_Controller
 				'valor' => $cat->valor,
 				'categoria' => $this->saidas_model_v->get_cat_by_id($cat->categoria_id),
 				'data' => $cat->data,
-				'cor' => $cat->cor,
 				'nome_b' => $cat->nome,
 			];
 		}

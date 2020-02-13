@@ -40,6 +40,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       -o-transform: rotate(-90deg);
       transform: rotate(-90deg);
       font-size: 10px;
+      text-align: center;
     }
 
     .th_ak {
@@ -337,8 +338,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     foreach ($data as $key => $value) {
                       // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
 
-                      echo "<tr style='border-left:20px " . $value['cor'] . " solid;background-color:" . $value['categoria'][0]->cor . "'>";
-                      echo "<td width='5px' height='80' class='nome_trans'>";
+                      echo "<tr style='background-color:" . $value['categoria'][0]->cor . "'>";
+                      echo "<td width='1%' height='80' class='nome_trans'>";
                       echo "<span >" . $value['nome_b'] . "</span>";
                       echo "</td>";
                       echo "<td class='th_ak' style='color:black'>";
