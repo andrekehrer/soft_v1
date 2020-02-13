@@ -115,8 +115,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h3 class="h3 mb-0 text-gray-800" style="font-size: 16px !important"><?php if ($type == 1) {
-                                                                                    echo "£" . number_format($credito_avaliable, 2, ',', '.');
-                                                                                  } ?> - Avaliable</h3>
+                                                                                    echo "£" . number_format($credito_avaliable, 2, ',', '.') . "- Avaliable";
+                                                                                  } ?></h3>
             <?php
             if ($type == 1) {
               echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' id='ak_pagar' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
@@ -178,8 +178,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <div class="row" style="margin-top: 30px;">
             <div class="table-responsive">
               <?php if (isset($data_entrada) && $data_entrada != 'No Register') : ?>
-                Entradas
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <span style="color: #243d6d;font-weight: 900;">Entradas</span>
+                <table class="table table-bordered" width="100%" cellspacing="0" style="border: 2px #243d6d solid;">
                   <thead>
                     <tr>
                       <!--  <th>Id</th> -->
@@ -194,7 +194,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     <?php
                     foreach ($data_entrada as $key => $value) {
-                      echo "<tr>";
+                      echo "<tr style='border:0px solid'>";
                       echo "<td>";
                       $date = date_create($value['date']);
                       echo date_format($date, "d/m/Y");
@@ -214,8 +214,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </table>
               <?php endif ?>
               <?php if (isset($data_) && $data_ != 'No Register') : ?>
-                Saidas
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <span style="color: #ad2727;font-weight: 900;">Saidas</span>
+                <table class="table table-bordered" width="100%" cellspacing="0" style="border: 2px #ad2727 solid;">
                   <thead>
                     <tr>
                       <!--  <th>Id</th> -->
@@ -226,8 +226,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   </thead>
 
                   <tbody id="table_data">
-
-
                     <?php
                     foreach ($data_ as $key => $value) {
                       echo "<tr>";
@@ -251,8 +249,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
               <?php endif ?>
 
               <?php if (isset($data_saidas_fixas) && $data_saidas_fixas != 'No Register') : ?>
-                Saidas fixas
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <span style="color: #ad2727;font-weight: 900;">Saidas fixas</span>
+                <table class="table table-bordered" width="100%" cellspacing="0" style="border: 2px #ad2727 solid;">
                   <thead>
                     <tr>
                       <!--  <th>Id</th> -->
