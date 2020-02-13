@@ -108,9 +108,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <?php } ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="h3 mb-0 text-gray-800" style="font-size: 21px !important"><?php if ($type == 1) {
+            <h3 class="h3 mb-0 text-gray-800" style="font-size: 16px !important"><?php if ($type == 1) {
                                                                                     echo "£" . number_format($credito_avaliable, 2, ',', '.');
-                                                                                  } ?></h3>
+                                                                                  } ?> - Avaliable</h3>
             <?php
             if ($type == 1) {
               echo "<a href='#' class='d-sm-inline-block btn btn-sm btn-primary' data-toggle='modal' data-target='#myModal'><i class='fas fa-download fa-sm text-white-50'></i>Pagar cartao</a>";
