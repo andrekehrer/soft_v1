@@ -32,6 +32,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
       cursor: pointer;
       width: 35px;
     }
+
+    .nome_trans {
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      font-size: 8px;
+    }
+
+    .th_ak {
+      padding: 4px 12px;
+    }
   </style>
 
 </head>
@@ -300,14 +313,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <div class="row">
             <div class="table-responsive">
               <?php if ($data != 'No Register') : ?>
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table-bordered ak" style="width:100%" cellspacing="0">
                   <thead>
                     <tr style="background: #636363;color: white;">
                       <!--  <th>Id</th> -->
-                      <th>Data</th>
-                      <th>Descricao</th>
-                      <th>Valor</th>
-                      <th>Acoes</th>
+                      <th></th>
+                      <th class="th_ak">Data</th>
+                      <th class="th_ak">Descricao</th>
+                      <th class="th_ak">Valor</th>
+                      <th class="th_ak">Acoes</th>
                     </tr>
                   </thead>
 
@@ -318,18 +332,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     foreach ($data as $key => $value) {
                       // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
 
-                      echo "<tr style='background-color:" . $value['categoria'][0]->cor . "'>";
-                      echo "<td style='color:black'>";
+                      echo "<tr style='border-left:20px " . $value['cor'] . " solid;background-color:" . $value['categoria'][0]->cor . "'>";
+                      echo "<td width='5px' height='80' class='nome_trans'>";
+                      echo "<span >" . $value['nome_b'] . "</span>";
+                      echo "</td>";
+                      echo "<td class='th_ak' style='color:black'>";
                       $date = date_create($value['data']);
                       echo date_format($date, "d/m/Y");
                       echo "</td>";
-                      echo "<td style='color:black'>";
+                      echo "<td class='th_ak' style='color:black'>";
                       echo $value['nome'];
                       echo "</td>";
-                      echo "<td style='color:black'>";
+                      echo "<td class='th_ak' style='color:black'>";
                       echo '£' . number_format($value['valor'], 2, ',', '.');
                       echo "</td>";
-                      echo "<td>";
+                      echo "<td class='th_ak'>";
                       echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->cat_id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                       echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
                       echo "</td>";
@@ -338,8 +355,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     ?>
 
                     <tr>
-                      <td style="background: #636363;color: white;">TOTAL</td>
-                      <td style="background: #636363;color: white;">
+                      <td class='th_ak' style="background: #636363;color: white;">TOTAL</td>
+                      <td class='th_ak' style="background: #636363;color: white;">
 
                         <?php
                         $total = 0;
