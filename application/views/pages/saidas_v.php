@@ -30,7 +30,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <style>
     #printer_img {
       cursor: pointer;
-      width: 35px;
+      width: 30px;
+      padding: 5px;
     }
 
     .nome_trans {
@@ -50,6 +51,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     .table-bordered td,
     .table-bordered th {
       border: 0px solid #e3e6f0;
+      font-size: 11px;
     }
   </style>
 
