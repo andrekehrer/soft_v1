@@ -16,11 +16,15 @@ class Saidas_model_v extends CI_Model
 
 	public function get_all_saidas()
 	{
+		$mes_corrente = date('m');
 		$this->db->select('*');
 		$this->db->from('saidas_v');
 		$this->db->join('contas', 'contas.id = saidas_v.conta');
 		$this->db->order_by('data', 'ASC');
+		$this->db->where('MONTH(data)', $mes_corrente);
 		$query = $this->db->get()->result();
+		// print_r($this->db->last_query());
+		// exit(0);
 		return $query;
 	}
 
