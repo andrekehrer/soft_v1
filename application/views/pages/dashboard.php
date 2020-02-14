@@ -351,7 +351,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:white !important">
                             <?php } ?>
                             <?php
-                            echo "£" . $situcao;
+                            echo "£" . number_format($situcao, 2, ',', '.');;
                             ?>
                             </div>
                           </div>
