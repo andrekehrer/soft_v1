@@ -28,6 +28,7 @@ class Entradas extends CI_Controller
 				'id' => $ent->id,
 				'nome' =>  $ent->desc,
 				'valor' => $ent->valor,
+				'data' => $ent->data,
 			];
 		}
 		//echo "<pre>";print_r($array);exit(0);
@@ -43,12 +44,14 @@ class Entradas extends CI_Controller
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
+		$data_edit = $_GET['data_edit'];
 		//print_r($nome);exit(0);
 		$data = array(
 			'desc'  =>  $nome,
-			'valor' =>  $valor
+			'valor' =>  $valor,
+			'data'  =>  $data_edit
 		);
-		$this->db->where('cat_id', $id);
+		$this->db->where('id', $id);
 		$this->db->update('entradas', $data);
 		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
@@ -65,12 +68,13 @@ class Entradas extends CI_Controller
 		$nome = $_GET['nome_nova'];
 		$valor = $_GET['valor_nova'];
 		$conta = $_GET['conta'];
+		$data_entrada = $_GET['data_entrada'];
 		//print_r($nome);exit(0);
 		$data = array(
 			'desc'   =>  $nome,
 			'valor' =>  $valor,
 			'conta' => $conta,
-			'data' =>  date("Y-m-d H:m:s")
+			'data' =>  $data_entrada
 		);
 		$this->db->insert('entradas', $data);
 

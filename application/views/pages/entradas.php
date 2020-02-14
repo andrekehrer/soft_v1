@@ -127,6 +127,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <label for="email">Nome da categoria</label>
                       <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_nova">
                     </div>
+                    <div class="form-group">
+                      <label for="email">Data</label>
+                      <input type="date" name="data_entrada" id="data_entrada">
+                    </div>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Conta</label>
@@ -149,7 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </div>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal_edit">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal">Close</button>
                 </div>
               </div>
 
@@ -174,9 +178,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     Entrada alterada com sucesso!
                   </div>
                   <form id="myform_edit" name="myform_edit">
+                    <input type="hidden" id="entrada_id_edit" name="entrada_id_edit">
                     <div class="form-group">
                       <label for="email">Nome da categoria</label>
                       <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_edit">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Data</label>
+                      <input type="date" name="data_entrada_edit" id="data_entrada_edit">
                     </div>
                     <div class="form-group">
                       <label for="email">Valor</label>
@@ -202,6 +211,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   <thead>
                     <tr>
                       <!--  <th>Id</th> -->
+                      <th>Data</th>
                       <th>Descricao</th>
                       <th>Valor</th>
                       <th>Acoes</th>
@@ -214,13 +224,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     foreach ($data as $key => $value) {
                       echo "<tr>";
                       echo "<td>";
+                      $date = date_create($value['data']);
+                      echo date_format($date, "d/m/Y");
+                      echo "</td>";
+                      echo "<td>";
                       echo $value['nome'];
                       echo "</td>";
                       echo "<td>";
                       echo '£' . number_format($value['valor'], 2, ',', '.');
                       echo "</td>";
                       echo "<td>";
-                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                       echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
                       echo "</td>";
                       echo "</tr>";
@@ -355,15 +369,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
       var id = d.getAttribute("data-sample-id");
       var name = d.getAttribute("data-sample-name");
       var valor = d.getAttribute("data-sample-valor");
+      var data__ = d.getAttribute("data-sample-data");
+
       $('#entrada_id_edit').val(id);
       $('#entrada_nome_edit').val(name);
       $('#entrada_valor_edit').val(valor);
+      $('#data_entrada_edit').val(data__);
       $('#myModalEdit').modal('show');
     }
 
     $(document).ready(function() {
 
       $('#close_modal_edit').on('click', function() {
+        location.reload();
+      });
+      $('#close_modal').on('click', function() {
         location.reload();
       });
 
@@ -375,7 +395,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var parms = {
           id_edit: $("#entrada_id_edit").val(),
           nome_edit: $("#entrada_nome_edit").val(),
-          valor_edit: $("#entrada_valor_edit").val()
+          valor_edit: $("#entrada_valor_edit").val(),
+          data_edit: $("#data_entrada_edit").val()
         };
         //console.log(parms);
 
@@ -402,6 +423,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       $('#myform_new').on('submit', function(e) {
         e.preventDefault();
         var parms = {
+          data_entrada: $("#data_entrada").val(),
           nome_nova: $("#entrada_nome_nova").val(),
           valor_nova: $("#entrada_valor_nova").val(),
           conta: $("#conta").val()
