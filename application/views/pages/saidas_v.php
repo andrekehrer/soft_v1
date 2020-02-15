@@ -211,19 +211,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     <div class="form-group">
                       <label for="email">Data</label>
-                      <input type="date" name="data_despesa_nova" id="data_despesa_nova">
+                      <input type="date" name="data_despesa_nova" id="data_despesa_nova" required>
                     </div>
                     <div class="form-group">
                       <label for="email">Nome da despesa</label>
-                      <input type="text" class="form-control" name="saida_nome_edit" id="saida_nome_nova">
+                      <input type="text" class="form-control" name="saida_nome_edit" id="saida_nome_nova" required>
                     </div>
 
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
                       </div>
-                      <select class="custom-select" name="saida_categoria_nova" id="saida_categoria_nova">
-                        <option selected>Selecione...</option>
+                      <select class="custom-select" name="saida_categoria_nova" id="saida_categoria_nova" required>
+                        <option value="0" selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
                           <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
@@ -236,8 +236,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Conta</label>
                       </div>
-                      <select class="custom-select" name="conta_saida" id="conta_saida">
-                        <option selected>Selecione...</option>
+                      <select class="custom-select" name="conta_saida" id="conta_saida" required>
+                        <option value="0" selected>Selecione...</option>
                         <?php foreach ($data_contas as $key => $value) { ?>
 
                           <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
@@ -248,7 +248,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     <div class="form-group">
                       <label for="email">Valor</label>
-                      <input type="text" class="form-control" name="saida_valor_nova" id="saida_valor_nova">
+                      <input type="text" class="form-control" name="saida_valor_nova" id="saida_valor_nova" required>
                     </div>
                     <button type="submit" class="btn btn-default btn-primary">Adicionar</button>
                   </form>
@@ -582,35 +582,44 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
       $('#myform_new').on('submit', function(e) {
         e.preventDefault();
+        var conta_saida_ = $("#conta_saida").val();
+        var categoria_ = $("#saida_categoria_nova").val();
         var parms = {
           nome_nova: $("#saida_nome_nova").val(),
-          categoria: $("#saida_categoria_nova").val(),
+          categoria: categoria_,
           data_mes: $('#data_despesa_nova').val(),
           valor_nova: $("#saida_valor_nova").val(),
-          conta_saida: $("#conta_saida").val()
+          conta_saida: conta_saida_
         };
         console.log(parms);
+        if (conta_saida_ == 0) {
+          alert('Selecione uma conta!');
+        }else{
+          if (categoria_ == 0) {
+            alert('Selecione uma categoria!');
+          }else{
+            $.ajax({
+              type: "GET",
+              url: "<?php echo base_url() ?>/nova_saida_v",
+              data: parms,
+              dataType: "JSON",
+              beforeSend: function() {
+                // Show image container
+                $("#loader2").show();
+              },
+              success: function(result) {
+                console.log(result);
+                $('#msg_success6').css('display', 'block');
 
-        $.ajax({
-          type: "GET",
-          url: "<?php echo base_url() ?>/nova_saida_v",
-          data: parms,
-          dataType: "JSON",
-          beforeSend: function() {
-            // Show image container
-            $("#loader2").show();
-          },
-          success: function(result) {
-            console.log(result);
-            $('#msg_success6').css('display', 'block');
-
-          },
-          complete: function(data) {
-            // Hide image container
-            $('#msg_success6').css('display', 'block');
-            $("#loader2").hide();
+              },
+              complete: function(data) {
+                // Hide image container
+                $('#msg_success6').css('display', 'block');
+                $("#loader2").hide();
+              }
+            });
           }
-        });
+        }
       });
 
     });
