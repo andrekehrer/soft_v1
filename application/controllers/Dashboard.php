@@ -133,7 +133,7 @@ class Dashboard extends CI_Controller
 
         $situcao = ((($all_contas_cartoes_w + $total_dividas) * -1) + $saldo_negativo);
         // echo "<pre>";
-        // print_r($situcao);
+        // print_r($saldo_negativo);
         // exit(0);
 
         $data['situcao'] = $situcao;
