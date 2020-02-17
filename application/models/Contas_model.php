@@ -13,7 +13,7 @@ class Contas_model extends CI_Model
 		if ($id) {
 			$this->db->where('cartao', 1);
 		}
-		$this->db->order_by('id', 'ASC');
+		$this->db->order_by('nome', 'ASC');
 		return $this->db->get("contas")->result();
 	}
 	public function get_contaid_by_id($id = null)
