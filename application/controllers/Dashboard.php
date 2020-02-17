@@ -123,7 +123,7 @@ class Dashboard extends CI_Controller
         }
         $total_dividas = $divida_mes;
 
-        $situcao = ($all_contas_cartoes_w + $total_dividas);
+        $situcao = (($all_contas_cartoes_w + $total_dividas) * -1);
         // echo "<pre>";print_r($situcao);exit(0);
 
         $data['situcao'] = $situcao;
