@@ -34,18 +34,10 @@
       <li class="nav-item" style="<?php if ($menu == 'saidas') {
                                     echo "background: #506a79;";
                                   } ?> ">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSaidas" aria-expanded="true" aria-controls="collapseSaidas">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Saidas</span>
-        </a>
-        <div id="collapseSaidas" class="collapse" aria-labelledby="headingSaidas" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?php echo base_url(); ?>/saidas">Saidas</a>
-            <a class="collapse-item" href="<?php echo base_url(); ?>/saidas_v">Variaveis</a>
-          </div>
-        </div>
+        <a class="nav-link" href="<?php echo base_url(); ?>/saidas">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Saidas </span></a>
       </li>
-
 
       <hr class="sidebar-divider my-0">
 
@@ -71,7 +63,11 @@
             <?php
             if (isset($contas) && $contas >= 1) {
               foreach ($data_contas as $key => $value) {
-                echo "<a class='collapse-item' href='" . base_url() . "/contas/" . $value['id'] . "'>" . $value['nome'] . "</a>";
+                if ($value['cartao'] == 0) {
+                  echo "<a class='collapse-item' style='border-left: 4px #8282c3 solid!important' href='" . base_url() . "/contas/" . $value['id'] . "'>" . $value['nome'] . "</a>";
+                } else {
+                  echo "<a class='collapse-item' style='border-left: 4px #c38282 solid!important' href='" . base_url() . "/contas/" . $value['id'] . "'>" . $value['nome'] . "</a>";
+                }
               }
             }
             ?>
