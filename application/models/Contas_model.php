@@ -97,4 +97,10 @@ class Contas_model extends CI_Model
 		}
 		return $data;
 	}
+
+	public function get_conta_negativo()
+	{
+		$data = $this->db->get_where('contas', array('cartao' => 0))->result();
+		return $data;
+	}
 }
