@@ -126,9 +126,9 @@ class Dashboard extends CI_Controller
         $saldo_negativo = 0;
         $contas_negativo = $this->contas_model->get_conta_negativo();
         foreach ($contas_negativo as $key => $value) {
-            if ($value->saldo < 0) {
-                $saldo_negativo = $saldo_negativo + $value->saldo;
-            }
+            // if ($value->saldo < 0) {
+            $saldo_negativo = $saldo_negativo + $value->saldo;
+            //}
         }
 
         $situcao = ((($all_contas_cartoes_w + $total_dividas) * -1) + $saldo_negativo);
