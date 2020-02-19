@@ -37,11 +37,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
     }
 
     #barra {
+      width: 120px;
       vertical-align: bottom;
       display: table-cell;
       height: 200px;
       border: 3px #f8f9fc solid;
       background: white;
+      text-align: center;
     }
 
     .cor1,
@@ -136,27 +138,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Relatorio mes <?php echo date('m/Y') ?></h1>
+            Total <?php echo "£" . $soma_total; ?>
           </div>
           <!-- Content Row -->
           <div class="row">
             <?php
             // definindo porcentagem
-            $height1 = '28%';
-            $height2 = '49%';
-            $height3 = '33%';
-            $height4 = '13%';
-            $total  = 4; // total de barras
+            // $height1 = '28%';
+            // $height2 = '49%';
+            // $height3 = '33%';
+            // $height4 = '13%';
+
+            $total  = count($relatorios); // total de barras
             ?>
             <div id="principal">
               <!-- <p>Porcentagem de Acessos</p> -->
               <?php
-              for ($i = 1; $i <= $total; $i++) {
-                $height = ${'height' . $i};
+              $height = '';
+              foreach ($relatorios as $key => $value) {
+
+                $sald = $soma_total;
+                $valor = $value->valor;
+                $conta = ($valor * 100) / $sald;
+                $conta = number_format($conta, 0, ',', '.');
+
+                $conta . '%';
+
+
               ?>
                 <div id="barra">
-                  <div class="cor<?php echo $i; ?>" style="height:<?php echo $height; ?>"> <?php echo $height; ?> </div>
+                  <?php echo $conta . '% <br>' . $value->nome ?>
+                  <div class="" style="padding-bottom: 15px;font-size: 10px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo "£" . $value->valor; ?></div>
                 </div>
-              <?php } ?>
+
+              <?php }
+              ?>
             </div>
 
 
