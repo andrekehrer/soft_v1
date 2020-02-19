@@ -50,6 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Dashboard';
+$route['relatorio'] = 'Relatorio';
 $route['login'] = 'Login';
 $route['Login/log'] = 'Login/log';
 $route['Logout'] = 'Login/logout';

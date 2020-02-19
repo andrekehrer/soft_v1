@@ -89,11 +89,22 @@
       <hr class="sidebar-divider my-0">
 
 
+      <li class="nav-item" style="<?php if ($menu == 'relatorio') {
+                                    echo "background: #506a79;";
+                                  } ?> ">
+        <a class="nav-link" href="<?php echo base_url(); ?>/relatorio">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Relatorio</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+
+
       <li class="nav-item" style="background: #47edef;">
         <a class="nav-link" style="text-align:center" href="<?php echo base_url(); ?>/saidas_v">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span style="color: black">+ Despesa</span></a>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
