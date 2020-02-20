@@ -37,13 +37,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     }
 
     #barra {
-      width: 120px;
+      width: 60px;
       vertical-align: bottom;
       display: table-cell;
       height: 200px;
-      border: 3px #f8f9fc solid;
+      border: 2px #f8f9fc solid;
       background: white;
       text-align: center;
+      font-size: 8px;
     }
 
     .cor1,
@@ -168,7 +169,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
               ?>
                 <div id="barra">
                   <?php echo $conta . '% <br>' . $value->nome ?>
-                  <div class="" style="padding-bottom: 15px;font-size: 10px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo "£" . $value->valor; ?></div>
+                  <div class="" style="padding-bottom: 15px;font-size: 10px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
                 </div>
 
               <?php }
