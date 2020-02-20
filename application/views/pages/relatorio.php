@@ -69,6 +69,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
     .cor4 {
       background-color: #009933;
     }
+
+    .total_final {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      border: 1px #eee solid;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: white;
+    }
   </style>
 
 </head>
@@ -200,7 +210,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
           </div>
           <!-- /.container-fluid -->
-
+          <div class="total_final">
+            <?php
+            $somaa = $soma_total + $soma_total_f;
+            echo '£' . number_format($somaa, 2, ',', '.');
+            ?>
+          </div>
         </div>
         <!-- End of Main Content -->
 
