@@ -22,7 +22,7 @@ class Saidas_model_v extends CI_Model
 		$this->db->order_by('data', 'DESC');
 
 		$mes_corrente = date('m');
-		$this->db->where('MONTH(data)', $mes_corrente)->order_by('DESC');
+		$this->db->where('MONTH(data)', $mes_corrente)->order_by('data', 'DESC');
 		$query = $this->db->get()->result();
 		return $query;
 	}
