@@ -172,7 +172,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
               ?>
                 <div id="barra">
                   <?php echo $conta . '% <br>' . $value->nome ?>
-                  <div class="" style="padding-bottom: 15px;font-size: 10px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
+                  <div class="" style="padding-bottom: 15px;font-size: 8px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
                 </div>
 
               <?php }
