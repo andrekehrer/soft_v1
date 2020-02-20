@@ -15,7 +15,7 @@ class Entradas_model extends CI_Model
 	public function get_all_entradas()
 	{
 		$mes_corrente = date('m');
-		$this->db->where('MONTH(data)', $mes_corrente);
+		$this->db->where('MONTH(data)', $mes_corrente)->order_by('DESC');
 		return $this->db->get("entradas")->result();
 	}
 }
