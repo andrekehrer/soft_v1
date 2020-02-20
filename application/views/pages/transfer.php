@@ -174,7 +174,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
+      <div>^</div>
     </a>
 
     <!-- Logout Modal-->

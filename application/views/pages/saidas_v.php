@@ -409,7 +409,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+    <div>^</div>
   </a>
 
   <!-- Logout Modal-->
@@ -594,10 +594,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         console.log(parms);
         if (conta_saida_ == 0) {
           alert('Selecione uma conta!');
-        }else{
+        } else {
           if (categoria_ == 0) {
             alert('Selecione uma categoria!');
-          }else{
+          } else {
             $.ajax({
               type: "GET",
               url: "<?php echo base_url() ?>/nova_saida_v",
