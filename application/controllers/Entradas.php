@@ -88,7 +88,6 @@ class Entradas extends CI_Controller
 			} else {
 				$new_saldo = $saldo + $valor;
 			}
-
 			$new_saldo_save = $this->contas_model->atualizar_saldo($conta, $new_saldo);
 			$data['msg'] = 'Categoria editada com sucesso!';
 		} else {

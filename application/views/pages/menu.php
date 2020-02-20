@@ -98,6 +98,14 @@
       </li>
       <hr class="sidebar-divider my-0">
 
+      <li class="nav-item" style="<?php if ($menu == 'transfer') {
+                                    echo "background: #506a79;";
+                                  } ?> ">
+        <a class="nav-link" href="<?php echo base_url(); ?>/transfer">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Trasnfer</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
 
       <li class="nav-item" style="background: #47edef;">
         <a class="nav-link" style="text-align:center" href="<?php echo base_url(); ?>/saidas_v">
