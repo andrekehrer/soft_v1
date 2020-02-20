@@ -11,9 +11,6 @@ class Relatorio_model extends CI_Model
   {
     return;
   }
-
-
-
   public function get_all($mes = null)
   {
     $mes = date('m');
@@ -38,6 +35,36 @@ class Relatorio_model extends CI_Model
                               Sum(valor) as valor
                               from `saidas_v`
                               where MONTH(data) = " . $mes . "");
+    $data = $query->result();
+    return $data[0]->valor;
+
+    // exit(0);
+    // return $this->db->get_where('categorias', array('status' => 1))->result();
+  }
+  public function get_all_fixas($mes = null)
+  {
+    $mes = date('m');
+    $query = $this->db->query("select 
+                                cor,
+                                cat_id as id,
+                                nome,
+                                Sum(valor) as valor
+                                from `saidas`
+                                join `categorias` on `categorias`.`cat_id` = `saidas`.`categoria_id`
+                                where pagou = 1
+                                group by cat_id");
+    return $query->result();
+
+    // exit(0);
+    // return $this->db->get_where('categorias', array('status' => 1))->result();
+  }
+  public function get_all_valor_fixas($mes = null)
+  {
+    $mes = date('m');
+    $query = $this->db->query("select 
+                              Sum(valor) as valor
+                              from `saidas`
+                              where pagou = 1");
     $data = $query->result();
     return $data[0]->valor;
 

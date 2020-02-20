@@ -134,21 +134,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+          <h5>Relatorio do mes <?php echo date('m/Y') ?></h5>
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Relatorio mes <?php echo date('m/Y') ?></h1>
-            Total <?php echo "£" . $soma_total; ?>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
+            <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas variaveis</h1><br>
+            <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total, 2, ',', '.') ?></h1>
           </div>
           <!-- Content Row -->
           <div class="row">
             <?php
-            // definindo porcentagem
-            // $height1 = '28%';
-            // $height2 = '49%';
-            // $height3 = '33%';
-            // $height4 = '13%';
-
             $total  = count($relatorios); // total de barras
             ?>
             <div id="principal">
@@ -174,8 +168,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
               <?php }
               ?>
             </div>
+          </div>
 
+          <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
+            <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas fixas</h1><br>
+            <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total_f, 2, ',', '.') ?></h1>
+          </div>
 
+          <div class="row">
+            <?php
+            $total  = count($relatorios_f); // total de barras
+            ?>
+            <div id="principal">
+              <!-- <p>Porcentagem de Acessos</p> -->
+              <?php
+              $height = '';
+              foreach ($relatorios_f as $key => $value) {
+                $sald = $soma_total_f;
+                $valor = $value->valor;
+                $conta = ($valor * 100) / $sald;
+                $conta = number_format($conta, 0, ',', '.');
+                $conta . '%';
+              ?>
+                <div id="barra">
+                  <?php echo $conta . '% <br>' . $value->nome ?>
+                  <div class="" style="padding-bottom: 15px;font-size: 10px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
+                </div>
+
+              <?php }
+              ?>
+            </div>
           </div>
           <!-- /.container-fluid -->
 
