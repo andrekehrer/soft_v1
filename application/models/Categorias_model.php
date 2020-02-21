@@ -16,6 +16,6 @@ class Categorias_model extends CI_Model
 
 	public function get_all_cats()
 	{
-		return $this->db->get_where('categorias', array('status' => 1))->result();
+		return $this->db->get_where('categorias', array('status' => 1, 'user_id' => $_SESSION['backend']['userid']))->result();
 	}
 }

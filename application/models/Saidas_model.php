@@ -17,19 +17,21 @@ class Saidas_model extends CI_Model
 	public function get_all_saidas()
 	{
 		//$this->db->order_by('categoria_id', 'ASC');
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->order_by('data', 'ASC');
 		return $this->db->get("saidas")->result();
 	}
 
 	public function get_all_saidas_pagas()
 	{
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('pagou', 1);
 		return $this->db->get("saidas")->result();
 	}
 
 	public function get_cat_by_id($id)
 	{
-		$data = $this->db->get_where('categorias', array('cat_id' => $id))->result();
+		$data = $this->db->get_where('categorias', array('cat_id' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
