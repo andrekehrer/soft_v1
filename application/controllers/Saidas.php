@@ -62,6 +62,7 @@ class Saidas extends CI_Controller
 			'data' =>  $data_mes,
 			'categoria_id' =>  $cat_id
 		);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
 		if ($this->db->affected_rows() == 1) {
@@ -87,7 +88,8 @@ class Saidas extends CI_Controller
 			'desc'   =>  $nome,
 			'valor' =>  $valor,
 			'data' =>  $data_,
-			'categoria_id' =>  $categoria
+			'categoria_id' =>  $categoria,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 		$this->db->insert('saidas', $data);
 
@@ -105,6 +107,7 @@ class Saidas extends CI_Controller
 	{
 		$id = $_GET['id'];
 
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->delete('saidas');
 		if ($this->db->affected_rows() == 1) {
@@ -124,7 +127,7 @@ class Saidas extends CI_Controller
 			'conta'	  	=>  $conta,
 			'data_full' => date('Y-m-d H:m:s')
 		);
-
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
 		if ($this->db->affected_rows() == 1) {
@@ -154,7 +157,7 @@ class Saidas extends CI_Controller
 			'conta'		  => null,
 			'data_full' => null
 		);
-
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('saidas', $data);
 		if ($this->db->affected_rows() == 1) {

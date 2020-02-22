@@ -17,6 +17,6 @@ class Entradas_model extends CI_Model
 		$mes_corrente = date('m');
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('MONTH(data)', $mes_corrente)->order_by('data', 'DESC');
-		return $this->db->get("entradas")->result();
+	 	return $this->db->get("entradas")->result();
 	}
 }

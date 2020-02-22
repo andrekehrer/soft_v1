@@ -137,7 +137,8 @@ class Contas extends CI_Controller
 			'nome'   =>  $nome,
 			'saldo'  =>  $saldo,
 			'cartao' =>  $cartao,
-			'limite' =>  $limite
+			'limite' =>  $limite,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 		$this->db->insert('contas', $data);
 
@@ -160,10 +161,11 @@ class Contas extends CI_Controller
 		$data = array(
 			'desc'  		   =>  'Cartao ' . $nome,
 			'valor'			   =>  $valor,
-			'data' 			 	 =>  date('Y-m-d H:m:s'),
-			'categoria_id' =>  3333,
-			'conta' 			 => $cartao,
-			'pagou_cartao' => $id_cartao_pagar
+			'data' 			   =>  date('Y-m-d H:m:s'),
+			'categoria_id' 	   =>  3333,
+			'conta' 		   => $cartao,
+			'pagou_cartao'     => $id_cartao_pagar,
+			'user_id'          => $_SESSION['backend']['userid']
 		);
 
 		$this->db->insert('saidas_v', $data);

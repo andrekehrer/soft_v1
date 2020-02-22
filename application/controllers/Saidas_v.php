@@ -59,6 +59,7 @@ class Saidas_v extends CI_Controller
 			'valor' =>  $valor,
 			'categoria_id' =>  $cat_id
 		);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('saidas_v', $data);
 		if ($this->db->affected_rows() == 1) {
@@ -86,7 +87,8 @@ class Saidas_v extends CI_Controller
 			'valor' =>  $valor,
 			'data' =>  $data_,
 			'categoria_id' =>  $categoria,
-			'conta' => $conta_saida
+			'conta' => $conta_saida,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 
 
@@ -143,7 +145,7 @@ class Saidas_v extends CI_Controller
 		if ($categoria_id == 1111) {
 			$voltar_divida = $this->dividas_model->voltar_divida($desc, $valor);
 		}
-
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id_);
 		$this->db->delete('saidas_v');
 		if ($this->db->affected_rows() == 1) {

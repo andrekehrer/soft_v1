@@ -10,6 +10,7 @@ class Contas_model extends CI_Model
 	public function get_all_contas($id = null)
 	{
 		//$this->db->order_by('categoria_id', 'ASC');
+			$this->db->where('user_id', $_SESSION['backend']['userid']);
 		if ($id) {
 			$this->db->where('cartao', 1);
 		}

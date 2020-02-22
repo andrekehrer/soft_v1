@@ -178,6 +178,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
           <!-- Content Row -->
           <div class="row">
+             <?php if ($data != 'No Register') : ?>
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -189,7 +190,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </thead>
 
                 <tbody id="table_data">
-                  <?php if ($data) : ?>
+                 
 
                     <?php
                     foreach ($data as $key => $value) {
@@ -205,11 +206,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     }
                     ?>
 
-                  <?php endif ?>
+                  
                 </tbody>
               </table>
             </div>
-
+            <?php endif ?>
           </div>
 
           <!-- Content Row -->

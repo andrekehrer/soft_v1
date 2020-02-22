@@ -46,6 +46,7 @@ class Categorias extends CI_Controller {
 			'nome'  =>  $nome,
 			'cor'   =>  $cor
 		);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('cat_id', $id);
 		$this->db->update('categorias', $data);
 		if($this->db->affected_rows() == 1){
@@ -65,7 +66,8 @@ class Categorias extends CI_Controller {
 		$data = array( 
 			'nome'   =>  $nome,
 			'cor'    =>  $cor,
-			'status' =>  1
+			'status' =>  1,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 		$this->db->insert('categorias', $data);
 
@@ -86,7 +88,7 @@ class Categorias extends CI_Controller {
 
 	public function delete_categoria(){
 		$id = $_GET['id'];
-
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('cat_id', $id);
 		$this->db->delete('categorias');
 		if($this->db->affected_rows() == 1){

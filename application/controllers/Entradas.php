@@ -20,6 +20,7 @@ class Entradas extends CI_Controller
 		$data['contas'] = count($contas);
 
 		$this->load->model('entradas_model');
+		
 		$entradas = $this->entradas_model->get_all_entradas();
 
 		foreach ($entradas as $ent) {
@@ -51,6 +52,7 @@ class Entradas extends CI_Controller
 			'valor' =>  $valor,
 			'data'  =>  $data_edit
 		);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('entradas', $data);
 		if ($this->db->affected_rows() == 1) {
@@ -72,9 +74,10 @@ class Entradas extends CI_Controller
 		//print_r($nome);exit(0);
 		$data = array(
 			'desc'   =>  $nome,
-			'valor' =>  $valor,
-			'conta' => $conta,
-			'data' =>  $data_entrada
+			'valor'  =>  $valor,
+			'conta'  => $conta,
+			'data'   =>  $data_entrada,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 		$this->db->insert('entradas', $data);
 
@@ -101,6 +104,7 @@ class Entradas extends CI_Controller
 	{
 		$id = $_GET['id'];
 
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->delete('entradas');
 		if ($this->db->affected_rows() == 1) {

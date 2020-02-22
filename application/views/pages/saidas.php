@@ -347,6 +347,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
           <!-- Content Row -->
           <div class="row">
+            <?php if ($data != 'No Register') : ?>
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -360,7 +361,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </thead>
 
                 <tbody id="table_data">
-                  <?php if ($data) : ?>
+                  
 
                     <?php
                     $today_date = date("d");
@@ -410,17 +411,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     }
                     ?>
 
-                  <?php endif ?>
+                  
                   <tr>
                     <td style="background: #636363;color: white;">TOTAL</td>
                     <td style="background: #636363;color: white;">
 
                       <?php
                       $total = 0;
+                      if ($data != 'No Register') {
                       foreach ($data as $key => $value) {
                         $total = $total + $value['valor'];
                       }
                       echo '£' . number_format($total, 2, ',', '.');
+                      }
+
                       ?>
                     </td>
 
@@ -428,7 +432,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </tbody>
               </table>
             </div>
-
+            <?php endif ?>
           </div>
 
           <!-- Content Row -->

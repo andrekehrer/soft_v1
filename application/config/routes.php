@@ -57,7 +57,7 @@ $route['fazer_transfer'] = 'Transfer/fazer_transfer';
 
 $route['login'] = 'Login';
 $route['Login/log'] = 'Login/log';
-$route['Logout'] = 'Login/logout';
+$route['logout'] = 'Login/logout';
 
 $route['categorias'] = 'Categorias';
 $route['update_categoria'] = 'Categorias/update_categoria';

@@ -45,6 +45,7 @@ class Dividas extends CI_Controller {
 			'desc'  =>  $nome,
 			'valor' =>  $valor
 		);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('cat_id', $id);
 		$this->db->update('dividas', $data);
 		if($this->db->affected_rows() == 1){
@@ -63,7 +64,8 @@ class Dividas extends CI_Controller {
 		//print_r($nome);exit(0);
 		$data = array( 
 			'nome'   =>  $nome,
-			'valor' =>  $valor
+			'valor'  =>  $valor,
+			'user_id'=> $_SESSION['backend']['userid']
 		);
 		$this->db->insert('dividas', $data);
 
@@ -89,11 +91,12 @@ class Dividas extends CI_Controller {
 		$divida_name = $this->dividas_model->divida_name_by_id($divida);
 
 		$data_saida_nova = array( 
-			'desc'   =>  $divida_name,
-			'valor' =>  $valor,
-			'data' =>  date("Y-m-d h:m:s"),
-			'categoria_id' =>  1111,
-			'conta' => $cartao
+			'desc'  	    =>  $divida_name,
+			'valor' 	    =>  $valor,
+			'data' 			=>  date("Y-m-d h:m:s"),
+			'categoria_id'  =>  1111,
+			'conta'         => $cartao,
+			'user_id'		=> $_SESSION['backend']['userid']
 		);
 
 		$this->db->insert('saidas_v', $data_saida_nova);
@@ -123,6 +126,7 @@ class Dividas extends CI_Controller {
 	public function delete_dividas(){
 		$id = $_GET['id'];
 
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->delete('dividas');
 		if($this->db->affected_rows() == 1){

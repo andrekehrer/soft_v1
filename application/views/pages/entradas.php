@@ -124,12 +124,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                   </div>
                   <form id="myform_new" name="myform_new">
                     <div class="form-group">
-                      <label for="email">Nome da categoria</label>
+                      <label for="email">Nome</label>
                       <input type="text" class="form-control" name="entrada_nome_edit" id="entrada_nome_nova">
                     </div>
                     <div class="form-group">
                       <label for="email">Data</label>
-                      <input type="date" name="data_entrada" id="data_entrada">
+                      <input type="date" name="data_entrada" id="data_entrada" required>
                     </div>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
@@ -185,7 +185,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="form-group">
                       <label for="email">Data</label>
-                      <input type="date" name="data_entrada_edit" id="data_entrada_edit">
+                      <input type="date" name="data_entrada_edit" id="data_entrada_edit" required="">
                     </div>
                     <div class="form-group">
                       <label for="email">Valor</label>
@@ -402,7 +402,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         $.ajax({
           type: "GET",
-          url: "/update_entrada",
+          url: "update_entrada",
           data: parms,
           dataType: "JSON",
           beforeSend: function() {
@@ -432,7 +432,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         $.ajax({
           type: "GET",
-          url: "/nova_entrada",
+          url: "nova_entrada",
           data: parms,
           dataType: "JSON",
           beforeSend: function() {
