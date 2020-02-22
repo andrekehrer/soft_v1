@@ -226,7 +226,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <option value="0" selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
-                          <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                          <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
 
                         <?php   } ?>
                       </select>
@@ -289,7 +289,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <option selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
-                          <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                          <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
 
                         <?php   } ?>
                       </select>
@@ -355,7 +355,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                       echo '£' . number_format($value['valor'], 2, ',', '.');
                       echo "</td>";
                       echo "<td class='th_ak'>";
-                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->cat_id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                       echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
                       echo "</td>";
                       echo "</tr>";

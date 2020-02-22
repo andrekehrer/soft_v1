@@ -187,7 +187,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <option selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
-                          <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                          <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
 
                         <?php   } ?>
                       </select>
@@ -277,7 +277,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <option selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
-                          <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                          <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
 
                         <?php   } ?>
                       </select>
@@ -403,7 +403,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         // echo "<input type='checkbox' name='' value='' data-sample-id='".$value['id']."' onclick='pagar(this)'>";
                         echo "<img src='" . base_url() . "/assets/img/cash.png' data-sample-id='" . $value['id'] . "' data-sample-valor='" . $value['valor'] . "'data-toggle='modal' data-target='#myModalPagar' onclick='myPagar(this)' width='20'>";
                       }
-                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->cat_id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
+                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
                       echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
                       echo "<span style='color:black;border: 1px black solid;padding: 2px;border-radius: 5px;background-color:" . $value['categoria'][0]->cor . "'>" . $value['categoria'][0]->nome . "</span>";
                       echo "</td>";

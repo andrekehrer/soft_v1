@@ -171,7 +171,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <option selected>Selecione...</option>
                         <?php foreach ($categorias as $key => $value) { ?>
 
-                          <option value="<?php echo $value->cat_id; ?>"><?php echo $value->nome; ?></option>
+                          <option value="<?php echo $value->id; ?>"><?php echo $value->nome; ?></option>
 
                         <?php   } ?>
                       </select>

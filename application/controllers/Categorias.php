@@ -23,7 +23,7 @@ class Categorias extends CI_Controller {
 		foreach ($categorias as $cat) {
 
 			$array[] = [
-				'id' => $cat->cat_id,
+				'id' => $cat->id,
 				'nome' =>  $cat->nome,
 				'cor' =>  $cat->cor,
 				'status' => $cat->status,
@@ -47,7 +47,7 @@ class Categorias extends CI_Controller {
 			'cor'   =>  $cor
 		);
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
-		$this->db->where('cat_id', $id);
+		$this->db->where('id', $id);
 		$this->db->update('categorias', $data);
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';
@@ -89,7 +89,7 @@ class Categorias extends CI_Controller {
 	public function delete_categoria(){
 		$id = $_GET['id'];
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
-		$this->db->where('cat_id', $id);
+		$this->db->where('id', $id);
 		$this->db->delete('categorias');
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 1;

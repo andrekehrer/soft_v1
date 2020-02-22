@@ -52,12 +52,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'Dashboard';
 $route['relatorio'] = 'Relatorio';
 $route['transfer'] = 'Transfer';
+
 $route['fazer_transfer'] = 'Transfer/fazer_transfer';
 
 
 $route['login'] = 'Login';
 $route['Login/log'] = 'Login/log';
 $route['Logout'] = 'Login/logout';
+$route['cadastrar'] = 'Login/cadastrar';
+$route['Login/cadastrar_novo'] = 'Login/cadastrar_novo';
 
 $route['categorias'] = 'Categorias';
 $route['update_categoria'] = 'Categorias/update_categoria';

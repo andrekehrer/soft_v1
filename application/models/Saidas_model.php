@@ -31,7 +31,7 @@ class Saidas_model extends CI_Model
 
 	public function get_cat_by_id($id)
 	{
-		$data = $this->db->get_where('categorias', array('cat_id' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
+		$data = $this->db->get_where('categorias', array('id' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
@@ -39,10 +39,10 @@ class Saidas_model extends CI_Model
 	public function get_all_saidas_apagar($data_query = null)
 	{
 		if ($data_query) {
-			$query_ = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and data = $data_query");
+			$query_ = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and data = $data_query and user_id = ".$_SESSION['backend']['userid']."");
 			$data = $query_->result();
 		} else {
-			$query = $this->db->query('SELECT * FROM saidas WHERE pagou = 0');
+			$query = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and user_id = ".$_SESSION['backend']['userid']."");
 			$data = $query->num_rows();
 		}
 		return $data;

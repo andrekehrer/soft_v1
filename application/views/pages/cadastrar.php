@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title> - Login - </title>
+  <title> - CADASTRAR - </title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,20 +36,26 @@
               <div class="col-md-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Log in</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Cadastrar</h1>
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+                      <input type="text" class="form-control form-control-user" name="nome" id="nome" aria-describedby="nomeHelp" placeholder="Nome" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="pass" id="pass" placeholder="Password">
+                      <input type="text" class="form-control form-control-user" name="tel" id="tel" aria-describedby="nomeHelp" placeholder="Telefone" required>
                     </div>
-                    <button class="btn btn-primary btn-user btn-block" id="submit">Login</button>
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" name="pass" id="pass" placeholder="Password" required>
+                    </div>
+                    <button class="btn btn-primary btn-user btn-block" id="submit">Enviar</button>
                     <div style="display: none;margin-top: 20px;" class="alert alert-danger" id="msg_alert" role="alert">
                       E-mail or password wrong!
                     </div>
-                      <p style="text-align: center; margin-top: 15px"><a href="<?php echo base_url().'cadastrar'?>">Cadastrar</a></p>
+                      <p style="text-align: center; margin-top: 15px"><a href="<?php echo base_url().'login'?>">Login</a></p>
                   </form>
                 </div>
               </div>
@@ -83,14 +89,20 @@
       function ajax_call() {
         var email = $('#email').val();
         var pass = $('#pass').val();
+        var tel = $('#tel').val();
+        var nome = $('#nome').val();
 
         $.ajax({
           type: "POST",
           data: {
             email: email,
-            pass: pass
+            pass: pass,
+            nome: nome,
+            tel: tel
+
+
           },
-          url: "<?php echo base_url(); ?>Login/log",
+          url: "<?php echo base_url(); ?>Login/cadastrar_novo",
           dataType: "JSON",
           beforeSend: function() {
             // Show image container

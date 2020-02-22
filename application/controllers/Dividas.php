@@ -46,7 +46,7 @@ class Dividas extends CI_Controller {
 			'valor' =>  $valor
 		);
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
-		$this->db->where('cat_id', $id);
+		$this->db->where('id', $id);
 		$this->db->update('dividas', $data);
 		if($this->db->affected_rows() == 1){
 			$data['msg'] = 'Categoria editada com sucesso!';

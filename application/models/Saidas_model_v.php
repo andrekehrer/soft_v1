@@ -29,8 +29,8 @@ class Saidas_model_v extends CI_Model
 
 	public function get_cat_by_id($id)
 	{
-		$data = $this->db->get_where('categorias', array('cat_id' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
-		// print_r($data[0]->nome); exit(0);
+		$data = $this->db->get_where('categorias', array('cat_id' => $id))->result();
+		//print_r($data[0]->nome); exit(0);
 		return $data;
 	}
 

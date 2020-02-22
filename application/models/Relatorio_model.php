@@ -16,13 +16,13 @@ class Relatorio_model extends CI_Model
     $mes = date('m');
     $query = $this->db->query("select 
                                 cor,
-                                cat_id as id,
+                                categorias.id as id,
                                 nome,
                                 Sum(valor) as valor
                                 from `saidas_v`
-                                join `categorias` on `categorias`.`cat_id` = `saidas_v`.`categoria_id`
+                                join `categorias` on `categorias`.`id` = `saidas_v`.`categoria_id`
                                 where MONTH(data) = " . $mes . "
-                                group by cat_id");
+                                group by categorias.id");
     return $query->result();
 
     // exit(0);
@@ -46,13 +46,13 @@ class Relatorio_model extends CI_Model
     $mes = date('m');
     $query = $this->db->query("select 
                                 cor,
-                                cat_id as id,
+                                categorias.id as id,
                                 nome,
                                 Sum(valor) as valor
                                 from `saidas`
-                                join `categorias` on `categorias`.`cat_id` = `saidas`.`categoria_id`
+                                join `categorias` on `categorias`.`id` = `saidas`.`categoria_id`
                                 where pagou = 1
-                                group by cat_id");
+                                group by categorias.id");
     return $query->result();
 
     // exit(0);

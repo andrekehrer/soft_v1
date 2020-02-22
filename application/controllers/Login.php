@@ -11,13 +11,51 @@ class Login extends CI_Controller {
 
 	public function index()
 	{	
-		$data['title'] = "Login page - Swift Studio";
+		$data['title'] = "Login page - Meu dinheiro";
 		$this->load->view('pages/login', $data);
 	}
 
-	public function log(){
+    public function cadastrar(){
+        $data['title'] = "Cadastrar - Meu dinheiro";
+        $this->load->view('pages/cadastrar', $data);
+    }
 
-        $checkLogin = $this->login_model->loginAuthentication($_POST['email'], $_POST['pass']);
+    public function cadastrar_novo()
+    {
+        $email = $_POST['email'];
+        $pass  = $_POST['pass'];
+        $tel   = $_POST['tel'];
+        $nome  = $_POST['nome'];
+
+        $data = array( 
+            'username'   =>  $nome,
+            'tel'    =>  $tel,
+            'password'   =>  $pass,
+            'permission'   =>  1,
+            'enabled'   =>  1,
+            'email'  => $email
+        );
+        $this->db->insert('user', $data);
+
+        $user_id = $this->db->insert_id();
+
+        $data_ = array( 
+            'user_id'  =>  $user_id
+        );
+        $this->db->where('id', $user_id);
+        $this->db->update('user', $data_);
+        
+        $this->log($email, $pass);
+
+    }
+
+	public function log($email=null, $pass=null){
+        if($email && $pass){
+            $checkLogin = $this->login_model->loginAuthentication($email, $pass); 
+        }else{
+            $checkLogin = $this->login_model->loginAuthentication($_POST['email'], $_POST['pass']);
+        }
+
         if ($checkLogin){
             $this->session->set_userdata('backend', $checkLogin);
             $ip = $_SERVER['REMOTE_ADDR'];
