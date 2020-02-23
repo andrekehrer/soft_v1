@@ -21,7 +21,8 @@ class Relatorio_model extends CI_Model
                                 Sum(valor) as valor
                                 from `saidas_v`
                                 join `categorias` on `categorias`.`id` = `saidas_v`.`categoria_id`
-                                where MONTH(data) = " . $mes . "
+                                where saidas_v.user_id = ".$_SESSION['backend']['userid']." and
+                                MONTH(data) = " . $mes . "
                                 group by categorias.id");
     return $query->result();
 
@@ -34,7 +35,8 @@ class Relatorio_model extends CI_Model
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas_v`
-                              where MONTH(data) = " . $mes . "");
+                              where user_id = ".$_SESSION['backend']['userid']." and
+                              MONTH(data) = " . $mes . "");
     $data = $query->result();
     return $data[0]->valor;
 
@@ -51,7 +53,8 @@ class Relatorio_model extends CI_Model
                                 Sum(valor) as valor
                                 from `saidas`
                                 join `categorias` on `categorias`.`id` = `saidas`.`categoria_id`
-                                where pagou = 1
+                                where pagou = 1 and
+                                categorias.user_id = ".$_SESSION['backend']['userid']."
                                 group by categorias.id");
     return $query->result();
 
@@ -64,7 +67,8 @@ class Relatorio_model extends CI_Model
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas`
-                              where pagou = 1");
+                              where user_id = ".$_SESSION['backend']['userid']."
+                              and pagou = 1");
     $data = $query->result();
     return $data[0]->valor;
 
