@@ -5,7 +5,10 @@ class Dashboard extends CI_Controller
 {
 
     public function index()
-    {
+    {      
+        if (!isset($_SESSION['backend']['currentSessionId'])) {
+          redirect('Login');
+        }
         $this->load->model('contas_model');
         $contas = $this->contas_model->get_all_contas();
         foreach ($contas as $cat) {
