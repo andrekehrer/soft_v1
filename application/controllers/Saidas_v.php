@@ -39,9 +39,8 @@ class Saidas_v extends CI_Controller
 		$data['dividas'] = $this->dividas_model->get_all_dividas();
 
 		$data['categorias'] = $this->categorias_model->get_all_cats();
-		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
-		//echo json_encode($json, true);	
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['menu'] = 'saidas';
 		$data['title'] = "Saidas Variaveis - Meu Dinheiro";
 		$this->load->view('pages/saidas_v', $data);
@@ -88,7 +87,7 @@ class Saidas_v extends CI_Controller
 			'data' =>  $data_,
 			'categoria_id' =>  $categoria,
 			'conta' => $conta_saida,
-			'user_id'=> $_SESSION['backend']['userid']
+			'user_id' => $_SESSION['backend']['userid']
 		);
 
 

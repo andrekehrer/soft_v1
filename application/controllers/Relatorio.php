@@ -6,6 +6,7 @@ class Relatorio extends CI_Controller
 
   public function index()
   {
+    $this->load->model('categorias_model');
     $this->load->model('relatorio_model');
 
     $relatorios = $this->relatorio_model->get_all();
@@ -32,7 +33,7 @@ class Relatorio extends CI_Controller
     $data['relatorios'] = $relatorios;
     $data['relatorios_f'] = $relatorios_variaveis;
     $data['contas'] = count($contas);
-    //echo json_encode($json, true);	
+    $data['categorias_count'] = count($this->categorias_model->get_all_cats());
     $data['menu'] = 'relatorio';
     $data['title'] = "Relatorio - Meu Dinheiro";
     $this->load->view('pages/relatorio', $data);

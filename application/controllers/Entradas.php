@@ -6,6 +6,7 @@ class Entradas extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('categorias_model');
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
@@ -20,7 +21,7 @@ class Entradas extends CI_Controller
 		$data['contas'] = count($contas);
 
 		$this->load->model('entradas_model');
-		
+
 		$entradas = $this->entradas_model->get_all_entradas();
 
 		foreach ($entradas as $ent) {
@@ -34,7 +35,7 @@ class Entradas extends CI_Controller
 		}
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
-		//echo json_encode($json, true);	
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['menu'] = 'entradas';
 		$data['title'] = "Entradas - Meu Dinheiro";
 		$this->load->view('pages/entradas', $data);
@@ -77,7 +78,7 @@ class Entradas extends CI_Controller
 			'valor'  =>  $valor,
 			'conta'  => $conta,
 			'data'   =>  $data_entrada,
-			'user_id'=> $_SESSION['backend']['userid']
+			'user_id' => $_SESSION['backend']['userid']
 		);
 		$this->db->insert('entradas', $data);
 

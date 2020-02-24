@@ -6,6 +6,7 @@ class Contas extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('categorias_model');
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 
@@ -19,6 +20,7 @@ class Contas extends CI_Controller
 			];
 		}
 		//echo "<pre>";print_r(count($categorias));exit(0);
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['data_contas'] = (isset($array_contas) ? $array_contas : 'No Register');
 		//echo json_encode($json, true);
 		$data['contas'] = count($contas);
@@ -28,6 +30,7 @@ class Contas extends CI_Controller
 	}
 	public function contas_id($id)
 	{
+		$this->load->model('categorias_model');
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 
@@ -109,7 +112,7 @@ class Contas extends CI_Controller
 		}
 		$nome_conta = $this->contas_model->get_nome_conta($id);
 		$data['nome_conta'] = $nome_conta[0]->nome;
-
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['type'] = $type;
 		$data['id_conta'] = $id_conta[0]->id;
 		$data['saldo'] = $saldo;
@@ -138,7 +141,7 @@ class Contas extends CI_Controller
 			'saldo'  =>  $saldo,
 			'cartao' =>  $cartao,
 			'limite' =>  $limite,
-			'user_id'=> $_SESSION['backend']['userid']
+			'user_id' => $_SESSION['backend']['userid']
 		);
 		$this->db->insert('contas', $data);
 

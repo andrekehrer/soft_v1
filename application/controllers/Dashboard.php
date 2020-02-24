@@ -5,9 +5,9 @@ class Dashboard extends CI_Controller
 {
 
     public function index()
-    {      
+    {
         if (!isset($_SESSION['backend']['currentSessionId'])) {
-          redirect('Login');
+            redirect('Login');
         }
         $this->load->model('contas_model');
         $contas = $this->contas_model->get_all_contas();
@@ -28,6 +28,8 @@ class Dashboard extends CI_Controller
         $this->load->model('saidas_model_v');
         $this->load->model('contas_model');
         $this->load->model('dividas_model');
+
+        $data['categorias_count'] = count($this->categorias_model->get_all_cats());
 
         ////////// TOTAL DESPESAS FIXAS MENSAIS //////////////
 

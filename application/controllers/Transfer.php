@@ -7,7 +7,7 @@ class Transfer extends CI_Controller
   public function index()
   {
     $this->load->model('relatorio_model');
-
+    $this->load->model('categorias_model');
     $this->load->model('contas_model');
     $contas = $this->contas_model->get_all_contas();
     foreach ($contas as $cat) {
@@ -20,7 +20,7 @@ class Transfer extends CI_Controller
     }
     $data['data_contas'] = (isset($array_conta) ? $array_conta : 'No Register');
     $data['contas'] = count($contas);
-    //echo json_encode($json, true);	
+    $data['categorias_count'] = count($this->categorias_model->get_all_cats());
     $data['menu'] = 'transfer';
     $data['title'] = "Trasnferir entre contas - Meu Dinheiro";
     $this->load->view('pages/transfer', $data);

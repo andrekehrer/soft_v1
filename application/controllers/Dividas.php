@@ -1,9 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dividas extends CI_Controller {
+class Dividas extends CI_Controller
+{
 
-	public function index(){	
+	public function index()
+	{
+		$this->load->model('categorias_model');
 		$this->load->model('contas_model');
 		$contas = $this->contas_model->get_all_contas();
 		foreach ($contas as $cat) {
@@ -16,7 +19,7 @@ class Dividas extends CI_Controller {
 		}
 		$data['data_contas'] = (isset($array_conta) ? $array_conta : 'No Register');
 		$data['contas'] = count($contas);
-		
+
 		$this->load->model('dividas_model');
 		$categorias = $this->dividas_model->get_all_dividas();
 
@@ -30,27 +33,28 @@ class Dividas extends CI_Controller {
 		}
 		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
-		//echo json_encode($json, true);	
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['menu'] = 'dividas';
 		$data['title'] = "Dividas - Meu Dinheiro";
 		$this->load->view('pages/dividas', $data);
 	}
 
-	public function update_entrada(){
+	public function update_entrada()
+	{
 		$id = $_GET['id_edit'];
 		$nome = $_GET['nome_edit'];
 		$valor = $_GET['valor_edit'];
 		//print_r($nome);exit(0);
-		$data = array( 
+		$data = array(
 			'desc'  =>  $nome,
 			'valor' =>  $valor
 		);
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->update('dividas', $data);
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
@@ -58,39 +62,40 @@ class Dividas extends CI_Controller {
 		//print_r($this->db->affected_rows());exit(0);
 	}
 
-	public function nova_divida(){
+	public function nova_divida()
+	{
 		$nome = $_GET['nome_nova'];
 		$valor = $_GET['valor_nova'];
 		//print_r($nome);exit(0);
-		$data = array( 
+		$data = array(
 			'nome'   =>  $nome,
 			'valor'  =>  $valor,
-			'user_id'=> $_SESSION['backend']['userid']
+			'user_id' => $_SESSION['backend']['userid']
 		);
 		$this->db->insert('dividas', $data);
 
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 
 			$data['msg'] = 'Categoria editada com sucesso!';
-
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
 		echo json_encode($data, true);
 		//print_r($this->db->affected_rows());exit(0);
 	}
-	public function valor_divida_pagar(){
+	public function valor_divida_pagar()
+	{
 		$this->load->model('dividas_model');
 
 		$divida = $_GET['divida'];
 		$cartao = $_GET['cartao'];
 		$valor = $_GET['valor'];
 
-		$pagar = $this->dividas_model->pagar_divida($divida,$valor);
+		$pagar = $this->dividas_model->pagar_divida($divida, $valor);
 		$divida_name = $this->dividas_model->divida_name_by_id($divida);
 
-		$data_saida_nova = array( 
+		$data_saida_nova = array(
 			'desc'  	    =>  $divida_name,
 			'valor' 	    =>  $valor,
 			'data' 			=>  date("Y-m-d h:m:s"),
@@ -101,37 +106,38 @@ class Dividas extends CI_Controller {
 
 		$this->db->insert('saidas_v', $data_saida_nova);
 
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 
 			$this->load->model('contas_model');
 			$saldo 		= $this->contas_model->get_saldo_contas_by_id($cartao);
 			$type_conta = $this->contas_model->get_type_conta_by_id($cartao);
-			if($type_conta == 1){
+			if ($type_conta == 1) {
 				$new_saldo = $saldo + $valor;
-			}else{
+			} else {
 				$new_saldo = $saldo - $valor;
 			}
 
 			$new_saldo_save = $this->contas_model->atualizar_saldo($cartao, $new_saldo);
 
 			$data['msg'] = 'Categoria editada com sucesso!';
-
-		}else{
+		} else {
 			$data['msg'] = 'Algo aconteceu e nao conseguimos salvar sua edicao. Tente novamente mais tarde!';
 		}
 
 
-		print_r($_GET);exit(0);
+		print_r($_GET);
+		exit(0);
 	}
-	public function delete_dividas(){
+	public function delete_dividas()
+	{
 		$id = $_GET['id'];
 
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		$this->db->where('id', $id);
 		$this->db->delete('dividas');
-		if($this->db->affected_rows() == 1){
+		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 1;
-		}else{
+		} else {
 			$data['msg'] = 0;
 		}
 	}

@@ -189,21 +189,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
           <!-- Content Row -->
           <div class="row">
-            <div class="table-responsive">
-              <table class="table table-bordered" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <!--  <th>Id</th> -->
-                    <th>Nome</th>
-                    <th>Saldo</th>
-                    <!-- 
+            <?php if (isset($data_contas) && $data_contas != 'No Register') { ?>
+              <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <!--  <th>Id</th> -->
+                      <th>Nome</th>
+                      <th>Saldo</th>
+                      <!-- 
                              <th>Acoes</th> -->
-                  </tr>
-                </thead>
+                    </tr>
+                  </thead>
 
-                <tbody id="table_data">
-                  <?php if (isset($data_contas) && $data_contas != 'No Register') { ?>
-
+                  <tbody id="table_data">
                     <?php
                     foreach ($data_contas as $key => $value) {
                       echo "<tr>";
@@ -221,11 +220,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     }
                     ?>
 
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
 
+                  </tbody>
+                </table>
+              </div>
+            <?php } ?>
           </div>
 
           <!-- Content Row -->

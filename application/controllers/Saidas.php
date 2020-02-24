@@ -40,9 +40,8 @@ class Saidas extends CI_Controller
 
 
 		$data['categorias'] = $this->categorias_model->get_all_cats();
-		//echo "<pre>";print_r($array);exit(0);
 		$data['data'] = (isset($array) ? $array : 'No Register');
-		//echo json_encode($json, true);	
+		$data['categorias_count'] = count($this->categorias_model->get_all_cats());
 		$data['title'] = "Saidas - Meu Dinheiro";
 		$data['menu'] = 'saidas';
 		$this->load->view('pages/saidas', $data);
@@ -89,7 +88,7 @@ class Saidas extends CI_Controller
 			'valor' =>  $valor,
 			'data' =>  $data_,
 			'categoria_id' =>  $categoria,
-			'user_id'=> $_SESSION['backend']['userid']
+			'user_id' => $_SESSION['backend']['userid']
 		);
 		$this->db->insert('saidas', $data);
 
