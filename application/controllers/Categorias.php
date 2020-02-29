@@ -74,6 +74,15 @@ class Categorias extends CI_Controller
 		);
 		$this->db->insert('categorias', $data);
 
+		$cat_id = $this->db->insert_id();
+
+		$data_ = array( 
+				'cat_id'  =>  $cat_id
+		);
+		$this->db->where('id', $cat_id);
+		$this->db->update('categorias', $data_);
+
+
 		if ($this->db->affected_rows() == 1) {
 			$data['msg'] = 'Categoria editada com sucesso!';
 		} else {

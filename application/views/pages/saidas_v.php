@@ -127,6 +127,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
           </div>
 
+          <select class="custom-select" name="conta_saida" id="conta_filtro" required>
+              <option value="todos" selected>Todos...</option>
+              <?php foreach ($data_contas as $key => $value) { ?>
+
+                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+
+              <?php   } ?>
+            </select>
+            <br><br>
+
           <!-- NEW Modal -->
           <div id="pagarDivida" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -321,7 +331,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <div class="row">
             <div class="table-responsive">
               <?php if ($data != 'No Register') : ?>
-                <table class="table-bordered ak" style="width:100%" cellspacing="0">
+                <table class="table-bordered ak" id="tabela_fixa" style="width:100%" cellspacing="0">
                   <thead>
                     <tr style="background: #636363;color: white;">
                       <!--  <th>Id</th> -->
@@ -335,48 +345,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                   <tbody id="table_data">
 
-                    <?php
-
-                    foreach ($data as $key => $value) {
-                      // echo "<pre>";print_r($value['categoria'][0]->cor);echo "</pre>";
-
-                      echo "<tr style='background-color:" . $value['categoria'][0]->cor . "'>";
-                      echo "<td width='1%' height='80' class='nome_trans'>";
-                      echo "<span >" . $value['nome_b'] . "</span>";
-                      echo "</td>";
-                      echo "<td class='th_ak' style='color:black'>";
-                      $date = date_create($value['data']);
-                      echo date_format($date, "d/m/Y");
-                      echo "</td>";
-                      echo "<td class='th_ak' style='color:black'>";
-                      echo $value['nome'];
-                      echo "</td>";
-                      echo "<td class='th_ak' style='color:black'>";
-                      echo '£' . number_format($value['valor'], 2, ',', '.');
-                      echo "</td>";
-                      echo "<td class='th_ak'>";
-                      echo "<img src='" . base_url() . "/assets/img/edit-icon.png'   data-sample-id='" . $value['id'] . "' data-sample-name='" . $value['nome'] . "' data-sample-valor='" . $value['valor'] . "' data-sample-data='" . $value['data'] . "' data-sample-catid='" . $value['categoria'][0]->id . "' id='printer_img' alt='' onclick='myClick(this)' width='20'>";
-                      echo "<img src='" . base_url() . "/assets/img/delete-icon.png' data-sample-id='" . $value['id'] . "' id='printer_img' alt='' onclick='myDelete(this)' width='20'>";
-                      echo "</td>";
-                      echo "</tr>";
-                    }
-                    ?>
-
-                    <tr>
-                      <td class='th_ak' style="background: #636363;color: white;">TOTAL</td>
-                      <td class='th_ak' style="background: #636363;color: white;">
-
-                        <?php
-                        $total = 0;
-                        foreach ($data as $key => $value) {
-                          $total = $total + $value['valor'];
-                        }
-                        echo '£' . number_format($total, 2, ',', '.');
-                        ?>
-                      </td>
-
-                    </tr>
                   </tbody>
+                  <div id="total_soma"></div>
                 </table>
               <?php endif ?>
             </div>
@@ -504,6 +474,53 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     $(document).ready(function() {
 
+      var parms = {
+          id: 'todos',
+        };
+      $("#table_data").empty();
+      $.ajax({
+          type: "GET",
+          url: "<?php echo base_url() ?>/saidas_v_conta",
+          data: parms,
+          dataType: "JSON",
+          beforeSend: function() {
+            // Show image container
+            $("#loader2").show();
+          },
+          success: function(result) {
+            var total = 0;
+            for(var i = 0; result.length >i; i++){
+              console.log(result[i]);
+              
+              $("#tabela_fixa").append( '<tr style="background-color:'+ result[i].categoria[0].cor +'">'+
+                  '<td  width="1%" height="80" class="nome_trans">'+result[i].nome+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].data+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].desc+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].valor+'</td>'+
+                  '<td class="th_ak">'+
+                  '<img src="<?php echo base_url() ?>assets/img/edit-icon.png" data-sample-id="'+ result[i].id +'" data-sample-name="'+ result[i].nome +'" data-sample-valor="'+ result[i].valor +'" data-sample-data="'+ result[i].data +'" data-sample-catid="'+ result[i].categoria[0].cat_id +'" onclick="myClick(this)" width="20">'+
+                  '<img src="<?php echo base_url() ?>assets/img/delete-icon.png" data-sample-id="'+ result[i].id +'" onclick="myDelete(this)" width="20">'+
+                  '</td>'+
+                '</tr>');
+                total += Number(result[i].valor);
+           }
+
+           $('#total_soma').html('£'+total);
+            // $('#msg_success2').css('display', 'block');
+
+          },
+          complete: function(data) {
+            console.log(data);
+            // $('#msg_success2').css('display', 'block');
+            // $("#loader2").hide();
+          }
+        });
+
+
+
+
+
+
       $('#close_modal_edit').on('click', function() {
         location.reload();
       });
@@ -616,10 +633,60 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 // Hide image container
                 $('#msg_success6').css('display', 'block');
                 $("#loader2").hide();
+                $('#myform_new').trigger("reset");
               }
             });
           }
         }
+      });
+      $("#conta_filtro").change(function(){
+        var conta = $('#conta_filtro').val();
+        $("#table_data").empty();
+
+        var parms = {
+          id: conta,
+        };
+
+        $.ajax({
+          type: "GET",
+          url: "<?php echo base_url() ?>/saidas_v_conta",
+          data: parms,
+          dataType: "JSON",
+          beforeSend: function() {
+            // Show image container
+            $("#loader2").show();
+          },
+          success: function(result) {
+            var total = 0;
+            for(var i = 0; result.length >i; i++){
+              console.log(result[i]);
+              
+              $("#tabela_fixa").append( '<tr style="background-color:'+ result[i].categoria[0].cor +'">'+
+                  '<td  width="1%" height="80" class="nome_trans">'+result[i].nome+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].data+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].desc+'</td>'+
+                  '<td class="th_ak" style="color:black">'+result[i].valor+'</td>'+
+                  '<td class="th_ak">'+
+                  '<img src="<?php echo base_url() ?>assets/img/edit-icon.png" data-sample-id="'+ result[i].id +'" data-sample-name="'+ result[i].nome +'" data-sample-valor="'+ result[i].valor +'" data-sample-data="'+ result[i].data +'" data-sample-catid="'+ result[i].categoria[0].cat_id +'" onclick="myClick(this)" width="20">'+
+                  '<img src="<?php echo base_url() ?>assets/img/edit-icon.png" data-sample-id="'+ result[i].id +'" onclick="myDelete(this)" width="20">'+
+                  '</td>'+
+                '</tr>');
+                total += Number(result[i].valor);
+           }
+
+           $('#total_soma').html('£'+total);
+            // $('#msg_success2').css('display', 'block');
+
+          },
+          complete: function(data) {
+            console.log(data);
+            // $('#msg_success2').css('display', 'block');
+            // $("#loader2").hide();
+          }
+        });
+
+
+
       });
 
     });
@@ -627,4 +694,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 </body>
 
-</html>
+</html>                    

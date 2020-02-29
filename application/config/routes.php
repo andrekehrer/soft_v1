@@ -85,6 +85,9 @@ $route['saidas_v'] = 'Saidas_v';
 $route['update_saida_v'] = 'Saidas_v/update_saida_v';
 $route['nova_saida_v'] = 'Saidas_v/nova_saida_v';
 $route['delete_saida_v'] = 'Saidas_v/delete_saida_v';
+$route['saidas_v_conta'] = 'Saidas_v/get_saidas_v_by_conta';
+$route['saidas_v_'] = 'Saidas_v/get_saidas_v_';
+
 
 $route['dividas'] = 'Dividas';
 $route['nova_divida'] = 'Dividas/nova_divida';

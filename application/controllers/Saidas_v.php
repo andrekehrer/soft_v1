@@ -153,4 +153,42 @@ class Saidas_v extends CI_Controller
 			$data['msg'] = 0;
 		}
 	}
+
+	public function get_saidas_v_by_conta(){
+		$this->load->model('saidas_model_v');
+
+		$id_ = $_GET['id'];
+		// $data = $this->db->get_where('saidas_v', array('conta' => $id_, 'user_id' => $_SESSION['backend']['userid']))->result();
+
+		$this->db->select('*');
+		$this->db->from('saidas_v');
+		$this->db->join('contas', 'contas.id = saidas_v.conta');
+		$this->db->order_by('data', 'DESC');
+		$mes_corrente = date('m');
+		if($id_ != 'todos'){
+			$this->db->where('saidas_v.conta', $id_);
+		}
+		$this->db->where('saidas_v.user_id', $_SESSION['backend']['userid']);
+		$this->db->where('MONTH(data)', $mes_corrente)->order_by('data', 'DESC');
+		$query = $this->db->get()->result();
+
+
+		foreach ($query as $cat) {
+
+			$array[] = [
+				'id' => $cat->id,
+				'desc' =>  $cat->desc,
+				'valor' => $cat->valor,
+				'categoria' => $this->saidas_model_v->get_cat_by_id($cat->categoria_id),
+				'data' => $cat->data,
+				'nome' => $cat->nome,
+			];
+		}
+
+
+		echo json_encode($array, true);
+
+	}
+
+
 }
