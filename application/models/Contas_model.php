@@ -41,19 +41,22 @@ class Contas_model extends CI_Model
 	}
 	public function get_conta_entrada_by_id($id = null)
 	{
-		$data = $this->db->order_by('id', 'ASC')->get_where('entradas', array('conta' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
+		$mes = date('m');
+		$data = $this->db->order_by('id', 'ASC')->get_where('entradas', array('MONTH(data)' => $mes, 'conta' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
 	public function get_entrada_cc_by_id($id = null)
 	{
-		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('pagou_cartao' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
+		$mes = date('m');
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('MONTH(data)' => $mes, 'pagou_cartao' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
 	public function get_conta_saidas_fixas_by_id($id = null)
 	{
-		$data = $this->db->order_by('id', 'ASC')->get_where('saidas', array('conta' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
+		$mes = date('m');
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas', array('MONTH(data_full)' => $mes, 'conta' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// print_r($data[0]->nome); exit(0);
 		return $data;
 	}
