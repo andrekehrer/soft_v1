@@ -16,15 +16,21 @@ class Saidas_model extends CI_Model
 
 	public function get_all_saidas()
 	{
+		$mes = date('m');
 		//$this->db->order_by('categoria_id', 'ASC');
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
+		$this->db->where('MONTH(data_full)', $mes);
 		$this->db->order_by('data', 'ASC');
 		return $this->db->get("saidas")->result();
+		// print_r($this->db->last_query());
+		// exit(0);
 	}
 
 	public function get_all_saidas_pagas()
 	{
+		$mes = date('m');
 		$this->db->where('user_id', $_SESSION['backend']['userid']);
+		$this->db->where('MONTH(data_full)', $mes);
 		$this->db->where('pagou', 1);
 		return $this->db->get("saidas")->result();
 	}
@@ -38,13 +44,23 @@ class Saidas_model extends CI_Model
 
 	public function get_all_saidas_apagar($data_query = null)
 	{
+		$mes = date('m');
 		if ($data_query) {
-			$query_ = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and data = $data_query and user_id = ".$_SESSION['backend']['userid']."");
+			$query_ = $this->db->query("SELECT * FROM saidas 
+																WHERE pagou = 0 
+																and MONTH(data_full) = $mes
+																and data = $data_query 
+																and user_id = " . $_SESSION['backend']['userid'] . "");
 			$data = $query_->result();
 		} else {
-			$query = $this->db->query("SELECT * FROM saidas WHERE pagou = 0 and user_id = ".$_SESSION['backend']['userid']."");
+			$query = $this->db->query("SELECT * FROM saidas 
+																WHERE pagou = 0 
+																and MONTH(data_full) = $mes
+																and user_id = " . $_SESSION['backend']['userid'] . "");
 			$data = $query->num_rows();
 		}
+		// print_r($this->db->last_query());
+		// exit(0);
 		return $data;
 	}
 }

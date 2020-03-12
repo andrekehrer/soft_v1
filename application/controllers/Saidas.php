@@ -24,7 +24,8 @@ class Saidas extends CI_Controller
 		$this->load->model('saidas_model');
 		$this->load->model('categorias_model');
 		$saidas = $this->saidas_model->get_all_saidas();
-
+		// print_r($saidas);
+		// exit(0);
 		foreach ($saidas as $sai) {
 
 			$array[] = [
