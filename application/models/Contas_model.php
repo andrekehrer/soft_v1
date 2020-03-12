@@ -10,7 +10,7 @@ class Contas_model extends CI_Model
 	public function get_all_contas($id = null)
 	{
 		//$this->db->order_by('categoria_id', 'ASC');
-			$this->db->where('user_id', $_SESSION['backend']['userid']);
+		$this->db->where('user_id', $_SESSION['backend']['userid']);
 		if ($id) {
 			$this->db->where('cartao', 1);
 		}
@@ -25,7 +25,8 @@ class Contas_model extends CI_Model
 	}
 	public function get_conta_by_id($id = null)
 	{
-		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('conta' => $id))->result();
+		$mes = date('m');
+		$data = $this->db->order_by('id', 'ASC')->get_where('saidas_v', array('MONTH(data)' => $mes, 'conta' => $id, 'user_id' => $_SESSION['backend']['userid']))->result();
 		// $data =	$this->db->select('*')->from('saidas_v')
 		// 	->group_start()
 		// 	->where('conta', $id)
@@ -35,7 +36,7 @@ class Contas_model extends CI_Model
 		// 	->group_end()
 		// 	->get()
 		// 	->result();
-		// print_r($this->db->last_query());
+		print_r($this->db->last_query());
 		return $data;
 	}
 	public function get_conta_entrada_by_id($id = null)
