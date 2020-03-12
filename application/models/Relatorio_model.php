@@ -21,7 +21,7 @@ class Relatorio_model extends CI_Model
                                 Sum(valor) as valor
                                 from `saidas_v`
                                 join `categorias` on `categorias`.`id` = `saidas_v`.`categoria_id`
-                                where saidas_v.user_id = ".$_SESSION['backend']['userid']." and
+                                where saidas_v.user_id = " . $_SESSION['backend']['userid'] . " and
                                 MONTH(data) = " . $mes . "
                                 group by categorias.id");
     return $query->result();
@@ -35,7 +35,7 @@ class Relatorio_model extends CI_Model
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas_v`
-                              where user_id = ".$_SESSION['backend']['userid']." and
+                              where user_id = " . $_SESSION['backend']['userid'] . " and
                               MONTH(data) = " . $mes . "");
     $data = $query->result();
     return $data[0]->valor;
@@ -54,7 +54,8 @@ class Relatorio_model extends CI_Model
                                 from `saidas`
                                 join `categorias` on `categorias`.`id` = `saidas`.`categoria_id`
                                 where pagou = 1 and
-                                categorias.user_id = ".$_SESSION['backend']['userid']."
+                                categorias.user_id = " . $_SESSION['backend']['userid'] . "
+                                and MONTH(data) = " . $mes . "
                                 group by categorias.id");
     return $query->result();
 
@@ -67,8 +68,9 @@ class Relatorio_model extends CI_Model
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas`
-                              where user_id = ".$_SESSION['backend']['userid']."
-                              and pagou = 1");
+                              where user_id = " . $_SESSION['backend']['userid'] . "
+                              and pagou = 1
+                              and MONTH(data) = " . $mes . "");
     $data = $query->result();
     return $data[0]->valor;
 
