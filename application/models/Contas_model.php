@@ -36,7 +36,7 @@ class Contas_model extends CI_Model
 		// 	->group_end()
 		// 	->get()
 		// 	->result();
-		print_r($this->db->last_query());
+		// print_r($this->db->last_query());
 		return $data;
 	}
 	public function get_conta_entrada_by_id($id = null)
