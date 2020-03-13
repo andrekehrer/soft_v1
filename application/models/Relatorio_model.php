@@ -55,7 +55,7 @@ class Relatorio_model extends CI_Model
                                 join `categorias` on `categorias`.`id` = `saidas`.`categoria_id`
                                 where pagou = 1 and
                                 categorias.user_id = " . $_SESSION['backend']['userid'] . "
-                                and MONTH(data) = " . $mes . "
+                                and MONTH(data_full) = " . $mes . "
                                 group by categorias.id");
     return $query->result();
 
@@ -70,8 +70,9 @@ class Relatorio_model extends CI_Model
                               from `saidas`
                               where user_id = " . $_SESSION['backend']['userid'] . "
                               and pagou = 1
-                              and MONTH(data) = " . $mes . "");
+                              and MONTH(data_full) = " . $mes . "");
     $data = $query->result();
+    print_r($this->db->last_query());
     return $data[0]->valor;
 
     // exit(0);
