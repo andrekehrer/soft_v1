@@ -30,6 +30,7 @@ class Relatorio extends CI_Controller
         'cartao' => $cat->cartao,
       ];
     }
+    $data['id'] = $mes;
     $data['data_contas'] = (isset($array_conta) ? $array_conta : 'No Register');
     $data['relatorios'] = $relatorios;
     $data['relatorios_f'] = $relatorios_variaveis;
