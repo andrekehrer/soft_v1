@@ -144,7 +144,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <h5>Relatorio do mes <?php echo date('m/Y') ?></h5>
+
+          <h5>Relatorio do mes
+
+            <select name="mes_busca" id="mes_busca">
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+
+          </h5>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
             <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas variaveis</h1><br>
@@ -403,6 +421,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
         $('#myModalPagar').modal('show');
       }
       $(document).ready(function() {
+
+        $('select[name="mes_busca"]').find('option[value="<?php echo $id ?>"]').attr("selected", true);
+
+        $('#mes_busca').on('change', function(e) {
+          var id = $('#mes_busca').val();
+          window.location.href = "/relatorio/" + id;
+
+        });
 
         $('#close_modal_edit').on('click', function() {
           location.reload();

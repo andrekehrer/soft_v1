@@ -13,7 +13,7 @@ class Relatorio_model extends CI_Model
   }
   public function get_all($mes = null)
   {
-    $mes = date('m');
+
     $query = $this->db->query("select 
                                 cor,
                                 categorias.id as id,
@@ -31,7 +31,7 @@ class Relatorio_model extends CI_Model
   }
   public function get_all_valor($mes = null)
   {
-    $mes = date('m');
+
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas_v`
@@ -45,7 +45,7 @@ class Relatorio_model extends CI_Model
   }
   public function get_all_fixas($mes = null)
   {
-    $mes = date('m');
+
     $query = $this->db->query("select 
                                 cor,
                                 categorias.id as id,
@@ -64,7 +64,7 @@ class Relatorio_model extends CI_Model
   }
   public function get_all_valor_fixas($mes = null)
   {
-    $mes = date('m');
+
     $query = $this->db->query("select 
                               Sum(valor) as valor
                               from `saidas`
