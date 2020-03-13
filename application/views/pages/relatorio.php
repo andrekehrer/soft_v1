@@ -164,76 +164,87 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
           </h5>
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
-            <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas variaveis</h1><br>
-            <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total, 2, ',', '.') ?></h1>
-          </div>
-          <!-- Content Row -->
-          <div class="row">
-            <?php
-            $total  = count($relatorios); // total de barras
-            ?>
-            <div id="principal">
-              <!-- <p>Porcentagem de Acessos</p> -->
+          <?php if (count($relatorios) > 0) { ?>
+
+            <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
+              <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas variaveis</h1><br>
+              <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total, 2, ',', '.') ?></h1>
+            </div>
+            <!-- Content Row -->
+            <div class="row">
               <?php
-              $height = '';
-              foreach ($relatorios as $key => $value) {
-
-                $sald = $soma_total;
-                $valor = $value->valor;
-                $conta = ($valor * 100) / $sald;
-                $conta = number_format($conta, 0, ',', '.');
-
-                $conta . '%';
-
-
+              $total  = count($relatorios); // total de barras
               ?>
-                <div id="barra">
-                  <?php echo $conta . '% <br>' . $value->nome ?>
-                  <div class="" style="padding-bottom: 15px;font-size: 8px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
-                </div>
+              <div id="principal">
+                <!-- <p>Porcentagem de Acessos</p> -->
+                <?php
+                $height = '';
+                foreach ($relatorios as $key => $value) {
 
-              <?php }
+                  $sald = $soma_total;
+                  $valor = $value->valor;
+                  $conta = ($valor * 100) / $sald;
+                  $conta = number_format($conta, 0, ',', '.');
+
+                  $conta . '%';
+
+
+                ?>
+                  <div id="barra">
+                    <?php echo $conta . '% <br>' . $value->nome ?>
+                    <div class="" style="padding-bottom: 15px;font-size: 8px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
+                  </div>
+
+                <?php }
+                ?>
+              </div>
+            </div>
+
+          <?php } else { ?>
+            <p>Nao existe registro!</p>
+          <?php } ?>
+
+
+          <?php if (count($relatorios_f) > 0) { ?>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
+              <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas fixas</h1><br>
+              <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total_f, 2, ',', '.') ?></h1>
+            </div>
+
+            <div class="row">
+              <?php
+              $total  = count($relatorios_f); // total de barras
+              ?>
+              <div id="principal">
+                <!-- <p>Porcentagem de Acessos</p> -->
+                <?php
+                $height = '';
+                foreach ($relatorios_f as $key => $value) {
+                  $sald = $soma_total_f;
+                  $valor = $value->valor;
+                  $conta = ($valor * 100) / $sald;
+                  $conta = number_format($conta, 0, ',', '.');
+                  $conta . '%';
+                ?>
+                  <div id="barra">
+                    <?php echo $conta . '% <br>' . $value->nome ?>
+                    <div class="" style="padding-bottom: 15px;font-size: 8px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
+                  </div>
+
+                <?php }
+                ?>
+              </div>
+            </div>
+
+
+            <!-- /.container-fluid -->
+            <div class="total_final">
+              <?php
+              $somaa = $soma_total + $soma_total_f;
+              echo '£' . number_format($somaa, 2, ',', '.');
               ?>
             </div>
-          </div>
-
-          <div class="d-sm-flex align-items-center justify-content-between mb-4" style="border-top: 1px #ddd solid;margin-top: 40px;padding: 10px;">
-            <h1 class="h3 mb-0 text-gray-800" style="font-size: 16px">Saidas fixas</h1><br>
-            <h1 class="h3 mb-0 text-gray-800" style="font-size: 14px">Total <?php echo "£" . number_format($soma_total_f, 2, ',', '.') ?></h1>
-          </div>
-
-          <div class="row">
-            <?php
-            $total  = count($relatorios_f); // total de barras
-            ?>
-            <div id="principal">
-              <!-- <p>Porcentagem de Acessos</p> -->
-              <?php
-              $height = '';
-              foreach ($relatorios_f as $key => $value) {
-                $sald = $soma_total_f;
-                $valor = $value->valor;
-                $conta = ($valor * 100) / $sald;
-                $conta = number_format($conta, 0, ',', '.');
-                $conta . '%';
-              ?>
-                <div id="barra">
-                  <?php echo $conta . '% <br>' . $value->nome ?>
-                  <div class="" style="padding-bottom: 15px;font-size: 8px;background:<?php echo $value->cor; ?>;height:<?php echo $conta . '%' ?>"> <?php echo '£' . number_format($value->valor, 2, ',', '.'); ?></div>
-                </div>
-
-              <?php }
-              ?>
-            </div>
-          </div>
-          <!-- /.container-fluid -->
-          <div class="total_final">
-            <?php
-            $somaa = $soma_total + $soma_total_f;
-            echo '£' . number_format($somaa, 2, ',', '.');
-            ?>
-          </div>
+          <?php }  ?>
         </div>
         <!-- End of Main Content -->
 
