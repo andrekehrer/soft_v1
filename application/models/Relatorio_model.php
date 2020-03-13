@@ -72,7 +72,7 @@ class Relatorio_model extends CI_Model
                               and pagou = 1
                               and MONTH(data_full) = " . $mes . "");
     $data = $query->result();
-    print_r($this->db->last_query());
+    // print_r($this->db->last_query());
     return $data[0]->valor;
 
     // exit(0);
